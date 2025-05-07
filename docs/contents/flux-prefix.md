@@ -1,5 +1,7 @@
 # Prefix for Flux
 
+At the time of writing this code, the standard Flux package sets assets and routes using absolute paths. This is limiting for my development environment — here's my solution:
+
 ## Assets Prefix
 
 Through this feature, you can add a prefix to the standard path of Livewire Flux assets. Use environment variables.
