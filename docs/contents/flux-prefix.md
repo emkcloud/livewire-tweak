@@ -91,3 +91,7 @@ php artisan vendor:publish --tag=livewire-tweak:config
 ## Example Output
 
 - [Screenshot of page test](../images/flux-result.jpg)  
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
