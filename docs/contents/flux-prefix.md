@@ -45,11 +45,7 @@ LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
 LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES="admin/flux"
 LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=false
 ```
-After setting the custom prefix, these new routes will be added.
-
-```bash
-php artisan route:list
-```
+After setting the custom prefix variables, these new routes will be added.
 
 ```
 GET|HEAD admin/flux/editor.css ......... Flux\AssetManager@editorCss › AssetManager@editorCss
