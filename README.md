@@ -48,4 +48,4 @@ LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=false
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE) for more information.
+The MIT License (MIT). Please see the package [License file](LICENSE) for more information.
