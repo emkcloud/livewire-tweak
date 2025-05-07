@@ -7,7 +7,7 @@ LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS="admin"
 LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES="admin"
 LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=false
 ```
-All options in the package have default values, so you only need to define the ones you want to customize in your configuration file.
+All options in the package have default values, so you only need to define the ones you want to customize in your config.
 
 ```php
 'flux' =>
@@ -22,4 +22,4 @@ All options in the package have default values, so you only need to define the o
 ],
 ```
 
-By default, new routes are added with the specified prefix, but if you want to remove the old ones, simply enable the LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES option
+By default, new routes are added with the specified prefix, but if you want to remove the oriinal routes simply enable the "remove" option
