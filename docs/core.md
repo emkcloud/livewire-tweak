@@ -1,4 +1,4 @@
-# Prefix for Livewire Flux
+# Prefix for Livewire Core
 
 **Custom tweaks for Livewire and Flux**  
 
