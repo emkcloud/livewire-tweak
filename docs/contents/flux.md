@@ -1,5 +1,7 @@
 # Prefix for Flux
 
+## Static Prefix
+
 Through this feature, you can add a prefix to the standard path of Livewire Flux assets and routes. Use environment variables.
 
 ```ini
