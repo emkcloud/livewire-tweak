@@ -6,7 +6,7 @@ Blade directives, script output, and internal behavior have been adjusted. Custo
 
 **Why this package exists**
 
-I built this package based on my experience working with clients who use firewalls and traffic load balancers that rely on custom URL prefixes such as /admin, /backend, /customers, etc. 
+I built this package based on my experience working with clients who use firewalls and traffic load balancers that rely on custom URL prefixes such as `/admin`, `/backend`, `/customers`, etc. 
 
 In these environments, using popular Laravel packages like Nova, Livewire, or others can be problematic, because they often rely on absolute paths for assets and internal API calls.  
 
