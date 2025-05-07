@@ -71,7 +71,7 @@ The configuration file is optional. If you need to customize, you can publish th
 php artisan vendor:publish --tag=livewire-tweak:config
 ```
 
-## Config livewire-tweak.php
+## File livewire-tweak.php
 
 ```php
 'flux' =>
