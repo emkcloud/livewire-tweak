@@ -22,4 +22,4 @@ All options in the package have default values, so you only need to define the o
 ],
 ```
 
-By default, new routes are added, but if you want to remove the oriinal routes simply enable the "remove" option
+By default, new routes are added, but if you want to remove the original routes, simply enable the "remove routes" option.
