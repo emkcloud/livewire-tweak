@@ -32,7 +32,7 @@ composer require emkcloud/livewire-tweak
 
 ## Configuration
 
-The configuration file is optional. You can simply define the variables directly in your .env file. However, if you need to customize the options, you can publish the configuration file to your config directory:
+The configuration file is optional. You can simply define the variables directly in your .env file. However, if you need to customize the options, you can publish the configuration file:
 
 ```bash
 php artisan vendor:publish --tag=livewire-tweak:config
