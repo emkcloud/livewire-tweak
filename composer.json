@@ -1,6 +1,6 @@
 {
     "name": "emkcloud/livewire-tweak",
-    "description": "Tweaks and overrides for Livewire Blade and scripts.",
+    "description": "Tweaks and overrides for Livewire package",
     "keywords": [
         "assets",
         "flux",
