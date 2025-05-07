@@ -92,6 +92,7 @@ php artisan vendor:publish --tag=livewire-tweak:config
 
 - [Screenshot of page test](../images/flux-result.jpg)  
 - [Screenshot of route:list](../images/flux-routes.jpg)  
+- [Screenshot of route:list with remove](../images/flux-routes-remove.jpg)  
 
 ## License
 
