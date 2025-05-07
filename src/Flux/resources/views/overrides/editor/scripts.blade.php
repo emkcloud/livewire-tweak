@@ -1,0 +1,2 @@
+
+{!! app('livewireTweakFlux')->editorScripts() !!}

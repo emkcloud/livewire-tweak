@@ -15,6 +15,23 @@ class LivewireTweakServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $this->bootInit();
+        $this->bootComplete();
+    }
+
+    /**
+     * Boot the service provider (init).
+     */
+    public function bootInit(): void
+    {
+        FluxAssets::boot();
+    }
+
+    /**
+     * Boot the service provider (complete).
+     */
+    public function bootComplete(): void
+    {
         App::booted(function ()
         {
             $directives = app('blade.compiler')->getCustomDirectives();
@@ -23,7 +40,7 @@ class LivewireTweakServiceProvider extends ServiceProvider
             {
                 if (isset($directives['fluxScripts']) && isset($directives['fluxAppearance']))
                 {
-                    FluxAssets::boot();
+                    FluxAssets::booted();
                 }
             }
         });

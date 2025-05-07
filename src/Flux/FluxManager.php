@@ -6,36 +6,73 @@ use Illuminate\Support\Str;
 
 class FluxManager
 {
-    public function appearance()
+    /**
+     * Generate Blade directive appearance.
+     */
+    public function appearance(): string
     {
         return $this->getAppearanceView();
     }
 
-    public function scripts()
+    /**
+     * Generate Blade directive scripts.
+     */
+    public function scripts(): string
     {
         $prefix = $this->getAssetPrefix();
         $output = $this->getAssetView();
 
-        if ($prefix)
+        return ($prefix) ? preg_replace('#src="/flux/#', 'src="'.$prefix, $output) : $output;
+    }
+
+    /**
+     * Override original Flux editorStyles.
+     */
+    public function editorStyles()
+    {
+        $output = app('flux')->editorStyles();
+        $prefix = $this->getAssetPrefix();
+
+        return ($prefix) ? preg_replace('#href="/flux/#', 'href="'.$prefix, $output) : $output;
+    }
+
+    /**
+     * Override original Flux editorScripts.
+     */
+    public function editorScripts()
+    {
+        $output = app('flux')->editorScripts();
+        $prefix = $this->getAssetPrefix();
+
+        return ($prefix) ? preg_replace('#src="/flux/#', 'src="'.$prefix, $output) : $output;
+    }
+
+    /**
+     * Load and render the appearance view.
+     */
+    public function getAppearanceView(): string
+    {
+        return view()->file(__DIR__.'/resources/views/assets/appearance.blade.php')->render();
+    }
+
+    /**
+     * Get the configured asset path prefix for flux assets.
+     */
+    public function getAssetPrefix(): ?string
+    {
+        if ($prefix = Str::trim(config('livewire-tweak.flux.prefix.assets')))
         {
-            $output = str_replace('src="/flux/', sprintf('src="%s',$prefix), $output);
+            return Str::start(Str::finish($prefix, '/'), '/');
         }
 
-        return $output;
+        return null;
     }
 
-    public function getAppearanceView()
+    /**
+     * Load and render the scripts view.
+     */
+    public function getAssetView(): string
     {
-        return view()->file(__DIR__.'/resources/views/appearance.blade.php')->render();
-    }
-
-    public function getAssetPrefix()
-    {
-        return Str::start(Str::finish(config('livewire-tweak.flux.prefix.assets'), '/'), '/');
-    }
-
-    public function getAssetView()
-    {
-        return view()->file(__DIR__.'/resources/views/scripts.blade.php')->render();
+        return view()->file(__DIR__.'/resources/views/assets/scripts.blade.php')->render();
     }
 }
