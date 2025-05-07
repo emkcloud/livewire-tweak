@@ -1,0 +1,53 @@
+{
+    "name": "emkcloud/livewire-tweak",
+    "description": "Tweaks and overrides for Livewire Blade and scripts.",
+    "keywords": [
+        "assets",
+        "flux",
+        "laravel",
+        "livewire"
+    ],
+    "homepage": "https://github.com/emkcloud/livewire-tweak",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Massimo Della Rovere",
+            "email": "massimo.dellarovere@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Emkcloud\\LivewireTweak\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "illuminate/support": "^12.0",
+        "livewire/flux": "^2.1"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Emkcloud\\LivewireTweak\\Providers\\LivewireTweakServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "laravel/pint": "^1.22",
+        "pestphp/pest": "^3.8",
+        "orchestra/testbench": "^10.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
