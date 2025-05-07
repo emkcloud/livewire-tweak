@@ -26,9 +26,9 @@ LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=false
 
 By default, new routes are added, but if you want to remove the original routes, simply enable the "remove routes" option.
 
-## Example Output
-
-- [Screenshot of page test](../images/flux-result.jpg)  
+```ini
+LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=true
+```
 
 ## Configuration
 
@@ -52,3 +52,7 @@ php artisan vendor:publish --tag=livewire-tweak:config
     ]
 ],
 ```
+
+## Example Output
+
+- [Screenshot of page test](../images/flux-result.jpg)  
