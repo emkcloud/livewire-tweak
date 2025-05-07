@@ -31,3 +31,10 @@ I've raised this issue multiple times, but for reasons unknown to me, it seems t
 ```bash
 composer require emkcloud/livewire-tweak
 ```
+
+## Other Resources
+
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
