@@ -35,7 +35,7 @@ By default, new routes are added, but if you want to remove the original routes,
 
 ## Example Output
 
-- [Screenshot of page test](docs/images/flux-result.jpg)  
+- [Screenshot of page test](../images/flux-result.jpg)  
 
 ## Configuration
 
