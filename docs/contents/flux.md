@@ -1,6 +1,6 @@
 # Prefix for Flux
 
-## Static Prefix
+## Assets Prefix
 
 Through this feature, you can add a prefix to the standard path of Livewire Flux assets and routes. Use environment variables.
 
@@ -31,6 +31,8 @@ By default, new routes are added, but if you want to remove the original routes,
 ```ini
 LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=true
 ```
+
+## Routes Prefix
 
 ## Configuration
 
