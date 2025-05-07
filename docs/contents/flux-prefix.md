@@ -1,6 +1,6 @@
 # Prefix for Flux
 
-At the time of writing this code, the Flux package sets assets and routes using absolute paths. This is limiting for my development environment. Here's my solution:
+At the time of writing this code, the Flux package sets assets/routes using absolute paths. This is limiting for my development environment. Here's my solution:
 
 ## Assets Prefix
 
