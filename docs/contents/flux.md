@@ -33,10 +33,10 @@ GET|HEAD flux/editor.min.js .. Flux\AssetManager@editorMinJs › AssetManager@ed
 GET|HEAD flux/flux.js .................. Flux\AssetManager@fluxJs › AssetManager@fluxJs
 GET|HEAD flux/flux.min.js ........ Flux\AssetManager@fluxMinJs › AssetManager@fluxMinJs
 ```
+
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
 LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES="admin/flux"
-LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=true
 LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=false
 ```
 

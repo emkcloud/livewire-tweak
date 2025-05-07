@@ -12,10 +12,8 @@ In these environments, using popular Laravel packages like Nova, Livewire, or ot
 
 ## Features
 
-- [Prefix for Livewire Assets](docs/contents/core.md)
-- [Prefix for Livewire Routes](docs/contents/core.md)
-- [Prefix for Livewire Flux Assets](docs/contents/flux.md)
-- [Prefix for Livewire Flux Routes](docs/contents/flux.md)
+- [Prefix for Livewire Resources](docs/contents/core.md)
+- [Prefix for Livewire Flux Resources](docs/contents/flux.md)
 
 ## Requirements
 
