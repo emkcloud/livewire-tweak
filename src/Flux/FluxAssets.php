@@ -60,14 +60,17 @@ class FluxAssets
 
         if ($prefix = app('livewireTweakFlux')->getRoutePrefix())
         {
-            Route::prefix($prefix)->group(function ()
+            if (config('livewire-tweak.flux.prefix.enable') == true)
             {
-                Route::get('flux.js', [AssetManager::class, 'fluxJs']);
-                Route::get('flux.min.js', [AssetManager::class, 'fluxMinJs']);
-                Route::get('editor.css', [AssetManager::class, 'editorCss']);
-                Route::get('editor.js', [AssetManager::class, 'editorJs']);
-                Route::get('editor.min.js', [AssetManager::class, 'editorMinJs']);
-            });
+                Route::prefix($prefix)->group(function ()
+                {
+                    Route::get('flux.js', [AssetManager::class, 'fluxJs']);
+                    Route::get('flux.min.js', [AssetManager::class, 'fluxMinJs']);
+                    Route::get('editor.css', [AssetManager::class, 'editorCss']);
+                    Route::get('editor.js', [AssetManager::class, 'editorJs']);
+                    Route::get('editor.min.js', [AssetManager::class, 'editorMinJs']);
+                });
+            }
         }
     }
 }
