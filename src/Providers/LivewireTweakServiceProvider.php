@@ -7,44 +7,20 @@ use Emkcloud\LivewireTweak\Flux\FluxAssets;
 use Emkcloud\LivewireTweak\Flux\FluxManager;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
-use Livewire\Livewire;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Uri;
 
 class LivewireTweakServiceProvider extends ServiceProvider
 {
-    /**
-     * Boot the service provider.
-     */
     public function boot(): void
     {
         $this->bootInit();
         $this->bootComplete();
-/*
-        Livewire::setUpdateRoute(function ($handle) {
-            return Route::get('/laravel/AAA/livewire/update', $handle);
-        });
-
-        Livewire::setScriptRoute(function ($handle) {
-            return Route::get('/laravel/livewire/livewire.js', $handle);
-        });
-*/
-//dd(url('/path1/path2'));
-//dd(request()->getSchemeAndHttpHost());
-
     }
 
-    /**
-     * Boot the service provider (init).
-     */
     public function bootInit(): void
     {
         FluxAssets::boot();
     }
 
-    /**
-     * Boot the service provider (complete).
-     */
     public function bootComplete(): void
     {
         App::booted(function ()
@@ -61,18 +37,12 @@ class LivewireTweakServiceProvider extends ServiceProvider
         });
     }
 
-    /**
-     * Register the service provider.
-     */
     public function register(): void
     {
         $this->registerConfig();
         $this->registerBinding();
     }
 
-    /**
-     * Register the binding classes.
-     */
     protected function registerBinding()
     {
         $this->app->alias(CoreManager::class, 'livewireTweakCore');
@@ -82,9 +52,6 @@ class LivewireTweakServiceProvider extends ServiceProvider
         $this->app->singleton(FluxManager::class);
     }
 
-    /**
-     * Register the general configuration.
-     */
     protected function registerConfig()
     {
         $config = __DIR__.'/../../config/livewire-tweak.php';

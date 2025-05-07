@@ -9,17 +9,11 @@ use Illuminate\Support\Facades\Route;
 
 class FluxAssets
 {
-    /**
-     * Generate environment for flux assets.
-     */
     public static function boot()
     {
         Blade::anonymousComponentPath(__DIR__.'/resources/views/overrides', 'flux');
     }
 
-    /**
-     * Generate environment for flux assets.
-     */
     public static function booted()
     {
         $instance = new static;
@@ -28,9 +22,6 @@ class FluxAssets
         $instance->registerAssetRoutes();
     }
 
-    /**
-     * Generate directives for flux assets.
-     */
     public function registerAssetDirective(): void
     {
         Blade::directive('livewireTweakFluxAppearance', function ($expression)
@@ -48,9 +39,6 @@ class FluxAssets
         });
     }
 
-    /**
-     * Generate routes for flux assets.
-     */
     public function registerAssetRoutes(): void
     {
         if (App::routesAreCached())
