@@ -13,7 +13,7 @@
     "authors": [
         {
             "name": "Massimo Della Rovere",
-            "email": "massimo.dellarovere@gmail.com",
+            "email": "dellarovere@duck.com",
             "role": "Developer"
         }
     ],
@@ -29,7 +29,7 @@
     },
     "require": {
         "illuminate/support": "^12.0",
-        "livewire/flux": "^2.1"
+        "livewire/livewire": "^3.5.19"
     },
     "extra": {
         "laravel": {
