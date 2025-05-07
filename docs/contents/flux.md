@@ -1,6 +1,6 @@
 # Prefix for Flux
 
-Through this option, you can add a prefix to the standard path of Livewire Flux assets and routes. Use environment variables.
+Through this feature, you can add a prefix to the standard path of Livewire Flux assets and routes. Use environment variables.
 
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
@@ -24,7 +24,19 @@ If you prefer to remove the domain name from the resource path, set the followin
 LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=false
 ```
 
-All options in the package have default values, so you only need to define the ones you want to customize in your config.
+By default, new routes are added, but if you want to remove the original routes, simply enable the "remove routes" option.
+
+## Example Output
+
+- [Screenshot of page test](../images/flux-result.jpg)  
+
+## Configuration
+
+The configuration file is optional. If you need to customize, you can publish the config:
+
+```bash
+php artisan vendor:publish --tag=livewire-tweak:config
+```
 
 ```php
 'flux' =>
@@ -39,18 +51,4 @@ All options in the package have default values, so you only need to define the o
         'remove_original_routes' => env('LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES',false),
     ]
 ],
-```
-
-By default, new routes are added, but if you want to remove the original routes, simply enable the "remove routes" option.
-
-## Example Output
-
-- [Screenshot of page test](../images/flux-result.jpg)  
-
-## Configuration
-
-The configuration file is optional. If you need to customize, you can publish the config:
-
-```bash
-php artisan vendor:publish --tag=livewire-tweak:config
 ```
