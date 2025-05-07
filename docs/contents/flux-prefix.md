@@ -46,6 +46,10 @@ LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES="admin/flux"
 LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=false
 ```
 
+```bash
+php artisan route:list
+```
+
 ```
 GET|HEAD admin/flux/editor.css ......... Flux\AssetManager@editorCss › AssetManager@editorCss
 GET|HEAD admin/flux/editor.js ............ Flux\AssetManager@editorJs › AssetManager@editorJs
