@@ -18,16 +18,10 @@ https://mydomain.com/admin/flux/editor.js
 https://mydomain.com/admin/flux/editor.css
 ```
 
-If you prefer to remove the domain name from the resource path, set the following environment variable.
+If you prefer to remove the domain name from the resource path, set the following environment variable to false.
 
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=false
-```
-
-```
-src="/admin/flux/flux.js"
-src="/admin/flux/editor.js"
-href="/admin/flux/editor.css"
 ```
 
 All options in the package have default values, so you only need to define the ones you want to customize in your config.
