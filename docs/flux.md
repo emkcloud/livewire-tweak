@@ -1,6 +1,6 @@
-# Prefix for Livewire Flux
+# Prefix for Flux
 
-Through this option, you can add a prefix to the standard path of Livewire Flux assets and routes. Simply add the prefix in the environment variables.
+Through this option, you can add a prefix to the standard path of Livewire Flux assets and routes. Use environment variables.
 
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS="admin"
