@@ -21,7 +21,7 @@ class FluxManager
     {
         if (config('livewire-tweak.flux.prefix.domain') == true)
         {
-            return url($prefix);
+            return request()->getSchemeAndHttpHost().$prefix;
         }
 
         return $prefix;

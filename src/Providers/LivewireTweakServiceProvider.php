@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Uri;
 
 class LivewireTweakServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,8 @@ class LivewireTweakServiceProvider extends ServiceProvider
         });
 */
 //dd(url('/path1/path2'));
+//dd(request()->getSchemeAndHttpHost());
+
     }
 
     /**
