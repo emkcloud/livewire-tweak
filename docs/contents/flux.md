@@ -7,9 +7,7 @@ Through this feature, you can add a prefix to the standard path of Livewire Flux
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
 LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS="admin/flux"
-LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES="admin/flux"
 LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=true
-LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=false
 ```
 
 This is an example of the result when setting the prefixes mentioned above.
@@ -26,13 +24,27 @@ If you prefer to remove the domain name from the resource path, set the followin
 LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=false
 ```
 
+## Routes Prefix
+
+```
+GET|HEAD flux/editor.css ......... Flux\AssetManager@editorCss › AssetManager@editorCss
+GET|HEAD flux/editor.js ............ Flux\AssetManager@editorJs › AssetManager@editorJs
+GET|HEAD flux/editor.min.js .. Flux\AssetManager@editorMinJs › AssetManager@editorMinJs
+GET|HEAD flux/flux.js .................. Flux\AssetManager@fluxJs › AssetManager@fluxJs
+GET|HEAD flux/flux.min.js ........ Flux\AssetManager@fluxMinJs › AssetManager@fluxMinJs
+```
+```ini
+LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES="admin/flux"
+LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=true
+LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=false
+```
+
 By default, new routes are added, but if you want to remove the original routes, simply enable the "remove routes" option.
 
 ```ini
 LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=true
 ```
-
-## Routes Prefix
 
 ## Configuration
 
