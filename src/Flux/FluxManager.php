@@ -35,7 +35,7 @@ class FluxManager
      */
     public function scripts(): string
     {
-        return $this->applyPrefixToSrc($this->getAssetView(),$this->getAssetPrefix());
+        return $this->applyPrefixToSrc($this->getScriptView(),$this->getAssetPrefix());
     }
 
     /**
@@ -67,7 +67,15 @@ class FluxManager
      */
     public function getAssetPrefix(): ?string
     {
-        if ($prefix = Str::trim(config('livewire-tweak.flux.prefix.assets')))
+        return $this->getConfigPrefix('livewire-tweak.flux.prefix.assets');
+    }
+
+    /**
+     * Get the configured asset path prefix for flux assets.
+     */
+    public function getConfigPrefix($config): ?string
+    {
+        if ($prefix = Str::trim(config($config)))
         {
             return Str::start(Str::finish($prefix, '/'), '/');
         }
@@ -76,9 +84,17 @@ class FluxManager
     }
 
     /**
+     * Get the configured asset path prefix for flux routes.
+     */
+    public function getRoutePrefix(): ?string
+    {
+        return $this->getConfigPrefix('livewire-tweak.flux.prefix.routes');
+    }
+
+    /**
      * Load and render the scripts view.
      */
-    public function getAssetView(): string
+    public function getScriptView(): string
     {
         return view()->file(__DIR__.'/resources/views/assets/scripts.blade.php')->render();
     }

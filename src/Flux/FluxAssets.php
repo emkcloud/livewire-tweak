@@ -58,7 +58,7 @@ class FluxAssets
             return;
         }
 
-        if ($prefix = app('livewireTweakFlux')->getAssetPrefix())
+        if ($prefix = app('livewireTweakFlux')->getRoutePrefix())
         {
             Route::prefix($prefix)->group(function ()
             {
