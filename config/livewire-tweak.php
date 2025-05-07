@@ -34,8 +34,7 @@ return
             'assets' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS',''),
             'routes' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES',''),
             'domain' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN',true),
-
-            'remove_original_routes' => env('LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES',false),
+            'remove' => env('LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES',false),
         ]
     ]
 ];

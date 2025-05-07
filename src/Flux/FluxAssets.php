@@ -2,10 +2,7 @@
 
 namespace Emkcloud\LivewireTweak\Flux;
 
-use Flux\AssetManager;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Route;
 
 class FluxAssets
 {
@@ -19,7 +16,6 @@ class FluxAssets
         $instance = new static;
 
         $instance->registerAssetDirective();
-        $instance->registerAssetRoutes();
     }
 
     public function registerAssetDirective(): void
@@ -37,28 +33,5 @@ class FluxAssets
             {!! app('livewireTweakFlux')->scripts($expression) !!}
             PHP;
         });
-    }
-
-    public function registerAssetRoutes(): void
-    {
-        if (App::routesAreCached())
-        {
-            return;
-        }
-
-        if ($prefix = app('livewireTweakFlux')->getRoutePrefix())
-        {
-            if (config(FluxPrefix::ENABLE) == true)
-            {
-                Route::prefix($prefix)->group(function ()
-                {
-                    Route::get('flux.js', [AssetManager::class, 'fluxJs']);
-                    Route::get('flux.min.js', [AssetManager::class, 'fluxMinJs']);
-                    Route::get('editor.css', [AssetManager::class, 'editorCss']);
-                    Route::get('editor.js', [AssetManager::class, 'editorJs']);
-                    Route::get('editor.min.js', [AssetManager::class, 'editorMinJs']);
-                });
-            }
-        }
     }
 }

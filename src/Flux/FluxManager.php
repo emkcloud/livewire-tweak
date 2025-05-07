@@ -13,15 +13,15 @@ class FluxManager
 
     public function applyPrefixDomain($prefix): string
     {
-        if (config(FluxPrefix::DOMAIN) == true)
+        if (!config(FluxPrefix::DOMAIN) == true)
         {
-            return request()->getSchemeAndHttpHost().$prefix;
+            return url('/').$prefix;
         }
 
-        return $prefix;
+        return parse_url(url('/'), PHP_URL_PATH).$prefix;
     }
 
-    public function applyPrefixToHref($output,$prefix): string
+    public function applyPrefixToHref($output, $prefix): string
     {
         if (config(FluxPrefix::ENABLE) == true && $prefix)
         {
@@ -31,7 +31,7 @@ class FluxManager
         return $output;
     }
 
-    public function applyPrefixToSrc($output,$prefix): string
+    public function applyPrefixToSrc($output, $prefix): string
     {
         if (config(FluxPrefix::ENABLE) == true && $prefix)
         {
@@ -43,17 +43,17 @@ class FluxManager
 
     public function scripts(): string
     {
-        return $this->applyPrefixToSrc($this->getScriptView(),$this->getAssetPrefix());
+        return $this->applyPrefixToSrc($this->getScriptView(), $this->getAssetPrefix());
     }
 
     public function editorStyles()
     {
-        return $this->applyPrefixToHref(app('flux')->editorStyles(),$this->getAssetPrefix());
+        return $this->applyPrefixToHref(app('flux')->editorStyles(), $this->getAssetPrefix());
     }
 
     public function editorScripts()
     {
-        return $this->applyPrefixToSrc(app('flux')->editorScripts(),$this->getAssetPrefix());
+        return $this->applyPrefixToSrc(app('flux')->editorScripts(), $this->getAssetPrefix());
     }
 
     public function getAppearanceView(): string

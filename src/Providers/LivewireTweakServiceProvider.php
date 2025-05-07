@@ -5,6 +5,7 @@ namespace Emkcloud\LivewireTweak\Providers;
 use Emkcloud\LivewireTweak\Core\CoreManager;
 use Emkcloud\LivewireTweak\Flux\FluxAssets;
 use Emkcloud\LivewireTweak\Flux\FluxManager;
+use Emkcloud\LivewireTweak\Flux\FluxRoutes;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,6 +33,7 @@ class LivewireTweakServiceProvider extends ServiceProvider
                 if (isset($directives['fluxScripts']) && isset($directives['fluxAppearance']))
                 {
                     FluxAssets::booted();
+                    FluxRoutes::booted();
                 }
             }
         });
