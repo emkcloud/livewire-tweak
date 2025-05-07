@@ -15,8 +15,8 @@ return
             'enable' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE',false),
             'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS',''),
             'routes' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES',''),
-
-            'remove_original_routes' => env('LIVEWIRE_TWEAK_CORE_REMOVE_ROUTES',false),
+            'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true),
+            'remove' => env('LIVEWIRE_TWEAK_CORE_REMOVE_ROUTES',false),
         ]
     ],
 
