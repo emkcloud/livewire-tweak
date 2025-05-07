@@ -15,11 +15,29 @@ class FluxManager
     }
 
     /**
+     * Add current domin name before prefix.
+     */
+    public function applyPrefixDomain($prefix): string
+    {
+        if (config('livewire-tweak.flux.prefix.domain') == true)
+        {
+            return url($prefix);
+        }
+
+        return $prefix;
+    }
+
+    /**
      * Add prefix on original path (href) assets.
      */
     public function applyPrefixToHref($output,$prefix): string
     {
-        return ($prefix) ? preg_replace('#href="/flux/#', 'href="'.$prefix, $output) : $output;
+        if (config('livewire-tweak.flux.prefix.enable') == true && $prefix)
+        {
+            return preg_replace('#href="/flux/#', 'href="'.$this->applyPrefixDomain($prefix), $output);
+        }
+
+        return $output;
     }
 
     /**
@@ -27,7 +45,12 @@ class FluxManager
      */
     public function applyPrefixToSrc($output,$prefix): string
     {
-        return ($prefix) ? preg_replace('#src="/flux/#', 'src="'.$prefix, $output) : $output;
+        if (config('livewire-tweak.flux.prefix.enable') == true && $prefix)
+        {
+            return preg_replace('#src="/flux/#', 'src="'.$this->applyPrefixDomain($prefix), $output);
+        }
+
+        return $output;
     }
 
     /**

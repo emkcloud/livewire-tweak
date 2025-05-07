@@ -7,6 +7,8 @@ use Emkcloud\LivewireTweak\Flux\FluxAssets;
 use Emkcloud\LivewireTweak\Flux\FluxManager;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
+use Illuminate\Support\Facades\Route;
 
 class LivewireTweakServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,16 @@ class LivewireTweakServiceProvider extends ServiceProvider
     {
         $this->bootInit();
         $this->bootComplete();
+/*
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::get('/laravel/AAA/livewire/update', $handle);
+        });
+
+        Livewire::setScriptRoute(function ($handle) {
+            return Route::get('/laravel/livewire/livewire.js', $handle);
+        });
+*/
+//dd(url('/path1/path2'));
     }
 
     /**
