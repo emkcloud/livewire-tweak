@@ -11,7 +11,7 @@ class FluxAssets
 {
     public static function boot()
     {
-        Blade::anonymousComponentPath(__DIR__.'/resources/views/overrides', 'flux');
+        Blade::anonymousComponentPath(__DIR__.'/../../resources/views/flux/overrides', 'flux');
     }
 
     public static function booted()
@@ -48,7 +48,7 @@ class FluxAssets
 
         if ($prefix = app('livewireTweakFlux')->getRoutePrefix())
         {
-            if (config('livewire-tweak.flux.prefix.enable') == true)
+            if (config(FluxPrefix::ENABLE) == true)
             {
                 Route::prefix($prefix)->group(function ()
                 {

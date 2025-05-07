@@ -13,7 +13,7 @@ class FluxManager
 
     public function applyPrefixDomain($prefix): string
     {
-        if (config('livewire-tweak.flux.prefix.domain') == true)
+        if (config(FluxPrefix::DOMAIN) == true)
         {
             return request()->getSchemeAndHttpHost().$prefix;
         }
@@ -23,7 +23,7 @@ class FluxManager
 
     public function applyPrefixToHref($output,$prefix): string
     {
-        if (config('livewire-tweak.flux.prefix.enable') == true && $prefix)
+        if (config(FluxPrefix::ENABLE) == true && $prefix)
         {
             return preg_replace('#href="/flux/#', 'href="'.$this->applyPrefixDomain($prefix), $output);
         }
@@ -33,7 +33,7 @@ class FluxManager
 
     public function applyPrefixToSrc($output,$prefix): string
     {
-        if (config('livewire-tweak.flux.prefix.enable') == true && $prefix)
+        if (config(FluxPrefix::ENABLE) == true && $prefix)
         {
             return preg_replace('#src="/flux/#', 'src="'.$this->applyPrefixDomain($prefix), $output);
         }
@@ -58,12 +58,12 @@ class FluxManager
 
     public function getAppearanceView(): string
     {
-        return view()->file(__DIR__.'/resources/views/assets/appearance.blade.php')->render();
+        return view('livewire-tweak::flux.assets.appearance')->render();
     }
 
     public function getAssetPrefix(): ?string
     {
-        return $this->getConfigPrefix('livewire-tweak.flux.prefix.assets');
+        return $this->getConfigPrefix(FluxPrefix::ASSETS);
     }
 
     public function getConfigPrefix($config): ?string
@@ -78,11 +78,11 @@ class FluxManager
 
     public function getRoutePrefix(): ?string
     {
-        return $this->getConfigPrefix('livewire-tweak.flux.prefix.routes');
+        return $this->getConfigPrefix(FluxPrefix::ROUTES);
     }
 
     public function getScriptView(): string
     {
-        return view()->file(__DIR__.'/resources/views/assets/scripts.blade.php')->render();
+        return view('livewire-tweak::flux.assets.scripts')->render();
     }
 }

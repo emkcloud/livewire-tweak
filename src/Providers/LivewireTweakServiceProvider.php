@@ -40,6 +40,7 @@ class LivewireTweakServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->registerConfig();
+        $this->registerViews();
         $this->registerBinding();
     }
 
@@ -59,5 +60,10 @@ class LivewireTweakServiceProvider extends ServiceProvider
         $this->publishes([$config => config_path('livewire-tweak.php')], ['livewire-tweak', 'livewire-tweak:config']);
 
         $this->mergeConfigFrom($config, 'livewire-tweak');
+    }
+
+    protected function registerViews()
+    {
+        $this->loadViewsFrom(__DIR__.'/../../resources/views', 'livewire-tweak');
     }
 }
