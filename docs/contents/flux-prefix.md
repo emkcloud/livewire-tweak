@@ -26,7 +26,7 @@ LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=false
 
 ## Routes Prefix
 
-Through this feature, you can add a prefix to the standard path of Livewire Flux routes. Use environment variables.
+Through this feature, you can add a prefix to the standard URL of Livewire Flux routes. Use environment variables.
 
 ```
 GET|HEAD flux/editor.css ......... Flux\AssetManager@editorCss › AssetManager@editorCss
