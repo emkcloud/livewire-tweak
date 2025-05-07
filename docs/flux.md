@@ -26,7 +26,7 @@ By default, new routes are added, but if you want to remove the original routes,
 
 ## Configuration
 
-The configuration file is optional. You can simply define the variables. However, if you need to customize the options, you can publish the configuration file:
+The configuration file is optional. If you need to customize the options, you can publish the configuration file:
 
 ```bash
 php artisan vendor:publish --tag=livewire-tweak:config
