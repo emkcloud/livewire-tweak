@@ -14,7 +14,9 @@ This is an example of the result when setting the prefixes mentioned above.
 
 ```
 https://mydomain.com/admin/flux/flux.js
+https://mydomain.com/admin/flux/flux.min.js
 https://mydomain.com/admin/flux/editor.js
+https://mydomain.com/admin/flux/editor.min.js
 https://mydomain.com/admin/flux/editor.css
 ```
 
