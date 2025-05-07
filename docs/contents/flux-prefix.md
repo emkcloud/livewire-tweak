@@ -31,11 +31,11 @@ LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=false
 Through this feature, you can add a prefix to the standard URL of Livewire Flux routes.
 
 ```
-GET|HEAD flux/editor.css ......... Flux\AssetManager@editorCss › AssetManager@editorCss
-GET|HEAD flux/editor.js ............ Flux\AssetManager@editorJs › AssetManager@editorJs
-GET|HEAD flux/editor.min.js .. Flux\AssetManager@editorMinJs › AssetManager@editorMinJs
-GET|HEAD flux/flux.js .................. Flux\AssetManager@fluxJs › AssetManager@fluxJs
-GET|HEAD flux/flux.min.js ........ Flux\AssetManager@fluxMinJs › AssetManager@fluxMinJs
+GET|HEAD flux/editor.css ............... Flux\AssetManager@editorCss › AssetManager@editorCss
+GET|HEAD flux/editor.js .................. Flux\AssetManager@editorJs › AssetManager@editorJs
+GET|HEAD flux/editor.min.js ........ Flux\AssetManager@editorMinJs › AssetManager@editorMinJs
+GET|HEAD flux/flux.js ........................ Flux\AssetManager@fluxJs › AssetManager@fluxJs
+GET|HEAD flux/flux.min.js .............. Flux\AssetManager@fluxMinJs › AssetManager@fluxMinJs
 ```
 
 Use environment variables for change default path and add custom prefix.
@@ -44,6 +44,14 @@ Use environment variables for change default path and add custom prefix.
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
 LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES="admin/flux"
 LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=false
+```
+
+```
+GET|HEAD admin/flux/editor.css ......... Flux\AssetManager@editorCss › AssetManager@editorCss
+GET|HEAD admin/flux/editor.js ............ Flux\AssetManager@editorJs › AssetManager@editorJs
+GET|HEAD admin/flux/editor.min.js .. Flux\AssetManager@editorMinJs › AssetManager@editorMinJs
+GET|HEAD admin/flux/flux.js .................. Flux\AssetManager@fluxJs › AssetManager@fluxJs
+GET|HEAD admin/flux/flux.min.js ........ Flux\AssetManager@fluxMinJs › AssetManager@fluxMinJs
 ```
 
 By default, new routes are added, but if you want to remove the original routes, simply enable the "remove routes" option.
