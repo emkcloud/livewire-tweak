@@ -21,10 +21,10 @@ I've raised this issue multiple times, but for reasons unknown to me, it seems t
 
 ## Requirements
 
-- Laravel 12+
-- Livewire 3.6+
-- Livewire Flux 2.0+ (optional)
-- Livewire Flux PRO 2.0+ (optional)
+- Laravel ^12
+- Livewire ^3.6
+- Livewire Flux ^2.0 (optional)
+- Livewire Flux PRO ^2.0 (optional)
 
 ## Installation
 
