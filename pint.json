@@ -18,10 +18,5 @@
 		"docs/",
 		"examples/",
 		"vendor/"
-	],
-
-    "notPath": [
-		"examples/connection.php",
-		"examples/migtation.php"
-    ]
+	]
 }
