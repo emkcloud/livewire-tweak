@@ -94,4 +94,4 @@ php artisan vendor:publish --tag=livewire-tweak:config
 
 ## License
 
-The MIT License (MIT). Please see [License File](../../LICENSE) for more information.
+The MIT License (MIT). Please see the package [License file](../../LICENSE) for more information.
