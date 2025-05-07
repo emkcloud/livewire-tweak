@@ -15,14 +15,27 @@ class FluxManager
     }
 
     /**
+     * Add prefix on original path (href) assets.
+     */
+    public function applyPrefixToHref($output,$prefix): string
+    {
+        return ($prefix) ? preg_replace('#href="/flux/#', 'href="'.$prefix, $output) : $output;
+    }
+
+    /**
+     * Add prefix on original path (src) assets.
+     */
+    public function applyPrefixToSrc($output,$prefix): string
+    {
+        return ($prefix) ? preg_replace('#src="/flux/#', 'src="'.$prefix, $output) : $output;
+    }
+
+    /**
      * Generate Blade directive scripts.
      */
     public function scripts(): string
     {
-        $prefix = $this->getAssetPrefix();
-        $output = $this->getAssetView();
-
-        return ($prefix) ? preg_replace('#src="/flux/#', 'src="'.$prefix, $output) : $output;
+        return $this->applyPrefixToSrc($this->getAssetView(),$this->getAssetPrefix());
     }
 
     /**
@@ -30,10 +43,7 @@ class FluxManager
      */
     public function editorStyles()
     {
-        $output = app('flux')->editorStyles();
-        $prefix = $this->getAssetPrefix();
-
-        return ($prefix) ? preg_replace('#href="/flux/#', 'href="'.$prefix, $output) : $output;
+        return $this->applyPrefixToHref(app('flux')->editorStyles(),$this->getAssetPrefix());
     }
 
     /**
@@ -41,10 +51,7 @@ class FluxManager
      */
     public function editorScripts()
     {
-        $output = app('flux')->editorScripts();
-        $prefix = $this->getAssetPrefix();
-
-        return ($prefix) ? preg_replace('#src="/flux/#', 'src="'.$prefix, $output) : $output;
+        return $this->applyPrefixToSrc(app('flux')->editorScripts(),$this->getAssetPrefix());
     }
 
     /**
