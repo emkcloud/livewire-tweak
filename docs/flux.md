@@ -23,3 +23,11 @@ All options in the package have default values, so you only need to define the o
 ```
 
 By default, new routes are added, but if you want to remove the original routes, simply enable the "remove routes" option.
+
+## Configuration
+
+The configuration file is optional. You can simply define the variables directly in your .env file. However, if you need to customize the options, you can publish the configuration file:
+
+```bash
+php artisan vendor:publish --tag=livewire-tweak:config
+```
