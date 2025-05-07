@@ -11,3 +11,23 @@ I built this package based on my experience working with clients who use firewal
 In these environments, using popular Laravel packages like Nova, Livewire, or others can be problematic, because they often rely on absolute paths for assets and internal API calls.  
 
 I've raised this issue multiple times, but for reasons unknown to me, it seems there's little interest in officially supporting this kind of feature. So I decided to build a solution for myself and now I'm sharing it with others who might be facing the same problem.
+
+## Features
+
+- Prefix for Livewire Assets
+- Prefix for Livewire Routes
+- Prefix for Livewire Flux Assets
+- Prefix for Livewire Flux Routes
+
+## Requirements
+
+- Laravel 12+
+- Livewire 3.6+
+- Livewire Flux 2.0+ (optional)
+- Livewire Flux PRO 2.0+ (optional)
+
+## Installation
+
+```bash
+composer require emkcloud/livewire-tweak
+```
