@@ -32,8 +32,11 @@ I've raised this issue multiple times, but for reasons unknown to me, it seems t
 composer require emkcloud/livewire-tweak
 ```
 
-## Other Resources
+## Configuration
 
+```bash
+php artisan livewire-tweak:publish --config
+```
 
 ## License
 
