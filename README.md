@@ -38,6 +38,14 @@ The configuration file is optional. You can simply define the variables directly
 php artisan vendor:publish --tag=livewire-tweak:config
 ```
 
+All options in the package have default values, so you only need to define the ones you want to customize in your configuration file.
+
+```ini
+LIVEWIRE_TWEAK_PREFIX_ASSETS=""
+LIVEWIRE_TWEAK_PREFIX_ROUTES=""
+LIVEWIRE_TWEAK_REMOVE_ROUTES=false
+```
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
