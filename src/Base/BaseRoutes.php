@@ -84,6 +84,7 @@ class BaseRoutes
         if ($this->getPackagesPrefix())
         {
             $this->applyRoutesPackage();
+            $this->applyRoutesPackageAdd();
         }
     }
 
@@ -92,6 +93,7 @@ class BaseRoutes
         if ($this->getPackagesPrefix())
         {
             $this->applyRoutesRemove();
+            $this->applyRoutesRemoveAdd();
         }
     }
 
@@ -110,6 +112,10 @@ class BaseRoutes
         }
     }
 
+    public function applyRoutesPackageAdd(): void
+    {
+    }
+
     public function applyRoutesRemove(): void
     {
         $collection = new RouteCollection;
@@ -123,5 +129,9 @@ class BaseRoutes
         }
 
         Route::setRoutes($collection);
+    }
+
+    public function applyRoutesRemoveAdd(): void
+    {
     }
 }

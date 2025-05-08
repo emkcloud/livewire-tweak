@@ -24,7 +24,9 @@ class FluxRoutes extends BaseRoutes
 
     public function checkRoutesRemove(): bool
     {
-        return BaseConfig::value(FluxPrefix::REMOVE) == true;
+        return 
+            BaseConfig::value(FluxPrefix::ENABLE) == true &&
+            BaseConfig::value(FluxPrefix::REMOVE) == true;
     }
 
     public function getRoutesPrefix(): ?string
