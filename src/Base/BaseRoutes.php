@@ -112,9 +112,7 @@ class BaseRoutes
         }
     }
 
-    public function applyRoutesPackageAdd(): void
-    {
-    }
+    public function applyRoutesPackageAdd(): void {}
 
     public function applyRoutesRemove(): void
     {
@@ -131,7 +129,5 @@ class BaseRoutes
         Route::setRoutes($collection);
     }
 
-    public function applyRoutesRemoveAdd(): void
-    {
-    }
+    public function applyRoutesRemoveAdd(): void {}
 }

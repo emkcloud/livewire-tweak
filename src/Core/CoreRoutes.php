@@ -40,7 +40,7 @@ class CoreRoutes extends BaseRoutes
     {
         $updatepath = parse_url(url('/'), PHP_URL_PATH).$this->getPackagesPrefix();
 
-        Livewire::setUpdateRoute(function ($handle) use($updatepath)
+        Livewire::setUpdateRoute(function ($handle) use ($updatepath)
         {
             return Route::post($updatepath.'update', $handle);
         });

@@ -15,6 +15,16 @@ class BaseAssets
 
     public function init() {}
 
+    public function start(): void
+    {
+        $this->startAssets();
+        $this->startAssetsDirective();
+    }
+
+    public function startAssets(): void {}
+
+    public function startAssetsDirective(): void {}
+
     public function checkAssetsPrefix(): bool
     {
         return false;
@@ -23,11 +33,6 @@ class BaseAssets
     public function checkAssetsDomain(): bool
     {
         return false;
-    }
-
-    public function start(): void
-    {
-        $this->startAssetsDirective();
     }
 
     public function getAssetPrefix(): ?string
@@ -45,11 +50,9 @@ class BaseAssets
         return $this->packagesPrefix;
     }
 
-    public function startAssetsDirective(): void {}
-
     public function applyPrefixDomain(): string
     {
-        if (! $this->checkAssetsDomain())
+        if ($this->checkAssetsDomain())
         {
             return url('/').$this->getPackagesPrefix();
         }

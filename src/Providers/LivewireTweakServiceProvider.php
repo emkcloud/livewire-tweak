@@ -78,8 +78,8 @@ class LivewireTweakServiceProvider extends ServiceProvider
         {
             if (isset($directives['livewireStyles']) && isset($directives['livewireScripts']))
             {
-                app('livewireTweakCoreAssets')->start();
                 app('livewireTweakCoreRoutes')->start();
+                app('livewireTweakCoreAssets')->start();
             }
         }
     }

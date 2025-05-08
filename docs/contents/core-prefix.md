@@ -2,6 +2,29 @@
 
 At the time of writing this code, the Flux package sets assets/routes using absolute paths. This is limiting for my development environment. Here's my solution:
 
+## Assets Prefix
+
+Through this feature, you can add a prefix to the standard path of Livewire assets. Use environment variables.
+
+```ini
+LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS="admin/vendor/livewire"
+LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
+```
+
+This is an example of the result when setting the prefixes mentioned above.
+
+```
+https://mydomain.com/admin/vendor/livewire/livewire.js
+https://mydomain.com/admin/vendor/livewire/livewire.min.js
+```
+
+If you prefer to remove the domain name from the resource path, set the following environment variable to false.
+
+```ini
+LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=false
+```
+
 ## Routes Prefix
 
 Through this feature, you can add a prefix to the standard URL of Livewire Flux routes.
