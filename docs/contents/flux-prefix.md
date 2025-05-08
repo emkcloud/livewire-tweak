@@ -100,6 +100,15 @@ php artisan vendor:publish --tag=livewire-tweak:config
         'domain' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN',true)
     ],
 
+    'custom' =>
+    [
+        'enable' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_ENABLE',false),
+        'prefix' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_PREFIX',''),
+        'assets' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_ASSETS','flux'),
+        'routes' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_ROUTES','flux'),
+        'domain' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_DOMAIN',true)
+    ],
+
     'routes' =>
     [
         'remove' => env('LIVEWIRE_TWEAK_FLUX_ROUTES_REMOVE',false)
