@@ -82,6 +82,7 @@ php artisan vendor:publish --tag=livewire-tweak:config
     'prefix' =>
     [
         'enable' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE',false),
+        'custom' => env('LIVEWIRE_TWEAK_CORE_PREFIX_CUSTOM',false),
         'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS',''),
         'routes' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES',''),
         'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true),
