@@ -35,7 +35,7 @@ class CoreAssets extends BaseAssets
 
     public function checkAssetsDomain(): bool
     {
-        return config(CorePrefix::REMOVE) == true;
+        return config(CorePrefix::DOMAIN) == true;
     }
 
     public function getAssetPrefix(): ?string
