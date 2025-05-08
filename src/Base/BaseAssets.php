@@ -2,6 +2,8 @@
 
 namespace Emkcloud\LivewireTweak\Base;
 
+use Illuminate\Support\Str;
+
 class BaseAssets
 {
     protected $constantsClass;
@@ -47,14 +49,19 @@ class BaseAssets
         return false;
     }
 
+    protected function finish($value): ?string
+    {
+        return Str::finish($value,'/');
+    }
+
     protected function getAssetPrefix(): ?string
     {
         if (class_exists($this->constantsClass))
         {
-            return BaseConfig::value($this->constantsClass::ASSETS) == true;
+            return BaseConfig::value($this->constantsClass::ASSETS);
         }
 
-        return false;
+        return null;
     }
 
     protected function getOriginalPrefix(): ?string
@@ -71,10 +78,10 @@ class BaseAssets
     {
         if ($this->checkAssetsDomain())
         {
-            return url('/').$this->getPackagesPrefix();
+            return $this->finish(url('/')).$this->finish($this->getPackagesPrefix());
         }
 
-        return parse_url(url('/'), PHP_URL_PATH).$this->getPackagesPrefix();
+        return $this->finish(parse_url(url('/'), PHP_URL_PATH)).$this->finish($this->getPackagesPrefix());
     }
 
     protected function applyPrefixToHref($output): string

@@ -17,6 +17,4 @@ class FluxRoutes extends BaseRoutes
         'flux/editor.js',
         'flux/editor.min.js',
     ];
-
-    protected $variablePrefix = '{customflux}';
 }

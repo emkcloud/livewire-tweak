@@ -20,8 +20,6 @@ class CoreRoutes extends BaseRoutes
         'livewire/upload-file',
     ];
 
-    protected $variablePrefix = '{customwire}';
-
     protected function applyRoutesPackageAdd(): void
     {
         $updatepath = parse_url(url('/'), PHP_URL_PATH).$this->getPackagesPrefix();

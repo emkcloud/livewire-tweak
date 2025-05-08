@@ -20,8 +20,6 @@ class BaseRoutes
 
     protected $packagesPrefix;
 
-    protected $variablePrefix;
-
     public function __construct()
     {
         $this->packagesPrefix = $this->getRoutesPrefix();

@@ -46,7 +46,6 @@ Use environment variables for change default path and add custom prefix.
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
 LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES="admin/livewire"
-LIVEWIRE_TWEAK_CORE_REMOVE_ROUTES=false
 ```
 After setting the custom prefix variables, these new routes will be added.
 
@@ -61,7 +60,7 @@ POST     admin/livewire/upload-file livewire.upload-file â€º Livewire\Features â
 By default, new routes are added, but if you want to remove the original routes, simply enable the "remove routes" option.
 
 ```ini
-LIVEWIRE_TWEAK_CORE_REMOVE_ROUTES=true
+LIVEWIRE_TWEAK_CORE_ROUTES_REMOVE=true
 ```
 
 ## Configuration
@@ -82,10 +81,14 @@ php artisan vendor:publish --tag=livewire-tweak:config
         'enable' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE',false),
         'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS',''),
         'routes' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES',''),
-        'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true),
-        'remove' => env('LIVEWIRE_TWEAK_CORE_REMOVE_ROUTES',false)
+        'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true)
+    ],
+
+    'route' =>
+    [
+        'remove' => env('LIVEWIRE_TWEAK_CORE_ROUTES_REMOVE',false)
     ]
-],
+]
 ```
 
 ## Example Output
