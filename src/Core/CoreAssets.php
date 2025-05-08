@@ -13,7 +13,7 @@ class CoreAssets extends BaseAssets
     {
         if (is_null(config('livewire.asset_url')))
         {
-            if ($this->getPackagesPrefix() && $this->checkAssetsPrefix())
+            if ($this->checkAssetsEnable() && $this->getPackagesPrefix())
             {
                 $originalAsset = $this->getOriginalAsset();
 

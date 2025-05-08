@@ -39,7 +39,7 @@ class BaseAssets
         return false;
     }
 
-    protected function checkAssetsPrefix(): bool
+    protected function checkAssetsEnable(): bool
     {
         if (class_exists($this->constantsClass))
         {
@@ -58,7 +58,7 @@ class BaseAssets
     {
         if (class_exists($this->constantsClass))
         {
-            return BaseConfig::value($this->constantsClass::ASSETS);
+            return Str::trim(Str::trim(BaseConfig::value($this->constantsClass::ASSETS)),'/');
         }
 
         return null;
@@ -86,7 +86,7 @@ class BaseAssets
 
     protected function applyPrefixToHref($output): string
     {
-        if ($this->getPackagesPrefix() && $this->checkAssetsPrefix())
+        if ($this->getPackagesPrefix() && $this->checkAssetsEnable())
         {
             $source = '#href="'.$this->getOriginalPrefix().'#';
             $target = 'href="'.$this->applyPrefixDomain();
@@ -99,7 +99,7 @@ class BaseAssets
 
     protected function applyPrefixToSrc($output): string
     {
-        if ($this->getPackagesPrefix() && $this->checkAssetsPrefix())
+        if ($this->getPackagesPrefix() && $this->checkAssetsEnable())
         {
             $source = '#src="'.$this->getOriginalPrefix().'#';
             $target = 'src="'.$this->applyPrefixDomain();
