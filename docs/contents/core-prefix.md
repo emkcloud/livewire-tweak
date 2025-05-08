@@ -8,6 +8,7 @@ Through this feature, you can add a prefix to the standard path of Livewire asse
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_CORE_PREFIX_CUSTOM=false
 LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS="admin/vendor/livewire"
 LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
 ```

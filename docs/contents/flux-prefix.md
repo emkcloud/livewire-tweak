@@ -25,6 +25,7 @@ Through this feature, you can add a prefix to the standard path of Livewire Flux
 
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_FLUX_PREFIX_CUSTOM=false
 LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS="admin/flux"
 LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=true
 ```
