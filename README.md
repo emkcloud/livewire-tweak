@@ -57,6 +57,8 @@ LIVEWIRE_TWEAK_CORE_CUSTOM_ROUTES=""
 LIVEWIRE_TWEAK_CORE_CUSTOM_DOMAIN=true
 ```
 
+Variables prefixed with CORE are associated with the Livewire package, while those prefixed with FLUX belong to the Livewire Flux package.
+
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=false
 LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS=""
