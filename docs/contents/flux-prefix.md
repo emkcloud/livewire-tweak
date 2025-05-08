@@ -116,6 +116,12 @@ php artisan vendor:publish --tag=livewire-tweak:config
 ]
 ```
 
+## Variables
+
+To view all available variables and their meanings, refer to the following file:
+
+- [Environment variables](../../examples/variables.env)
+
 ## Example Output
 
 - [Screenshot of page test](../images/flux-result.jpg)  
