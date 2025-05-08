@@ -9,7 +9,7 @@ To avoid using an intrusive technique and to always be able to use the original 
 ```blade
 <head>
     ...
--   @fluxAppearance
+-   @fluxAppearance (remove)
 +   @livewireTweakFluxAppearance
 </head>
 <body>
