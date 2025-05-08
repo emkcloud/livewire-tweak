@@ -8,7 +8,9 @@ use Livewire\Livewire;
 
 class CoreRoutes extends BaseRoutes
 {
-    protected $constantsClass = CorePrefix::class;
+    protected $constantCustom = CoreCustom::class;
+
+    protected $constantPrefix = CorePrefix::class;
 
     protected $originalPrefix = 'livewire';
 

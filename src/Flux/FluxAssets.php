@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Blade;
 
 class FluxAssets extends BaseAssets
 {
-    protected $constantsClass = FluxPrefix::class;
+    protected $constantCustom = FluxCustom::class;
+
+    protected $constantPrefix = FluxPrefix::class;
 
     protected $originalPrefix = '/flux/';
 

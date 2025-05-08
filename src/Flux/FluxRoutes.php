@@ -6,7 +6,9 @@ use Emkcloud\LivewireTweak\Base\BaseRoutes;
 
 class FluxRoutes extends BaseRoutes
 {
-    protected $constantsClass = FluxPrefix::class;
+    protected $constantCustom = FluxCustom::class;
+
+    protected $constantPrefix = FluxPrefix::class;
 
     protected $originalPrefix = 'flux';
 

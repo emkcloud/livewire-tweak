@@ -6,7 +6,9 @@ use Illuminate\Support\Str;
 
 class BaseAssets
 {
-    protected $constantsClass;
+    protected $constantCustom;
+
+    protected $constantPrefix;
 
     protected $packagesPrefix;
 
@@ -31,9 +33,9 @@ class BaseAssets
 
     protected function checkAssetsDomain(): bool
     {
-        if (class_exists($this->constantsClass))
+        if (class_exists($this->constantPrefix))
         {
-            return BaseConfig::value($this->constantsClass::DOMAIN) == true;
+            return BaseConfig::value($this->constantPrefix::DOMAIN) == true;
         }
 
         return false;
@@ -41,9 +43,9 @@ class BaseAssets
 
     protected function checkAssetsEnable(): bool
     {
-        if (class_exists($this->constantsClass))
+        if (class_exists($this->constantPrefix))
         {
-            return BaseConfig::value($this->constantsClass::ENABLE) == true;
+            return BaseConfig::value($this->constantPrefix::ENABLE) == true;
         }
 
         return false;
@@ -56,9 +58,9 @@ class BaseAssets
 
     protected function getAssetPrefix(): ?string
     {
-        if (class_exists($this->constantsClass))
+        if (class_exists($this->constantPrefix))
         {
-            return Str::trim(Str::trim(BaseConfig::value($this->constantsClass::ASSETS)),'/');
+            return Str::trim(Str::trim(BaseConfig::value($this->constantPrefix::ASSETS)),'/');
         }
 
         return null;

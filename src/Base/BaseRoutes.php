@@ -10,7 +10,9 @@ use Illuminate\Support\Str;
 
 class BaseRoutes
 {
-    protected $constantsClass;
+    protected $constantCustom;
+
+    protected $constantPrefix;
 
     protected $datasetsRoutes;
 
@@ -36,10 +38,10 @@ class BaseRoutes
 
     protected function checkRoutesCustom(): bool
     {
-        if (class_exists($this->constantsClass))
+        if (class_exists($this->constantPrefix))
         {
-            return BaseConfig::value($this->constantsClass::ENABLE) == true &&
-                   BaseConfig::value($this->constantsClass::CUSTOM) == true;
+            return BaseConfig::value($this->constantPrefix::ENABLE) == true &&
+                   BaseConfig::value($this->constantPrefix::CUSTOM) == true;
         }
 
         return false;
@@ -47,9 +49,9 @@ class BaseRoutes
 
     protected function checkRoutesPrefix(): bool
     {
-        if (class_exists($this->constantsClass))
+        if (class_exists($this->constantPrefix))
         {
-            return BaseConfig::value($this->constantsClass::ENABLE) == true;
+            return BaseConfig::value($this->constantPrefix::ENABLE) == true;
         }
 
         return false;
@@ -57,10 +59,10 @@ class BaseRoutes
 
     protected function checkRoutesRemove(): bool
     {
-        if (class_exists($this->constantsClass))
+        if (class_exists($this->constantPrefix))
         {
-            return BaseConfig::value($this->constantsClass::ENABLE) == true &&
-                   BaseConfig::value($this->constantsClass::REMOVE) == true;
+            return BaseConfig::value($this->constantPrefix::ENABLE) == true &&
+                   BaseConfig::value($this->constantPrefix::REMOVE) == true;
         }
 
         return false;
@@ -78,9 +80,9 @@ class BaseRoutes
 
     protected function getRoutesPrefix(): ?string
     {
-        if (class_exists($this->constantsClass))
+        if (class_exists($this->constantPrefix))
         {
-            return BaseConfig::prefix($this->constantsClass::ROUTES);
+            return BaseConfig::prefix($this->constantPrefix::ROUTES);
         }
 
         return false;
