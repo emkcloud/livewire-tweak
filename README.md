@@ -12,8 +12,8 @@ In these environments, using popular Laravel packages like Nova, Livewire, or ot
 
 ## Features
 
-- [Prefix for Livewire](docs/contents/core-prefix.md)
-- [Prefix for Livewire Flux](docs/contents/flux-prefix.md)
+- [Prefix for Livewire](docs/contents/prefix-core.md)
+- [Prefix for Livewire Flux](docs/contents/prefix-flux.md)
 
 ## Requirements
 
