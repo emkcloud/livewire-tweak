@@ -100,6 +100,12 @@ php artisan vendor:publish --tag=livewire-tweak:config
 ]
 ```
 
+## Variables
+
+To view all available variables and their meanings, refer to the following file:
+
+- [Environment variables](../../examples/variables.env)
+
 ## Example Output
 
 - [Screenshot of route:list](../images/core-routes.jpg)  
