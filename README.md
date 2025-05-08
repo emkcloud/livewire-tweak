@@ -47,7 +47,7 @@ LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
 
 To view all available variables and their meanings, refer to the following file:
 
-- [Environment variables](docs/contents/core-prefix.md)
+- [Environment variables](examples/variables.env)
 
 ## License
 
