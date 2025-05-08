@@ -3,12 +3,13 @@
 namespace Emkcloud\LivewireTweak\Core;
 
 use Emkcloud\LivewireTweak\Base\BaseAssets;
-use Emkcloud\LivewireTweak\Base\BaseConfig;
 use Livewire\Mechanisms\FrontendAssets\FrontendAssets;
 
 class CoreAssets extends BaseAssets
 {
-    public function startAssets(): void
+    protected $constantsClass = CorePrefix::class;
+
+    protected function startAssets(): void
     {
         if (is_null(config('livewire.asset_url')))
         {
@@ -28,22 +29,7 @@ class CoreAssets extends BaseAssets
         }
     }
 
-    public function checkAssetsPrefix(): bool
-    {
-        return config(CorePrefix::ENABLE) == true;
-    }
-
-    public function checkAssetsDomain(): bool
-    {
-        return config(CorePrefix::DOMAIN) == true;
-    }
-
-    public function getAssetPrefix(): ?string
-    {
-        return BaseConfig::prefix(CorePrefix::ASSETS);
-    }
-
-    public function getOriginalAsset(): ?string
+    protected function getOriginalAsset(): ?string
     {
         $originalscript = app(FrontendAssets::class)->js([]);
 

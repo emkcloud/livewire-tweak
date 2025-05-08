@@ -6,6 +6,8 @@ class FluxPrefix
 {
     public const ASSETS = 'livewire-tweak.flux.prefix.assets';
 
+    public const CUSTOM = 'livewire-tweak.flux.prefix.custom';
+
     public const DOMAIN = 'livewire-tweak.flux.prefix.domain';
 
     public const ENABLE = 'livewire-tweak.flux.prefix.enable';

@@ -6,6 +6,8 @@ class CorePrefix
 {
     public const ASSETS = 'livewire-tweak.core.prefix.assets';
 
+    public const CUSTOM = 'livewire-tweak.core.prefix.custom';
+
     public const DOMAIN = 'livewire-tweak.core.prefix.domain';
 
     public const ENABLE = 'livewire-tweak.core.prefix.enable';

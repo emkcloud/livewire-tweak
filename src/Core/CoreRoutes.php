@@ -2,13 +2,14 @@
 
 namespace Emkcloud\LivewireTweak\Core;
 
-use Emkcloud\LivewireTweak\Base\BaseConfig;
 use Emkcloud\LivewireTweak\Base\BaseRoutes;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
 class CoreRoutes extends BaseRoutes
 {
+    protected $constantsClass = CorePrefix::class;
+
     protected $originalPrefix = 'livewire';
 
     protected $originalRoutes = [
@@ -19,24 +20,9 @@ class CoreRoutes extends BaseRoutes
         'livewire/upload-file',
     ];
 
-    public function checkRoutesPrefix(): bool
-    {
-        return BaseConfig::value(CorePrefix::ENABLE) == true;
-    }
+    protected $variablePrefix = '{customwire}';
 
-    public function checkRoutesRemove(): bool
-    {
-        return
-            BaseConfig::value(CorePrefix::ENABLE) == true &&
-            BaseConfig::value(CorePrefix::REMOVE) == true;
-    }
-
-    public function getRoutesPrefix(): ?string
-    {
-        return BaseConfig::prefix(CorePrefix::ROUTES);
-    }
-
-    public function applyRoutesPackageAdd(): void
+    protected function applyRoutesPackageAdd(): void
     {
         $updatepath = parse_url(url('/'), PHP_URL_PATH).$this->getPackagesPrefix();
 

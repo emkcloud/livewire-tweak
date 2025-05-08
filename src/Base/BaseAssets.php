@@ -4,6 +4,8 @@ namespace Emkcloud\LivewireTweak\Base;
 
 class BaseAssets
 {
+    protected $constantsClass;
+
     protected $packagesPrefix;
 
     protected $originalPrefix;
@@ -21,36 +23,51 @@ class BaseAssets
         $this->startAssetsDirective();
     }
 
-    public function startAssets(): void {}
+    protected function startAssets(): void {}
 
-    public function startAssetsDirective(): void {}
+    protected function startAssetsDirective(): void {}
 
-    public function checkAssetsPrefix(): bool
+    protected function checkAssetsDomain(): bool
     {
+        if (class_exists($this->constantsClass))
+        {
+            return BaseConfig::value($this->constantsClass::DOMAIN) == true;
+        }
+
         return false;
     }
 
-    public function checkAssetsDomain(): bool
+    protected function checkAssetsPrefix(): bool
     {
+        if (class_exists($this->constantsClass))
+        {
+            return BaseConfig::value($this->constantsClass::ENABLE) == true;
+        }
+
         return false;
     }
 
-    public function getAssetPrefix(): ?string
+    protected function getAssetPrefix(): ?string
     {
-        return null;
+        if (class_exists($this->constantsClass))
+        {
+            return BaseConfig::value($this->constantsClass::ASSETS) == true;
+        }
+
+        return false;
     }
 
-    public function getOriginalPrefix(): ?string
+    protected function getOriginalPrefix(): ?string
     {
         return $this->originalPrefix;
     }
 
-    public function getPackagesPrefix(): ?string
+    protected function getPackagesPrefix(): ?string
     {
         return $this->packagesPrefix;
     }
 
-    public function applyPrefixDomain(): string
+    protected function applyPrefixDomain(): string
     {
         if ($this->checkAssetsDomain())
         {
@@ -60,7 +77,7 @@ class BaseAssets
         return parse_url(url('/'), PHP_URL_PATH).$this->getPackagesPrefix();
     }
 
-    public function applyPrefixToHref($output): string
+    protected function applyPrefixToHref($output): string
     {
         if ($this->getPackagesPrefix() && $this->checkAssetsPrefix())
         {
@@ -73,7 +90,7 @@ class BaseAssets
         return $output;
     }
 
-    public function applyPrefixToSrc($output): string
+    protected function applyPrefixToSrc($output): string
     {
         if ($this->getPackagesPrefix() && $this->checkAssetsPrefix())
         {

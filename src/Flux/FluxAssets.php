@@ -3,31 +3,17 @@
 namespace Emkcloud\LivewireTweak\Flux;
 
 use Emkcloud\LivewireTweak\Base\BaseAssets;
-use Emkcloud\LivewireTweak\Base\BaseConfig;
 use Illuminate\Support\Facades\Blade;
 
 class FluxAssets extends BaseAssets
 {
+    protected $constantsClass = FluxPrefix::class;
+
     protected $originalPrefix = '/flux/';
 
     public function init()
     {
         Blade::anonymousComponentPath(__DIR__.'/../../resources/views/flux/overrides', 'flux');
-    }
-
-    public function checkAssetsPrefix(): bool
-    {
-        return BaseConfig::value(FluxPrefix::ENABLE) == true;
-    }
-
-    public function checkAssetsDomain(): bool
-    {
-        return BaseConfig::value(FluxPrefix::DOMAIN) == true;
-    }
-
-    public function getAssetPrefix(): ?string
-    {
-        return BaseConfig::prefix(FluxPrefix::ASSETS);
     }
 
     public function bladeAppearance(): string
@@ -55,7 +41,7 @@ class FluxAssets extends BaseAssets
         return view('livewire-tweak::flux.assets.scripts')->render();
     }
 
-    public function startAssetsDirective(): void
+    protected function startAssetsDirective(): void
     {
         Blade::directive('livewireTweakFluxAppearance', function ($expression)
         {

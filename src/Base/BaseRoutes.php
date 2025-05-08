@@ -10,13 +10,17 @@ use Illuminate\Support\Str;
 
 class BaseRoutes
 {
-    protected $datasetsRoutes;
+    protected $constantsClass;
 
-    protected $packagesPrefix;
+    protected $datasetsRoutes;
 
     protected $originalPrefix;
 
     protected $originalRoutes = [];
+
+    protected $packagesPrefix;
+
+    protected $variablePrefix;
 
     public function __construct()
     {
@@ -32,32 +36,59 @@ class BaseRoutes
         }
     }
 
-    public function checkRoutesPrefix(): bool
+    protected function checkRoutesCustom(): bool
     {
+        if (class_exists($this->constantsClass))
+        {
+            return BaseConfig::value($this->constantsClass::ENABLE) == true &&
+                   BaseConfig::value($this->constantsClass::CUSTOM) == true;
+        }
+
         return false;
     }
 
-    public function checkRoutesRemove(): bool
+    protected function checkRoutesPrefix(): bool
     {
+        if (class_exists($this->constantsClass))
+        {
+            return BaseConfig::value($this->constantsClass::ENABLE) == true;
+        }
+
         return false;
     }
 
-    public function getPackagesPrefix(): ?string
+    protected function checkRoutesRemove(): bool
+    {
+        if (class_exists($this->constantsClass))
+        {
+            return BaseConfig::value($this->constantsClass::ENABLE) == true &&
+                   BaseConfig::value($this->constantsClass::REMOVE) == true;
+        }
+
+        return false;
+    }
+
+    protected function getPackagesPrefix(): ?string
     {
         return $this->packagesPrefix;
     }
 
-    public function getRoutesDatasets(): array
+    protected function getRoutesDatasets(): array
     {
         return $this->datasetsRoutes;
     }
 
-    public function getRoutesPrefix(): ?string
+    protected function getRoutesPrefix(): ?string
     {
-        return null;
+        if (class_exists($this->constantsClass))
+        {
+            return BaseConfig::prefix($this->constantsClass::ROUTES);
+        }
+
+        return false;
     }
 
-    public function setRoutesDatasets(): void
+    protected function setRoutesDatasets(): void
     {
         $this->datasetsRoutes = collect(Route::getRoutes())->filter(function ($route)
         {
@@ -66,7 +97,7 @@ class BaseRoutes
         })->all();
     }
 
-    public function setRoutesPrefix(): void
+    protected function setRoutesPrefix(): void
     {
         if ($this->checkRoutesPrefix())
         {
@@ -79,7 +110,7 @@ class BaseRoutes
         }
     }
 
-    public function setRoutesPackage(): void
+    protected function setRoutesPackage(): void
     {
         if ($this->getPackagesPrefix())
         {
@@ -88,7 +119,7 @@ class BaseRoutes
         }
     }
 
-    public function setRoutesRemove(): void
+    protected function setRoutesRemove(): void
     {
         if ($this->getPackagesPrefix())
         {
@@ -97,7 +128,7 @@ class BaseRoutes
         }
     }
 
-    public function applyRoutesPackage(): void
+    protected function applyRoutesPackage(): void
     {
         foreach ($this->getRoutesDatasets() as $route)
         {
@@ -112,9 +143,9 @@ class BaseRoutes
         }
     }
 
-    public function applyRoutesPackageAdd(): void {}
+    protected function applyRoutesPackageAdd(): void {}
 
-    public function applyRoutesRemove(): void
+    protected function applyRoutesRemove(): void
     {
         $collection = new RouteCollection;
 
@@ -129,5 +160,5 @@ class BaseRoutes
         Route::setRoutes($collection);
     }
 
-    public function applyRoutesRemoveAdd(): void {}
+    protected function applyRoutesRemoveAdd(): void {}
 }
