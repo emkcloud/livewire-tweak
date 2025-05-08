@@ -2,35 +2,72 @@
 
 namespace Emkcloud\LivewireTweak\Flux;
 
+use Emkcloud\LivewireTweak\Base\BaseAssets;
+use Emkcloud\LivewireTweak\Base\BaseConfig;
 use Illuminate\Support\Facades\Blade;
 
-class FluxAssets
+class FluxAssets extends BaseAssets
 {
-    public static function boot()
+    protected $originalPrefix = '/flux/';
+
+    public function init()
     {
         Blade::anonymousComponentPath(__DIR__.'/../../resources/views/flux/overrides', 'flux');
     }
 
-    public static function booted()
+    public function checkAssetsPrefix(): bool
     {
-        $instance = new static;
-
-        $instance->registerAssetDirective();
+        return BaseConfig::value(FluxPrefix::ENABLE) == true;
     }
 
-    public function registerAssetDirective(): void
+    public function checkAssetsDomain(): bool
+    {
+        return BaseConfig::value(FluxPrefix::DOMAIN) == true;
+    }
+
+    public function getAssetPrefix(): ?string
+    {
+        return BaseConfig::prefix(FluxPrefix::ASSETS);
+    }
+
+    public function bladeAppearance(): string
+    {
+        return view('livewire-tweak::flux.assets.appearance')->render();
+    }
+
+    public function bladeEditorStyles()
+    {
+        return $this->applyPrefixToHref(app('flux')->editorStyles());
+    }
+
+    public function bladeEditorScripts()
+    {
+        return $this->applyPrefixToSrc(app('flux')->editorScripts());
+    }
+
+    public function bladeScripts(): string
+    {
+        return $this->applyPrefixToSrc($this->bladeScriptsView());
+    }
+
+    public function bladeScriptsView(): string
+    {
+        return view('livewire-tweak::flux.assets.scripts')->render();
+    }
+
+    public function startAssetsDirective(): void
     {
         Blade::directive('livewireTweakFluxAppearance', function ($expression)
         {
             return <<<PHP
-            {!! app('livewireTweakFlux')->appearance($expression) !!}
+            {!! app('livewireTweakFluxAssets')->bladeAppearance($expression) !!}
             PHP;
         });
 
         Blade::directive('livewireTweakFluxScripts', function ($expression)
         {
             return <<<PHP
-            {!! app('livewireTweakFlux')->scripts($expression) !!}
+            {!! app('livewireTweakFluxAssets')->bladeScripts($expression) !!}
             PHP;
         });
     }

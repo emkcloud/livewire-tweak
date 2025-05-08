@@ -1,2 +1,2 @@
 
-{!! app('livewireTweakFlux')->editorScripts() !!}
+{!! app('livewireTweakFluxAssets')->bladeEditorScripts() !!}

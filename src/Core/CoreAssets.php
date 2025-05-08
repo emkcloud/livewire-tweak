@@ -2,10 +2,23 @@
 
 namespace Emkcloud\LivewireTweak\Core;
 
-class CoreAssets
+use Emkcloud\LivewireTweak\Base\BaseAssets;
+use Emkcloud\LivewireTweak\Base\BaseConfig;
+
+class CoreAssets extends BaseAssets
 {
-    public static function booted()
+    public function checkAssetsPrefix(): bool
     {
-        $instance = new static;
+        return config(CorePrefix::ENABLE) == true;
+    }
+
+    public function checkAssetsDomain(): bool
+    {
+        return config(CorePrefix::REMOVE) == true;
+    }
+
+    public function getAssetPrefix(): ?string
+    {
+        return BaseConfig::prefix(CorePrefix::ASSETS);
     }
 }

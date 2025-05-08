@@ -4,9 +4,9 @@ namespace Emkcloud\LivewireTweak\Base;
 
 use Illuminate\Support\Str;
 
-class BaseManager
+class BaseConfig
 {
-    public static function getConfigPrefix($config): ?string
+    public static function prefix($config): ?string
     {
         if ($prefix = Str::trim(config($config)))
         {
@@ -14,5 +14,10 @@ class BaseManager
         }
 
         return null;
+    }
+
+    public static function value($config): mixed
+    {
+        return config($config);
     }
 }

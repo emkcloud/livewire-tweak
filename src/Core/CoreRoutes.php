@@ -2,40 +2,33 @@
 
 namespace Emkcloud\LivewireTweak\Core;
 
-use Illuminate\Support\Facades\App;
+use Emkcloud\LivewireTweak\Base\BaseConfig;
+use Emkcloud\LivewireTweak\Base\BaseRoutes;
 
-class CoreRoutes
+class CoreRoutes extends BaseRoutes
 {
-    public static function booted()
+    protected $originalPrefix = 'livewire';
+
+    protected $originalRoutes = [
+        'livewire/livewire.js',
+        'livewire/livewire.min.js.map',
+        'livewire/preview-file/{filename}',
+        'livewire/update',
+        'livewire/upload-file',
+    ];
+
+    public function checkRoutesPrefix(): bool
     {
-        if (! App::routesAreCached())
-        {
-            $instance = new static;
-            $instance->registerRoutes();
-        }
+        return BaseConfig::value(CorePrefix::ENABLE) == true;
     }
 
-    public function registerRoutes(): void
+    public function checkRoutesRemove(): bool
     {
-        if (config(CorePrefix::ENABLE) == true)
-        {
-            $this->registerRoutesPrefix();
-        }
-
-        if (config(CorePrefix::REMOVE) == true)
-        {
-            $this->registerRoutesRemove();
-        }
+        return BaseConfig::value(CorePrefix::REMOVE) == true;
     }
 
-    public function registerRoutesPrefix(): void
+    public function getRoutesPrefix(): ?string
     {
-        if ($prefix = app('livewireTweakCore')->getRoutePrefix())
-        {
-        }
-    }
-
-    public function registerRoutesRemove(): void
-    {
+        return BaseConfig::prefix(CorePrefix::ROUTES);
     }
 }

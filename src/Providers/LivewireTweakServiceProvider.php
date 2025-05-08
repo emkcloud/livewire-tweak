@@ -2,63 +2,21 @@
 
 namespace Emkcloud\LivewireTweak\Providers;
 
-use Emkcloud\LivewireTweak\Core\CoreManager;
 use Emkcloud\LivewireTweak\Core\CoreAssets;
 use Emkcloud\LivewireTweak\Core\CoreRoutes;
 use Emkcloud\LivewireTweak\Flux\FluxAssets;
-use Emkcloud\LivewireTweak\Flux\FluxManager;
 use Emkcloud\LivewireTweak\Flux\FluxRoutes;
+use Flux\FluxServiceProvider;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
+use Livewire\LivewireServiceProvider;
 
 class LivewireTweakServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        $this->bootInit();
-        $this->bootComplete();
-    }
-
-    public function bootInit(): void
-    {
-        FluxAssets::boot();
-    }
-
-    public function bootComplete(): void
-    {
-        App::booted(function ()
-        {
-            $this->bootSettingCore();
-            $this->bootSettingFlux();
-        });
-    }
-
-    public function bootSettingCore(): void
-    {
-        $directives = app('blade.compiler')->getCustomDirectives();
-
-        if ($this->app->getProvider(\Livewire\LivewireServiceProvider::class))
-        {
-            if (isset($directives['livewireStyles']) && isset($directives['livewireScripts']))
-            {
-                CoreAssets::booted();
-                CoreRoutes::booted();
-            }
-        }
-    }
-
-    public function bootSettingFlux(): void
-    {
-        $directives = app('blade.compiler')->getCustomDirectives();
-
-        if ($this->app->getProvider(\Flux\FluxServiceProvider::class))
-        {
-            if (isset($directives['fluxAppearance']) && isset($directives['fluxScripts']))
-            {
-                FluxAssets::booted();
-                FluxRoutes::booted();
-            }
-        }
+        $this->startInit();
+        $this->startSetting();
     }
 
     public function register(): void
@@ -70,11 +28,17 @@ class LivewireTweakServiceProvider extends ServiceProvider
 
     protected function registerBinding()
     {
-        $this->app->alias(CoreManager::class, 'livewireTweakCore');
-        $this->app->alias(FluxManager::class, 'livewireTweakFlux');
+        $this->app->alias(CoreAssets::class, 'livewireTweakCoreAssets');
+        $this->app->alias(CoreRoutes::class, 'livewireTweakCoreRoutes');
 
-        $this->app->singleton(CoreManager::class);
-        $this->app->singleton(FluxManager::class);
+        $this->app->alias(FluxAssets::class, 'livewireTweakFluxAssets');
+        $this->app->alias(FluxRoutes::class, 'livewireTweakFluxRoutes');
+
+        $this->app->singleton(CoreAssets::class);
+        $this->app->singleton(CoreRoutes::class);
+
+        $this->app->singleton(FluxAssets::class);
+        $this->app->singleton(FluxRoutes::class);
     }
 
     protected function registerConfig()
@@ -89,5 +53,48 @@ class LivewireTweakServiceProvider extends ServiceProvider
     protected function registerViews()
     {
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'livewire-tweak');
+    }
+
+    public function startInit(): void
+    {
+        app('livewireTweakCoreAssets')->init();
+        app('livewireTweakFluxAssets')->init();
+    }
+
+    public function startSetting(): void
+    {
+        App::booted(function ()
+        {
+            $this->startSettingCore();
+            $this->startSettingFlux();
+        });
+    }
+
+    public function startSettingCore(): void
+    {
+        $directives = app('blade.compiler')->getCustomDirectives();
+
+        if (app()->getProvider(LivewireServiceProvider::class))
+        {
+            if (isset($directives['livewireStyles']) && isset($directives['livewireScripts']))
+            {
+                app('livewireTweakCoreAssets')->start();
+                app('livewireTweakCoreRoutes')->start();
+            }
+        }
+    }
+
+    public function startSettingFlux(): void
+    {
+        $directives = app('blade.compiler')->getCustomDirectives();
+
+        if (app()->getProvider(FluxServiceProvider::class))
+        {
+            if (isset($directives['fluxAppearance']) && isset($directives['fluxScripts']))
+            {
+                app('livewireTweakFluxAssets')->start();
+                app('livewireTweakFluxRoutes')->start();
+            }
+        }
     }
 }
