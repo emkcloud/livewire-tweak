@@ -2,6 +2,21 @@
 
 At the time of writing this code, the Flux package sets assets/routes using absolute paths. This is limiting for my development environment. Here's my solution:
 
+## Blade directives
+
+```blade
+<head>
+    ...
+-   @fluxAppearance
++   @livewireTweakFluxAppearance
+</head>
+<body>
+    ...
+-    @fluxScripts
++    @livewireTweakFluxScripts
+</body>
+```
+
 ## Assets Prefix
 
 Through this feature, you can add a prefix to the standard path of Livewire Flux assets. Use environment variables.
