@@ -4,7 +4,7 @@ At the time of writing this code, the Flux package sets assets/routes using abso
 
 ## Blade directives
 
-To avoid using an intrusive technique and to always be able to use the original components, I created aliases for the Blade directives. So, if you want to use the custom prefixes, replace these directives in your template.
+To avoid using an intrusive technique and to always be able to use the original components, I created aliases for the Blade directives. So, if you want to use the custom prefixes, replace these directives:
 
 ```blade
 <head>
