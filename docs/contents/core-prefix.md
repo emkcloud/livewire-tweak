@@ -84,6 +84,15 @@ php artisan vendor:publish --tag=livewire-tweak:config
         'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true)
     ],
 
+    'custom' =>
+    [
+        'enable' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_ENABLE',false),
+        'prefix' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_PREFIX',''),
+        'assets' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_ASSETS','vendor/livewire'),
+        'routes' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_ROUTES','livewire'),
+        'domain' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_DOMAIN',true)
+    ],
+
     'route' =>
     [
         'remove' => env('LIVEWIRE_TWEAK_CORE_ROUTES_REMOVE',false)
