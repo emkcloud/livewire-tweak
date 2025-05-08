@@ -126,7 +126,7 @@ The management of the standard prefix appends a suffix to the default path, and 
 
 To view all available variables and their meanings, refer to the following file:
 
-- [Environment variables](../../examples/variables.env)
+> [Environment variables](../../examples/variables.env)
 
 ## Example Output
 
