@@ -39,6 +39,7 @@ return
             'routes' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES',''),
             'domain' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN',true)
         ],
+
         'routes' =>
         [
             'remove' => env('LIVEWIRE_TWEAK_FLUX_ROUTES_REMOVE',false)
