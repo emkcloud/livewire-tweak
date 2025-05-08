@@ -47,6 +47,8 @@ LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
 
 To view all available variables and their meanings, refer to the following file:
 
+- [Environment variables](docs/contents/core-prefix.md)
+
 ## License
 
 The MIT License (MIT). Please see the package [License file](LICENSE) for more information.
