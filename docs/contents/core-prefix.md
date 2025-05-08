@@ -63,8 +63,8 @@ php artisan vendor:publish --tag=livewire-tweak:config
 
 ## Example Output
 
-- [Screenshot of route:list](../images/flux-routes.jpg)  
-- [Screenshot of route:list with remove](../images/flux-routes-remove.jpg)  
+- [Screenshot of route:list](../images/core-routes.jpg)  
+- [Screenshot of route:list with remove](../images/core-routes-remove.jpg)  
 
 ## License
 
