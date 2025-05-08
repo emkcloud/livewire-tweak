@@ -10,12 +10,12 @@ To avoid using an intrusive technique and to always be able to use the original 
 <head>
     ...
 -   @fluxAppearance (remove)
-+   @livewireTweakFluxAppearance
++   @livewireTweakFluxAppearance (add)
 </head>
 <body>
     ...
--    @fluxScripts
-+    @livewireTweakFluxScripts
+-    @fluxScripts (remove)
++    @livewireTweakFluxScripts (add)
 </body>
 ```
 
