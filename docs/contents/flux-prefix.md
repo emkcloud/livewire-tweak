@@ -116,6 +116,10 @@ php artisan vendor:publish --tag=livewire-tweak:config
 ]
 ```
 
+## Dynamic Prefix
+
+The management of the standard prefix appends a suffix to the default path, and this remains valid throughout the entire Laravel project. For a more dynamic approach, consider using the 'custom' options described in this documentation:
+
 ## Variables
 
 To view all available variables and their meanings, refer to the following file:
