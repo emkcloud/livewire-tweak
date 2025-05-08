@@ -61,6 +61,7 @@ Use environment variables for change default path and add custom prefix.
 
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_FLUX_PREFIX_CUSTOM=false
 LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES="admin/flux"
 LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=false
 ```

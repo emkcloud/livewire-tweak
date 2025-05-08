@@ -45,6 +45,7 @@ Use environment variables for change default path and add custom prefix.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_CORE_PREFIX_CUSTOM=false
 LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES="admin/livewire"
 LIVEWIRE_TWEAK_CORE_REMOVE_ROUTES=false
 ```
