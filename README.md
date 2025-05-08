@@ -39,6 +39,12 @@ php artisan vendor:publish --tag=livewire-tweak:config
 All options in the package have default values, so you only need to define the ones you want to customize in your configuration file.
 
 ```ini
+LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=false
+LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS=""
+LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES=""
+LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
+LIVEWIRE_TWEAK_CORE_REMOVE_ROUTES=false
+
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=false
 LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS=""
 LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES=""
