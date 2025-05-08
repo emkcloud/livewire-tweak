@@ -27,7 +27,7 @@ LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=false
 
 ## Assets Advice
 
-> **Important:** If the `asset_url` variable is set in the Livewire configuration file, the asset prefix settings described above will be ignored. The `asset_url` value takes precedence.
+**Important:** If the `asset_url` variable is set in the Livewire configuration file, the asset prefix settings described above will be ignored. The `asset_url` value takes precedence.
 
 ## Routes Prefix
 
