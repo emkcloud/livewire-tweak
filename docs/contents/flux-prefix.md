@@ -25,7 +25,6 @@ Through this feature, you can add a prefix to the standard path of Livewire Flux
 
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
-LIVEWIRE_TWEAK_FLUX_PREFIX_CUSTOM=false
 LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS="admin/flux"
 LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=true
 ```
@@ -62,7 +61,6 @@ Use environment variables for change default path and add custom prefix.
 
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
-LIVEWIRE_TWEAK_FLUX_PREFIX_CUSTOM=false
 LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES="admin/flux"
 LIVEWIRE_TWEAK_FLUX_REMOVE_ROUTES=false
 ```
@@ -98,7 +96,6 @@ php artisan vendor:publish --tag=livewire-tweak:config
     'prefix' =>
     [
         'enable' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE',false),
-        'custom' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_CUSTOM',false),
         'assets' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS',''),
         'routes' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES',''),
         'domain' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN',true),
