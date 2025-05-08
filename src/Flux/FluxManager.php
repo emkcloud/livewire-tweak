@@ -2,6 +2,8 @@
 
 namespace Emkcloud\LivewireTweak\Flux;
 
+use Emkcloud\LivewireTweak\Base\BaseManager;
+
 use Illuminate\Support\Str;
 
 class FluxManager
@@ -63,22 +65,12 @@ class FluxManager
 
     public function getAssetPrefix(): ?string
     {
-        return $this->getConfigPrefix(FluxPrefix::ASSETS);
-    }
-
-    public function getConfigPrefix($config): ?string
-    {
-        if ($prefix = Str::trim(config($config)))
-        {
-            return Str::start(Str::finish($prefix, '/'), '/');
-        }
-
-        return null;
+        return BaseManager::getConfigPrefix(FluxPrefix::ASSETS);
     }
 
     public function getRoutePrefix(): ?string
     {
-        return $this->getConfigPrefix(FluxPrefix::ROUTES);
+        return BaseManager::getConfigPrefix(FluxPrefix::ROUTES);
     }
 
     public function getScriptView(): string

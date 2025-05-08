@@ -3,6 +3,8 @@
 namespace Emkcloud\LivewireTweak\Providers;
 
 use Emkcloud\LivewireTweak\Core\CoreManager;
+use Emkcloud\LivewireTweak\Core\CoreAssets;
+use Emkcloud\LivewireTweak\Core\CoreRoutes;
 use Emkcloud\LivewireTweak\Flux\FluxAssets;
 use Emkcloud\LivewireTweak\Flux\FluxManager;
 use Emkcloud\LivewireTweak\Flux\FluxRoutes;
@@ -26,17 +28,37 @@ class LivewireTweakServiceProvider extends ServiceProvider
     {
         App::booted(function ()
         {
-            $directives = app('blade.compiler')->getCustomDirectives();
-
-            if ($this->app->getProvider(\Flux\FluxServiceProvider::class))
-            {
-                if (isset($directives['fluxScripts']) && isset($directives['fluxAppearance']))
-                {
-                    FluxAssets::booted();
-                    FluxRoutes::booted();
-                }
-            }
+            $this->bootSettingCore();
+            $this->bootSettingFlux();
         });
+    }
+
+    public function bootSettingCore(): void
+    {
+        $directives = app('blade.compiler')->getCustomDirectives();
+
+        if ($this->app->getProvider(\Livewire\LivewireServiceProvider::class))
+        {
+            if (isset($directives['livewireStyles']) && isset($directives['livewireScripts']))
+            {
+                CoreAssets::booted();
+                CoreRoutes::booted();
+            }
+        }
+    }
+
+    public function bootSettingFlux(): void
+    {
+        $directives = app('blade.compiler')->getCustomDirectives();
+
+        if ($this->app->getProvider(\Flux\FluxServiceProvider::class))
+        {
+            if (isset($directives['fluxAppearance']) && isset($directives['fluxScripts']))
+            {
+                FluxAssets::booted();
+                FluxRoutes::booted();
+            }
+        }
     }
 
     public function register(): void

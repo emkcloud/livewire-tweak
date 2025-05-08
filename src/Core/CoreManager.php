@@ -2,4 +2,12 @@
 
 namespace Emkcloud\LivewireTweak\Core;
 
-class CoreManager {}
+use Emkcloud\LivewireTweak\Base\BaseManager;
+
+class CoreManager
+{
+    public function getRoutePrefix(): ?string
+    {
+        return BaseManager::getConfigPrefix(CorePrefix::ROUTES);
+    }
+}
