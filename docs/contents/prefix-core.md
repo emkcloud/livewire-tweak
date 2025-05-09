@@ -1,6 +1,6 @@
 # Prefix for Livewire
 
-At the time of writing this code, the Flux package sets assets/routes using absolute paths. This is limiting for my development environment. Here's my solution:
+At the time of writing this code, the Livewire package sets assets/routes using absolute paths. This is limiting for my development environment. Here's my solution:
 
 ## Assets Prefix
 
@@ -17,13 +17,6 @@ This is an example of the result when setting the prefixes mentioned above.
 ```
 https://mydomain.com/admin/vendor/livewire/livewire.js
 https://mydomain.com/admin/vendor/livewire/livewire.min.js
-```
-
-
-
-```
-https://mydomain.com/backend/vendor/livewire/livewire.js
-https://mydomain.com/backend/vendor/livewire/livewire.min.js
 ```
 
 If you prefer to remove the domain name from the resource path, set the following environment variable to false.
@@ -62,6 +55,16 @@ GET|HEAD {groupwire}/livewire/livewire.min.js.map .................... Livewire\
 GET|HEAD {groupwire}/livewire/preview-file/{filename} livewire.preview-file › Livewire\F
 POST     {groupwire}/livewire/update ....... livewire.update › Livewire\Mechanisms › Han
 POST     {groupwire}/livewire/upload-file livewire.upload-file › Livewire\Features › Fil
+```
+
+By default, the value of "{groupwire}" will be set to "admin" since it is the first element in the "groups" option. So it's as if the routes were the following
+
+```
+GET|HEAD admin/livewire/livewire.js .......... Livewire\Mechanisms › FrontendAsset
+GET|HEAD admin/livewire/livewire.min.js.map .................... Livewire\Mechanis
+GET|HEAD admin/livewire/preview-file/{filename} livewire.preview-file › Livewire\F
+POST     admin/livewire/update ....... livewire.update › Livewire\Mechanisms › Han
+POST     admin/livewire/upload-file livewire.upload-file › Livewire\Features › Fil
 ```
 
 ## Configuration
