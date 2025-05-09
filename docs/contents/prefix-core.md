@@ -19,19 +19,6 @@ This is an example of the result when setting the prefixes mentioned above.
 <script src="https://mydomain.com/admin/vendor/livewire/livewire.min.js"></script>
 ```
 
-If you prefer to remove the domain name from the resource path, set the following environment variable to false.
-
-```ini
-LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=false
-```
-
-This is an example of the result when setting option for domain disabled.
-
-```html
-<script src="/admin/vendor/livewire/livewire.js"></script>
-<script src="/admin/vendor/livewire/livewire.min.js"></script>
-```
-
 If you want to change not only the prefix but also the default path `vendor/livewire`, set the following options.
 
 ```ini
@@ -45,6 +32,21 @@ This is an example of the result when setting the prefixes mentioned above.
 ```html
 <script src="https://mydomain.com/admin/custom/path/livewire.js"></script>
 <script src="https://mydomain.com/admin/custom/path/livewire.min.js"></script>
+```
+
+If you prefer to remove the domain name from the resource path, set the following environment variable to false.
+
+```ini
+LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
+LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=false
+```
+
+This is an example of the result when setting option for domain disabled.
+
+```html
+<script src="/admin/vendor/livewire/livewire.js"></script>
+<script src="/admin/vendor/livewire/livewire.min.js"></script>
 ```
 
 ## Assets Dynamic
