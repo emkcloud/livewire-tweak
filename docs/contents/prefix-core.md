@@ -12,7 +12,7 @@ LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
 LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
 ```
 
-Here's an example of the output using the settings above.
+Here's an example of the output using the variables setting above.
 
 ```html
 <script src="https://mydomain.com/admin/vendor/livewire/livewire.js"></script>
@@ -27,7 +27,7 @@ LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
 LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS="custom/path"
 ```
 
-This is an example of the result when setting the prefixes mentioned above.
+Here's an example of the output using the variables setting above.
 
 ```html
 <script src="https://mydomain.com/admin/custom/path/livewire.js"></script>
