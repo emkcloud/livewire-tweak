@@ -25,6 +25,11 @@ If you prefer to remove the domain name from the resource path, set the followin
 LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=false
 ```
 
+```html
+<script src="/admin/vendor/livewire/livewire.js"></script>
+<script src="/admin/vendor/livewire/livewire.min.js"></script>
+```
+
 ## Assets Advice
 
 If the `asset_url` variable is set in the Livewire configuration file, the asset prefix settings described above will be ignored. The `asset_url` value takes precedence.
