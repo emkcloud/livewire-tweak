@@ -90,17 +90,17 @@ LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=true
 This is an example of the result when setting the prefixes mentioned above.
 
 ```html
-<script src="https://mydomain.com/{routewire}/custom/path/editor.css"></script>
-<script src="https://mydomain.com/{routewire}/custom/path/editor.js"></script>
-<script src="https://mydomain.com/{routewire}/custom/path/editor.min.js"></script>
-<script src="https://mydomain.com/{routewire}/custom/path/flux.js"></script>
-<script src="https://mydomain.com/{routewire}/custom/path/flux.min.js"></script>
+<script src="https://mydomain.com/{assetflux}/custom/path/editor.css"></script>
+<script src="https://mydomain.com/{assetflux}/custom/path/editor.js"></script>
+<script src="https://mydomain.com/{assetflux}/custom/path/editor.min.js"></script>
+<script src="https://mydomain.com/{assetflux}/custom/path/flux.js"></script>
+<script src="https://mydomain.com/{assetflux}/custom/path/flux.min.js"></script>
 ```
 
 The first value in the list will be used as the default prefix, in this case `admin`. If you want to change it to a different value, use this command in your service provider.
 
 ```php
-URL::defaults(['routewire' => 'backend']);
+URL::defaults(['assetflux' => 'backend']);
 ```
 
 Here's an example of the output when manually setting the prefix to `backend`.
