@@ -19,7 +19,7 @@ Here's an example of the output using the environment variables setting above.
 <script src="https://mydomain.com/admin/vendor/livewire/livewire.min.js"></script>
 ```
 
-If you want to change not only the prefix but also the default path `vendor/livewire`, set the following options.
+If you want to change not only the prefix but also the default path `vendor/livewire`, set the following environment options.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
