@@ -55,12 +55,12 @@ The first value in the list will be used as the default prefix, in this case `ad
 URL::defaults(['assetwire' => 'backend']);
 ```
 
+This is an example of the result when setting the prefixes mentioned above.
+
 ```html
 <script src="https://mydomain.com/backend/vendor/livewire/livewire.js"></script>
 <script src="https://mydomain.com/backend/vendor/livewire/livewire.min.js"></script>
 ```
-
-This is an example of the result when setting the prefixes mentioned above.
 
 ## Assets Advice
 
