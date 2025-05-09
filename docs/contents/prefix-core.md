@@ -73,6 +73,8 @@ Since the prefix is dynamic, it can also be called at runtime using a custom ser
 URL::defaults(['groupwire' => 'backend']);
 ```
 
+At this point, we should get the following as the main routes:
+
 ```
 GET|HEAD backend/livewire/livewire.js .............. Livewire\Mechanisms › FrontendAsset
 GET|HEAD backend/livewire/livewire.min.js.map ........................ Livewire\Mechanis
