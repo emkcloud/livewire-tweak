@@ -49,7 +49,7 @@ This is an example of the result when setting the prefixes mentioned above.
 <script src="https://mydomain.com/{assetwire}/vendor/livewire/livewire.min.js"></script>
 ```
 
-The first value in the list will be used as the default prefix, in this case `admin`.
+The first value in the list will be used as the default prefix, in this case `admin`. If you want to change it to a different value, use this command in your service provider.
 
 ```php
 URL::defaults(['groupwire' => 'backend']);
