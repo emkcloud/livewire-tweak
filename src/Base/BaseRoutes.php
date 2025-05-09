@@ -6,35 +6,19 @@ use Illuminate\Routing\RouteCollection;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
-class BaseRoutes
+class BaseRoutes extends BaseCommon
 {
-    protected $constantCustom;
-
-    protected $constantPrefix;
-
-    protected $datasetsRoutes;
-
-    protected $defaultsPrefix = [];
-
-    protected $originalPrefix;
+    protected $datasetsRoutes = [];
 
     protected $originalRoutes = [];
 
-    protected $packagesPrefix;
-
-    protected $variablePrefix;
-
-    public function __construct()
-    {
-        $this->packagesPrefix = $this->getPrefixRoutes();
-        $this->defaultsPrefix = $this->getCustomPrefix();
-    }
-
     public function start(): void
     {
+        URL::defaults([$this->getVariablePrefixName() => $this->getPrefixGroupsMain()]);
+
         if (! App::routesAreCached())
         {
             $this->setRoutesDatasets();
@@ -42,76 +26,19 @@ class BaseRoutes
         }
     }
 
-    protected function checkCustomEnable(): bool
+    protected function checkOriginalRoute($route): bool
     {
-        return $this->getCustomEnable() == true;
+        return in_array($route->uri(), $this->getOriginalRoutes());
     }
 
-    protected function checkPrefixEnable(): bool
+    protected function isAllowedToChangeRoute(): bool
     {
-        return $this->getPrefixEnable() == true;
+        return $this->checkPrefixEnable() && $this->checkPrefixGroups();
     }
 
-    protected function getCustomEnable()
+    protected function getOriginalRoutes(): array
     {
-        if (class_exists($this->constantCustom))
-        {
-            return BaseConfig::prefix($this->constantCustom::ENABLE);
-        }
-    }
-
-    protected function getCustomPrefix(): array
-    {
-        $defaulsPrefix = [];
-
-        if (class_exists($this->constantCustom))
-        {
-            foreach (explode(',',BaseConfig::value($this->constantCustom::PREFIX)) as $value)
-            {
-                $defaulsPrefix[] = Str::trim(Str::trim($value),'/');
-            }
-        }
-
-        return $defaulsPrefix;
-    }
-
-    protected function getCustomRoutes()
-    {
-        if (class_exists($this->constantCustom))
-        {
-            return BaseConfig::prefix($this->constantCustom::ROUTES);
-        }
-    }
-
-    protected function getPrefixEnable()
-    {
-        if (class_exists($this->constantPrefix))
-        {
-            return BaseConfig::prefix($this->constantPrefix::ENABLE);
-        }
-    }
-
-    protected function getPrefixRoutes()
-    {
-        if (class_exists($this->constantPrefix))
-        {
-            return BaseConfig::prefix($this->constantPrefix::ROUTES);
-        }
-    }
-
-    protected function getDefaultsPrefix(): array
-    {
-        return $this->defaultsPrefix;
-    }
-
-    protected function getOriginalPrefix(): ?string
-    {
-        return $this->originalPrefix;
-    }
-
-    protected function getPackagesPrefix(): ?string
-    {
-        return $this->packagesPrefix;
+        return $this->originalRoutes;
     }
 
     protected function getRoutesDatasets(): array
@@ -119,21 +46,11 @@ class BaseRoutes
         return $this->datasetsRoutes;
     }
 
-    protected function getVariablePrefix(): ?string
-    {
-        return $this->variablePrefix;
-    }
-
-    protected function isAllowedToChangeRoute(): bool
-    {
-        return $this->checkCustomEnable() or $this->checkPrefixEnable();
-    }
-
     protected function setRoutesDatasets(): void
     {
         $this->datasetsRoutes = collect(Route::getRoutes())->filter(function ($route)
         {
-            return in_array($route->uri(), $this->originalRoutes);
+            return $this->checkOriginalRoute($route);
 
         })->all();
     }
@@ -152,65 +69,22 @@ class BaseRoutes
 
     protected function applyRoutesPackage(): void
     {
-        if ($this->checkPrefixEnable() && $this->getPackagesPrefix())
+        foreach ($this->getRoutesDatasets() as $route)
         {
-            $this->applyRoutesPackagePrefix();
-        }
+            $routeUri = $this->getTrimPath(
+                Str::replaceStart($this->getPrefixOriginal(), '', $route->uri()));
 
-        if ($this->checkCustomEnable() && $this->getVariablePrefix())
-        {
-            if (count($this->getDefaultsPrefix()) > 0)
-            {
-                $this->applyRoutesPackageCustom();
-            }
+            $routeUri =
+                $this->finishSlash($this->getVariablePrefix()).
+                $this->finishEmpty($this->getPrefixRoutes()).$routeUri;
+
+            $newRoute = app(Router::class)->addRoute($route->methods(), $routeUri, $route->getAction());
+
+            $newRoute->where($this->getVariablePrefixName(), implode('|', $this->getPrefixGroups()));
         }
     }
 
     protected function applyRoutesPackageAdd(): void {}
-
-    protected function applyRoutesPackageCustom(): void
-    {
-        $this->applyRoutesPackageCustomDefault();
-        $this->applyRoutesPackageCustomRoutes();
-    }
-
-    protected function applyRoutesPackageCustomDefault(): void
-    {
-        $dynamic = Str::trim($this->getVariablePrefix(),'{}');
-        $default = Str::trim($this->getDefaultsPrefix()[0]);
-
-        URL::defaults([$dynamic => $default]);
-    }
-
-    protected function applyRoutesPackageCustomRoutes(): void
-    {
-        $dynamic = Str::trim($this->getVariablePrefix(),'{}');
-
-        foreach ($this->getRoutesDatasets() as $route)
-        {
-            $routeUri = Str::replaceStart($this->getOriginalPrefix(), '', $route->uri());
-            $routeUri = Str::trim($routeUri, '/');
-
-            $routeUri = (!$this->getCustomRoutes())
-                ? $routeUri = $this->getVariablePrefix().'/'.$routeUri
-                : $routeUri = $this->getVariablePrefix().$this->getCustomRoutes().$routeUri;
-
-            $newRoute = app(Router::class)->addRoute($route->methods(),$routeUri,$route->getAction());
-
-            $newRoute->where($dynamic, implode('|',$this->getDefaultsPrefix()));
-        }
-    }
-
-    protected function applyRoutesPackagePrefix(): void
-    {
-        foreach ($this->getRoutesDatasets() as $route)
-        {
-            $routeUri = Str::replaceStart($this->getOriginalPrefix(), '', $route->uri());
-            $routeUri = Str::trim($this->getPackagesPrefix(), '/').$routeUri;
-
-            app(Router::class)->addRoute($route->methods(),$routeUri,$route->getAction());
-        }
-    }
 
     protected function applyRoutesRemove(): void
     {
@@ -218,7 +92,7 @@ class BaseRoutes
 
         foreach (Route::getRoutes() as $route)
         {
-            if (! in_array($route->uri(), $this->originalRoutes))
+            if (! $this->checkOriginalRoute($route))
             {
                 $collection->add($route);
             }

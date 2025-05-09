@@ -7,11 +7,9 @@ use Illuminate\Support\Facades\Blade;
 
 class FluxAssets extends BaseAssets
 {
-    protected $constantCustom = FluxCustom::class;
-
     protected $constantPrefix = FluxPrefix::class;
 
-    protected $originalPrefix = '/flux/';
+    protected $originalPrefix = 'flux';
 
     public function init()
     {
@@ -25,17 +23,17 @@ class FluxAssets extends BaseAssets
 
     public function bladeEditorStyles()
     {
-        return $this->applyPrefixToHref(app('flux')->editorStyles());
+        return $this->replaceTagHref(app('flux')->editorStyles());
     }
 
     public function bladeEditorScripts()
     {
-        return $this->applyPrefixToSrc(app('flux')->editorScripts());
+        return $this->replaceTagSrc(app('flux')->editorScripts());
     }
 
     public function bladeScripts(): string
     {
-        return $this->applyPrefixToSrc($this->bladeScriptsView());
+        return $this->replaceTagSrc($this->bladeScriptsView());
     }
 
     public function bladeScriptsView(): string

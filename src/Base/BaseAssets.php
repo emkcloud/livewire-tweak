@@ -2,25 +2,8 @@
 
 namespace Emkcloud\LivewireTweak\Base;
 
-use Illuminate\Support\Str;
-
-class BaseAssets
+class BaseAssets extends BaseCommon
 {
-    protected $constantCustom;
-
-    protected $constantPrefix;
-
-    protected $packagesPrefix;
-
-    protected $originalPrefix;
-
-    public function __construct()
-    {
-        $this->packagesPrefix = $this->getAssetPrefix();
-    }
-
-    public function init() {}
-
     public function start(): void
     {
         $this->startAssets();
@@ -31,67 +14,26 @@ class BaseAssets
 
     protected function startAssetsDirective(): void {}
 
-    protected function checkAssetsDomain(): bool
+    protected function replacePrefixDomain(): string
     {
-        if (class_exists($this->constantPrefix))
+        $generatePrefix =
+            $this->finishSlash($this->getPrefixGroupsMain()).
+            $this->finishEmpty($this->getPrefixAssets());
+
+        if ($this->checkPrefixDomain())
         {
-            return BaseConfig::value($this->constantPrefix::DOMAIN) == true;
+            return $this->finishSlash(url('/')).$generatePrefix;
         }
 
-        return false;
+        return $this->finishSlash($this->getCurrentPrefixPath()).$generatePrefix;
     }
 
-    protected function checkAssetsEnable(): bool
+    protected function replaceTag($tag, $output): string
     {
-        if (class_exists($this->constantPrefix))
+        if ($this->checkPrefixEnable() && $this->checkPrefixGroups())
         {
-            return BaseConfig::value($this->constantPrefix::ENABLE) == true;
-        }
-
-        return false;
-    }
-
-    protected function finish($value): ?string
-    {
-        return Str::finish($value,'/');
-    }
-
-    protected function getAssetPrefix(): ?string
-    {
-        if (class_exists($this->constantPrefix))
-        {
-            return Str::trim(Str::trim(BaseConfig::value($this->constantPrefix::ASSETS)),'/');
-        }
-
-        return null;
-    }
-
-    protected function getOriginalPrefix(): ?string
-    {
-        return $this->originalPrefix;
-    }
-
-    protected function getPackagesPrefix(): ?string
-    {
-        return $this->packagesPrefix;
-    }
-
-    protected function applyPrefixDomain(): string
-    {
-        if ($this->checkAssetsDomain())
-        {
-            return $this->finish(url('/')).$this->finish($this->getPackagesPrefix());
-        }
-
-        return $this->finish(parse_url(url('/'), PHP_URL_PATH)).$this->finish($this->getPackagesPrefix());
-    }
-
-    protected function applyPrefixToHref($output): string
-    {
-        if ($this->getPackagesPrefix() && $this->checkAssetsEnable())
-        {
-            $source = '#href="'.$this->getOriginalPrefix().'#';
-            $target = 'href="'.$this->applyPrefixDomain();
+            $source = $this->replaceTagSource($tag);
+            $target = $this->replaceTagTarget($tag);
 
             return preg_replace($source, $target, $output);
         }
@@ -99,16 +41,23 @@ class BaseAssets
         return $output;
     }
 
-    protected function applyPrefixToSrc($output): string
+    protected function replaceTagHref($output): string
     {
-        if ($this->getPackagesPrefix() && $this->checkAssetsEnable())
-        {
-            $source = '#src="'.$this->getOriginalPrefix().'#';
-            $target = 'src="'.$this->applyPrefixDomain();
+        return $this->replaceTag('href', $output);
+    }
 
-            return preg_replace($source, $target, $output);
-        }
+    protected function replaceTagSrc($output): string
+    {
+        return $this->replaceTag('src', $output);
+    }
 
-        return $output;
+    protected function replaceTagSource($tag): string
+    {
+        return '#'.$tag.'="/'.$this->getPrefixOriginal().'/#';
+    }
+
+    protected function replaceTagTarget($tag): string
+    {
+        return $tag.'="'.$this->replacePrefixDomain();
     }
 }

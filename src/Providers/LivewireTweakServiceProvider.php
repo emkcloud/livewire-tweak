@@ -13,12 +13,6 @@ use Livewire\LivewireServiceProvider;
 
 class LivewireTweakServiceProvider extends ServiceProvider
 {
-    public function boot(): void
-    {
-        $this->startInit();
-        $this->startSetting();
-    }
-
     public function register(): void
     {
         $this->registerConfig();
@@ -53,6 +47,12 @@ class LivewireTweakServiceProvider extends ServiceProvider
     protected function registerViews()
     {
         $this->loadViewsFrom(__DIR__.'/../../resources/views', 'livewire-tweak');
+    }
+
+    public function boot(): void
+    {
+        $this->startInit();
+        $this->startSetting();
     }
 
     public function startInit(): void
@@ -92,8 +92,8 @@ class LivewireTweakServiceProvider extends ServiceProvider
         {
             if (isset($directives['fluxAppearance']) && isset($directives['fluxScripts']))
             {
-                app('livewireTweakFluxAssets')->start();
                 app('livewireTweakFluxRoutes')->start();
+                app('livewireTweakFluxAssets')->start();
             }
         }
     }
