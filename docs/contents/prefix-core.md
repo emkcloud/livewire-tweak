@@ -34,7 +34,7 @@ This is an example of the result when setting option for domain disabled.
 
 ## Assets Dynamic
 
-If you need to make the prefix dynamic because you want to use different values as the route prefix, simply define the list of allowed values in the groups option.
+If you need to make the prefix dynamic because you want to use different values as the assets prefix, simply define the list of allowed values in the groups option.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
@@ -84,6 +84,7 @@ Use environment variables for change default path and add custom prefix.
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
 LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
 ```
+
 After setting the custom prefix variables, these new routes will be added.
 
 ```
@@ -94,15 +95,31 @@ POST     admin/update ... livewire.update ......................................
 POST     admin/upload-file ... livewire.upload-file .............................
 ```
 
+## Routes Dynamic
 
+If you need to make the prefix dynamic because you want to use different values as the routes prefix, simply define the list of allowed values in the groups option.
+
+```ini
+LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin,backend,customers"
+```
+
+After setting the custom prefix variables, these new routes will be added.
 
 ```
-GET|HEAD {groupwire}/livewire/livewire.js .......... Livewire\Mechanisms › FrontendAsset
-GET|HEAD {groupwire}/livewire/livewire.min.js.map .................... Livewire\Mechanis
-GET|HEAD {groupwire}/livewire/preview-file/{filename} livewire.preview-file › Livewire\F
-POST     {groupwire}/livewire/update ....... livewire.update › Livewire\Mechanisms › Han
-POST     {groupwire}/livewire/upload-file livewire.upload-file › Livewire\Features › Fil
+GET|HEAD {groupwire}/livewire.js ................................................
+GET|HEAD {groupwire}/livewire.min.js.map ........................................
+GET|HEAD {groupwire}/preview-file/{filename} ... livewire.preview-file ..........
+POST     {groupwire}/update ... livewire.update .................................
+POST     {groupwire}/upload-file ... livewire.upload-file .......................
 ```
+
+
+
+
+
+
+
 
 By default, the value of `{groupwire}` will be set to `admin` value since it is the first element in the groups option. So it's as if the routes were the following:
 
