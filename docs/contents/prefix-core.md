@@ -32,6 +32,18 @@ This is an example of the result when setting domain disabled.
 <script src="/admin/vendor/livewire/livewire.min.js"></script>
 ```
 
+## Assets Dynamic
+
+```ini
+LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin,backend,customers"
+LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
+```
+
+```php
+URL::defaults(['groupwire' => 'backend']);
+```
+
 ## Assets Advice
 
 If the `asset_url` variable is set in the Livewire configuration file, the asset prefix settings described above will be ignored. The `asset_url` value takes precedence.
