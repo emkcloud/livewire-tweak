@@ -57,12 +57,6 @@ POST     admin/livewire/update ....... livewire.update › Livewire\Mechanisms �
 POST     admin/livewire/upload-file livewire.upload-file › Livewire\Features › FileUploadCont
 ```
 
-By default, new routes are added, but if you want to remove the original routes, simply enable the "remove routes" option.
-
-```ini
-LIVEWIRE_TWEAK_CORE_ROUTES_REMOVE=true
-```
-
 ## Configuration
 
 The configuration file is optional. If you need to customize, you can publish the config:
@@ -91,11 +85,6 @@ php artisan vendor:publish --tag=livewire-tweak:config
         'assets' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_ASSETS','vendor/livewire'),
         'routes' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_ROUTES','livewire'),
         'domain' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_DOMAIN',true)
-    ],
-
-    'route' =>
-    [
-        'remove' => env('LIVEWIRE_TWEAK_CORE_ROUTES_REMOVE',false)
     ]
 ]
 ```
@@ -114,7 +103,6 @@ To view all available variables and their meanings, refer to the following file:
 ## Example Output
 
 - [Screenshot of route:list](../images/core-routes.jpg)  
-- [Screenshot of route:list with remove](../images/core-routes-remove.jpg)  
 
 ## License
 

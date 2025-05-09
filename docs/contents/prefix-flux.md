@@ -73,12 +73,6 @@ GET|HEAD admin/flux/flux.js .................. Flux\AssetManager@fluxJs › Asse
 GET|HEAD admin/flux/flux.min.js ........ Flux\AssetManager@fluxMinJs › AssetManager@fluxMinJs
 ```
 
-By default, new routes are added, but if you want to remove the original routes, simply enable the "remove routes" option.
-
-```ini
-LIVEWIRE_TWEAK_FLUX_ROUTES_REMOVE=true
-```
-
 ## Configuration
 
 The configuration file is optional. If you need to customize, you can publish the config:
@@ -107,11 +101,6 @@ php artisan vendor:publish --tag=livewire-tweak:config
         'assets' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_ASSETS','flux'),
         'routes' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_ROUTES','flux'),
         'domain' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_DOMAIN',true)
-    ],
-
-    'routes' =>
-    [
-        'remove' => env('LIVEWIRE_TWEAK_FLUX_ROUTES_REMOVE',false)
     ]
 ]
 ```
@@ -132,7 +121,6 @@ To view all available variables and their meanings, refer to the following file:
 
 - [Screenshot of page test](../images/flux-result.jpg)  
 - [Screenshot of route:list](../images/flux-routes.jpg)  
-- [Screenshot of route:list with remove](../images/flux-routes-remove.jpg)  
 
 ## License
 
