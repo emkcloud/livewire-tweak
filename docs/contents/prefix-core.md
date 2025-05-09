@@ -25,6 +25,8 @@ If you prefer to remove the domain name from the resource path, set the followin
 LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=false
 ```
 
+This is an example of the result when setting domain disabled.
+
 ```html
 <script src="/admin/vendor/livewire/livewire.js"></script>
 <script src="/admin/vendor/livewire/livewire.min.js"></script>
