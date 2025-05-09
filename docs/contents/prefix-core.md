@@ -83,7 +83,7 @@ Here's an example of the output when manually setting the prefix to `backend`.
 
 ## Assets Advice
 
-If the `asset_url` variable is set in the Livewire configuration, the prefix settings above will be ignored.
+If the `asset_url` variable is set in the Livewire configuration file, the prefix settings above will be ignored.
 
 ## Routes Prefix
 
