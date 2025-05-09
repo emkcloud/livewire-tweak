@@ -62,6 +62,21 @@ This is an example of the result when setting the manual prefix with `backend` v
 <script src="https://mydomain.com/backend/vendor/livewire/livewire.min.js"></script>
 ```
 
+If you want to change not only the prefix but also the default path `vendor/livewire`, set the following options.
+
+```ini
+LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
+LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS="custom/path"
+```
+
+This is an example of the result when setting the prefixes mentioned above.
+
+```html
+<script src="https://mydomain.com/admin/custom/path/livewire.js"></script>
+<script src="https://mydomain.com/admin/custom/path/livewire.min.js"></script>
+```
+
 ## Assets Advice
 
 If the `asset_url` variable is set in the Livewire configuration file, the asset prefix settings described above will be ignored. The `asset_url` value takes precedence.
@@ -95,7 +110,7 @@ POST     admin/livewire/update ... livewire.update .............................
 POST     admin/livewire/upload-file ... livewire.upload-file ....................
 ```
 
-If you want to change not only the prefix but also the default path for vendor/livewire, set the following options.
+If you want to change not only the prefix but also the default path `livewire`, set the following options.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
