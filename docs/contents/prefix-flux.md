@@ -39,6 +39,8 @@ Here's an example of the output using the environment variables setting above.
 <script src="https://mydomain.com/admin/flux/flux.min.js"></script>
 ```
 
+## Assets Path
+
 If you want to change not only the prefix but also the default path `flux`, set the following environment options.
 
 ```ini
@@ -211,7 +213,7 @@ php artisan vendor:publish --tag=livewire-tweak:config
 ];
 ```
 
-## Variables
+## Environment
 
 To view all available variables and their meanings, refer to the following file:
 

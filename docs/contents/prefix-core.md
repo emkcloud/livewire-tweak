@@ -185,7 +185,7 @@ php artisan vendor:publish --tag=livewire-tweak:config
 ];
 ```
 
-## Variables
+## Environment
 
 To view all available variables and their meanings, refer to the following file:
 
