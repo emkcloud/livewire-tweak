@@ -68,23 +68,33 @@ If the `asset_url` variable is set in the Livewire configuration file, the asset
 
 ## Routes Prefix
 
-Through this feature, you can add a prefix to the standard URL of Livewire Flux routes.
+Through this feature, you can add a prefix to the standard URL of Livewire routes.
 
 ```
-GET|HEAD livewire/livewire.js .......... Livewire\Mechanisms › FrontendAssets@returnJavaScrip
-GET|HEAD livewire/livewire.min.js.map .................... Livewire\Mechanisms › FrontendAsse
-GET|HEAD livewire/preview-file/{filename} livewire.preview-file › Livewire\Features › FilePre
-POST     livewire/update ....... livewire.update › Livewire\Mechanisms › HandleRequests@handl
-POST     livewire/upload-file livewire.upload-file › Livewire\Features › FileUploadController
+GET|HEAD livewire/livewire.js ...................................................
+GET|HEAD livewire/livewire.min.js.map ...........................................
+GET|HEAD livewire/preview-file/{filename} ... livewire.preview-file .............
+POST     livewire/update ... livewire.update ....................................
+POST     livewire/upload-file ... livewire.upload-file ..........................
 ```
 
 Use environment variables for change default path and add custom prefix.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
-LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin,backend,customers"
+LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
 ```
 After setting the custom prefix variables, these new routes will be added.
+
+```
+GET|HEAD admin/livewire.js ......................................................
+GET|HEAD admin/livewire.min.js.map ..............................................
+GET|HEAD admin/preview-file/{filename} ... livewire.preview-file ................
+POST     admin/update ... livewire.update .......................................
+POST     admin/upload-file ... livewire.upload-file .............................
+```
+
+
 
 ```
 GET|HEAD {groupwire}/livewire/livewire.js .......... Livewire\Mechanisms › FrontendAsset
@@ -95,14 +105,6 @@ POST     {groupwire}/livewire/upload-file livewire.upload-file › Livewire\Feat
 ```
 
 By default, the value of `{groupwire}` will be set to `admin` value since it is the first element in the groups option. So it's as if the routes were the following:
-
-```
-GET|HEAD admin/livewire/livewire.js ................ Livewire\Mechanisms › FrontendAsset
-GET|HEAD admin/livewire/livewire.min.js.map .......................... Livewire\Mechanis
-GET|HEAD admin/livewire/preview-file/{filename} ..... livewire.preview-file › Livewire\F
-POST     admin/livewire/update ............. livewire.update › Livewire\Mechanisms › Han
-POST     admin/livewire/upload-file ..... livewire.upload-file › Livewire\Features › Fil
-```
 
 Since the prefix is dynamic, it can also be called at runtime using a custom service provider and run the following command:
 
