@@ -14,7 +14,7 @@ LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
 
 This is an example of the result when setting the prefixes mentioned above.
 
-```javascript
+```html
 <script src="https://mydomain.com/admin/vendor/livewire/livewire.js"></script>
 <script src="https://mydomain.com/admin/vendor/livewire/livewire.min.js"></script>
 ```
