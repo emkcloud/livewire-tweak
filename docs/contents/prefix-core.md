@@ -14,9 +14,9 @@ LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
 
 This is an example of the result when setting the prefixes mentioned above.
 
-```
-https://mydomain.com/admin/vendor/livewire/livewire.js
-https://mydomain.com/admin/vendor/livewire/livewire.min.js
+```js
+<script src="https://mydomain.com/admin/vendor/livewire/livewire.js"></script>
+<script src="https://mydomain.com/admin/vendor/livewire/livewire.min.js"></script>
 ```
 
 If you prefer to remove the domain name from the resource path, set the following environment variable to false.
