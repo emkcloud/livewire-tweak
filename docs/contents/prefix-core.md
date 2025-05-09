@@ -100,7 +100,7 @@ If you want to change not only the prefix but also the default path for vendor/l
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
 LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
-LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS="custom/path"
+LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES="custom/path"
 ```
 
 After setting the custom prefix variables, these new routes will be added.
