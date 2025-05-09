@@ -114,29 +114,10 @@ POST     {groupwire}/update ... livewire.update ................................
 POST     {groupwire}/upload-file ... livewire.upload-file .......................
 ```
 
-
-
-
-
-
-
-
-By default, the value of `{groupwire}` will be set to `admin` value since it is the first element in the groups option. So it's as if the routes were the following:
-
-Since the prefix is dynamic, it can also be called at runtime using a custom service provider and run the following command:
+By default, the value of `{groupwire}` will be set to `admin` value since it is the first element in the groups option. If you want to change it at runtime, use this command in your service provider.
 
 ```php
 URL::defaults(['groupwire' => 'backend']);
-```
-
-At this point, we should get the following as the main routes with `backend` prefix:
-
-```
-GET|HEAD backend/livewire/livewire.js .............. Livewire\Mechanisms › FrontendAsset
-GET|HEAD backend/livewire/livewire.min.js.map ........................ Livewire\Mechanis
-GET|HEAD backend/livewire/preview-file/{filename} ... livewire.preview-file › Livewire\F
-POST     backend/livewire/update ........... livewire.update › Livewire\Mechanisms › Han
-POST     backend/livewire/upload-file ... livewire.upload-file › Livewire\Features › Fil
 ```
 
 ## Configuration
