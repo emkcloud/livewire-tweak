@@ -171,6 +171,8 @@ php artisan vendor:publish --tag=livewire-tweak:config
 
 ## File livewire-tweak.php
 
+This is the preview of the prefix section for the Livewire configuration.
+
 ```php
 'core' =>
 [
