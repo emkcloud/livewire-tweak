@@ -34,6 +34,8 @@ This is an example of the result when setting the prefixes mentioned above.
 <script src="https://mydomain.com/admin/custom/path/livewire.min.js"></script>
 ```
 
+## Assets Domain
+
 If you prefer to remove the domain name from the resource path, set the following environment variable to false.
 
 ```ini
