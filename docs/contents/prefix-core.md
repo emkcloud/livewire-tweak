@@ -52,8 +52,15 @@ This is an example of the result when setting the prefixes mentioned above.
 The first value in the list will be used as the default prefix, in this case `admin`. If you want to change it to a different value, use this command in your service provider.
 
 ```php
-URL::defaults(['groupwire' => 'backend']);
+URL::defaults(['assetwire' => 'backend']);
 ```
+
+```html
+<script src="https://mydomain.com/backend/vendor/livewire/livewire.js"></script>
+<script src="https://mydomain.com/backend/vendor/livewire/livewire.min.js"></script>
+```
+
+This is an example of the result when setting the prefixes mentioned above.
 
 ## Assets Advice
 
