@@ -153,7 +153,7 @@ POST     {routewire}/livewire/update ... livewire.update .......................
 POST     {routewire}/livewire/upload-file ... livewire.upload-file ..............
 ```
 
-By default, the value of `{routewire}` will be set to `admin` value since it is the first element in the groups option. If you want to change it at runtime, use this command in your service provider.
+By default, the value of `{routewire}` will be set to `admin` value since it is the first element in the groups option. If you want to change it at runtime, use this command:
 
 ```php
 URL::defaults(['routewire' => 'backend']);
