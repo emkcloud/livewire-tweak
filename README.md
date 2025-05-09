@@ -46,6 +46,8 @@ LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES="livewire"
 LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
 ```
 
+## Environment
+
 To view all available variables and their meanings, refer to the following file:
 
 > [Environment variables](examples/variables.env)
