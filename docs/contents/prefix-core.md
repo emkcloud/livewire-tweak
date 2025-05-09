@@ -32,6 +32,21 @@ This is an example of the result when setting option for domain disabled.
 <script src="/admin/vendor/livewire/livewire.min.js"></script>
 ```
 
+If you want to change not only the prefix but also the default path `vendor/livewire`, set the following options.
+
+```ini
+LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
+LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS="custom/path"
+```
+
+This is an example of the result when setting the prefixes mentioned above.
+
+```html
+<script src="https://mydomain.com/admin/custom/path/livewire.js"></script>
+<script src="https://mydomain.com/admin/custom/path/livewire.min.js"></script>
+```
+
 ## Assets Dynamic
 
 If you need to make the prefix dynamic because you want to use different values as the assets prefix, simply define the list of allowed values in the groups option.
@@ -60,21 +75,6 @@ This is an example of the result when setting the manual prefix with `backend` v
 ```html
 <script src="https://mydomain.com/backend/vendor/livewire/livewire.js"></script>
 <script src="https://mydomain.com/backend/vendor/livewire/livewire.min.js"></script>
-```
-
-If you want to change not only the prefix but also the default path `vendor/livewire`, set the following options.
-
-```ini
-LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
-LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
-LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS="custom/path"
-```
-
-This is an example of the result when setting the prefixes mentioned above.
-
-```html
-<script src="https://mydomain.com/admin/custom/path/livewire.js"></script>
-<script src="https://mydomain.com/admin/custom/path/livewire.min.js"></script>
 ```
 
 ## Assets Advice
