@@ -60,11 +60,25 @@ POST     {groupwire}/livewire/upload-file livewire.upload-file › Livewire\Feat
 By default, the value of `{groupwire}` will be set to `admin` value since it is the first element in the groups option. So it's as if the routes were the following:
 
 ```
-GET|HEAD admin/livewire/livewire.js .......... Livewire\Mechanisms › FrontendAsset
-GET|HEAD admin/livewire/livewire.min.js.map .................... Livewire\Mechanis
-GET|HEAD admin/livewire/preview-file/{filename} livewire.preview-file › Livewire\F
-POST     admin/livewire/update ....... livewire.update › Livewire\Mechanisms › Han
-POST     admin/livewire/upload-file livewire.upload-file › Livewire\Features › Fil
+GET|HEAD admin/livewire/livewire.js ................ Livewire\Mechanisms › FrontendAsset
+GET|HEAD admin/livewire/livewire.min.js.map .......................... Livewire\Mechanis
+GET|HEAD admin/livewire/preview-file/{filename} ..... livewire.preview-file › Livewire\F
+POST     admin/livewire/update ............. livewire.update › Livewire\Mechanisms › Han
+POST     admin/livewire/upload-file ..... livewire.upload-file › Livewire\Features › Fil
+```
+
+Since the prefix is dynamic, it can also be called at runtime using a custom service provider and run the following command:
+
+```php
+URL::defaults(['groupwire' => 'backend']);
+```
+
+```
+GET|HEAD backend/livewire/livewire.js .............. Livewire\Mechanisms › FrontendAsset
+GET|HEAD backend/livewire/livewire.min.js.map ........................ Livewire\Mechanis
+GET|HEAD backend/livewire/preview-file/{filename} ... livewire.preview-file › Livewire\F
+POST     backend/livewire/update ........... livewire.update › Livewire\Mechanisms › Han
+POST     backend/livewire/upload-file ... livewire.upload-file › Livewire\Features › Fil
 ```
 
 ## Configuration
