@@ -1,10 +1,10 @@
-# Prefix for Livewire
+# Livewire Prefixing
 
-At the time of writing this code, the Livewire package sets assets/routes using absolute paths. This is limiting for my development environment. Here's my solution:
+At the time of writing, the Livewire package sets asset and route paths using absolute URLs. This behavior is limiting in my development environment. Here's my solution:
 
 ## Assets Prefix
 
-Through this feature, you can add a prefix to the standard path of Livewire assets.
+This feature allows you to add a prefix to the default Livewire asset paths.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
@@ -12,7 +12,7 @@ LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
 LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
 ```
 
-This is an example of the result when setting the prefixes mentioned above.
+Here's an example of the output using the settings above.
 
 ```html
 <script src="https://mydomain.com/admin/vendor/livewire/livewire.js"></script>
@@ -44,7 +44,7 @@ LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
 LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=false
 ```
 
-This is an example of the result when setting option for domain disabled.
+Here's an example of the output when the domain option is disabled.
 
 ```html
 <script src="/admin/vendor/livewire/livewire.js"></script>
@@ -53,7 +53,7 @@ This is an example of the result when setting option for domain disabled.
 
 ## Assets Dynamic
 
-If you need to make the prefix dynamic because you want to use different values as the assets prefix, simply define the list of allowed values in the groups option.
+If you need to make the prefix dynamic if you want to use different values as asset prefixes, simply define the list of allowed values in the groups option.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
@@ -74,7 +74,7 @@ The first value in the list will be used as the default prefix, in this case `ad
 URL::defaults(['assetwire' => 'backend']);
 ```
 
-This is an example of the result when setting the manual prefix with `backend` value.
+Here's an example of the output when manually setting the prefix to `backend`.
 
 ```html
 <script src="https://mydomain.com/backend/vendor/livewire/livewire.js"></script>
@@ -83,7 +83,7 @@ This is an example of the result when setting the manual prefix with `backend` v
 
 ## Assets Advice
 
-If the `asset_url` variable is set in the Livewire configuration file, the asset prefix settings described above will be ignored. The `asset_url` value takes precedence.
+If the `asset_url` variable is set in the Livewire configuration, the prefix settings above will be ignored.
 
 ## Routes Prefix
 
@@ -97,7 +97,7 @@ POST     livewire/update ... livewire.update ...................................
 POST     livewire/upload-file ... livewire.upload-file ..........................
 ```
 
-Use environment variables for change default path and add custom prefix.
+Use environment variables to change the default path and add a custom prefix.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
