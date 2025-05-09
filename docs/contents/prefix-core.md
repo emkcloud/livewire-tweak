@@ -8,7 +8,7 @@ Through this feature, you can add a prefix to the standard path of Livewire asse
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
-LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS="admin/vendor/livewire"
+LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
 LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
 ```
 
@@ -17,6 +17,13 @@ This is an example of the result when setting the prefixes mentioned above.
 ```
 https://mydomain.com/admin/vendor/livewire/livewire.js
 https://mydomain.com/admin/vendor/livewire/livewire.min.js
+```
+
+
+
+```
+https://mydomain.com/backend/vendor/livewire/livewire.js
+https://mydomain.com/backend/vendor/livewire/livewire.min.js
 ```
 
 If you prefer to remove the domain name from the resource path, set the following environment variable to false.
@@ -45,16 +52,16 @@ Use environment variables for change default path and add custom prefix.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
-LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES="admin/livewire"
+LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin,backend,customers"
 ```
 After setting the custom prefix variables, these new routes will be added.
 
 ```
-GET|HEAD admin/livewire/livewire.js .......... Livewire\Mechanisms › FrontendAssets@returnJav
-GET|HEAD admin/livewire/livewire.min.js.map .................... Livewire\Mechanisms › Fronte
-GET|HEAD admin/livewire/preview-file/{filename} livewire.preview-file › Livewire\Features › F
-POST     admin/livewire/update ....... livewire.update › Livewire\Mechanisms › HandleRequests
-POST     admin/livewire/upload-file livewire.upload-file › Livewire\Features › FileUploadCont
+GET|HEAD {groupwire}/livewire/livewire.js .......... Livewire\Mechanisms › FrontendAsset
+GET|HEAD {groupwire}/livewire/livewire.min.js.map .................... Livewire\Mechanis
+GET|HEAD {groupwire}/livewire/preview-file/{filename} livewire.preview-file › Livewire\F
+POST     {groupwire}/livewire/update ....... livewire.update › Livewire\Mechanisms › Han
+POST     {groupwire}/livewire/upload-file livewire.upload-file › Livewire\Features › Fil
 ```
 
 ## Configuration
@@ -73,26 +80,13 @@ php artisan vendor:publish --tag=livewire-tweak:config
     'prefix' =>
     [
         'enable' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE',false),
-        'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS',''),
-        'routes' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES',''),
+        'groups' => env('LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS',''),
+        'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS','vendor/livewire'),
+        'routes' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES','livewire'),
         'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true)
-    ],
-
-    'custom' =>
-    [
-        'enable' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_ENABLE',false),
-        'prefix' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_PREFIX',''),
-        'assets' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_ASSETS','vendor/livewire'),
-        'routes' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_ROUTES','livewire'),
-        'domain' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_DOMAIN',true)
     ]
-]
+];
 ```
-## Dynamic Prefix
-
-The management of the standard prefix appends a suffix to the default path, and this remains valid in the Laravel project. For a dynamic approach, consider using the custom options described in this file:
-
-> [How use the dynamic prefix](prefix-dynamic.md)
 
 ## Variables
 
@@ -102,7 +96,7 @@ To view all available variables and their meanings, refer to the following file:
 
 ## Example Output
 
-- [Screenshot of route:list](../images/core-routes.jpg)  
+- CAMBIARE!!!!! [Screenshot of route:list](../images/core-routes.jpg)  
 
 ## License
 
