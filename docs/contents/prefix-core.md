@@ -57,7 +57,7 @@ POST     {groupwire}/livewire/update ....... livewire.update › Livewire\Mechan
 POST     {groupwire}/livewire/upload-file livewire.upload-file › Livewire\Features › Fil
 ```
 
-By default, the value of "{groupwire}" will be set to "admin" since it is the first element in the "groups" option. So it's as if the routes were the following
+By default, the value of `{groupwire}` will be set to `admin` value since it is the first element in the groups option. So it's as if the routes were the following:
 
 ```
 GET|HEAD admin/livewire/livewire.js .......... Livewire\Mechanisms › FrontendAsset
