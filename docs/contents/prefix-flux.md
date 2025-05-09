@@ -26,7 +26,6 @@ This feature allows you to add a prefix to the default Flux asset paths.
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
 LIVEWIRE_TWEAK_FLUX_PREFIX_GROUPS="admin"
-LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=true
 ```
 
 Here's an example of the output using the environment variables setting above.
@@ -86,7 +85,6 @@ If you need to make the prefix dynamic if you want to use different values as as
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
 LIVEWIRE_TWEAK_FLUX_PREFIX_GROUPS="admin,backend,customers"
-LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=true
 ```
 
 This is an example of the result when setting the prefixes mentioned above.
