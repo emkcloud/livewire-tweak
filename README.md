@@ -40,6 +40,7 @@ All options in the package have default values, so you only need to define the o
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=false
+LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS=""
 LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS=""
 LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES=""
 LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
