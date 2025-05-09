@@ -1,6 +1,6 @@
 # Livewire Prefixing
 
-At the time of writing, the Livewire package sets asset and route paths using absolute URLs. This behavior is limiting in my development environment. Here's my solution:
+At the time of writing, the Livewire sets asset and route paths using absolute URLs. This behavior is limiting in my development environment. Here's my solution:
 
 ## Assets Prefix
 
