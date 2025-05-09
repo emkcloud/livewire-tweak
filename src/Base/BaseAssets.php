@@ -6,18 +6,18 @@ class BaseAssets extends BaseCommon
 {
     public function start(): void
     {
-        $this->startAssets();
-        $this->startAssetsDirective();
+        $this->startAssetsPrefix();
+        $this->startAssetsPrefixAddon();
     }
 
-    protected function startAssets(): void {}
+    protected function startAssetsPrefix(): void {}
 
-    protected function startAssetsDirective(): void {}
+    protected function startAssetsPrefixAddon(): void {}
 
     protected function replacePrefixDomain(): string
     {
         $generatePrefix =
-            $this->finishSlash($this->getPrefixGroupsMain()).
+            $this->finishSlash($this->getURLDefaultValue()).
             $this->finishEmpty($this->getPrefixAssets());
 
         if ($this->checkPrefixDomain())

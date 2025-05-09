@@ -11,6 +11,8 @@ class FluxAssets extends BaseAssets
 
     protected $originalPrefix = 'flux';
 
+    protected $variablePrefix = '{assetsflux}';
+
     public function init()
     {
         Blade::anonymousComponentPath(__DIR__.'/../../resources/views/flux/overrides', 'flux');
@@ -41,7 +43,7 @@ class FluxAssets extends BaseAssets
         return view('livewire-tweak::flux.assets.scripts')->render();
     }
 
-    protected function startAssetsDirective(): void
+    protected function startAssetsPrefixAddon(): void
     {
         Blade::directive('livewireTweakFluxAppearance', function ($expression)
         {

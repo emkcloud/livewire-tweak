@@ -57,6 +57,8 @@ class LivewireTweakServiceProvider extends ServiceProvider
 
     public function startInit(): void
     {
+        app('livewireTweakCoreRoutes')->init();
+        app('livewireTweakFluxRoutes')->init();
         app('livewireTweakCoreAssets')->init();
         app('livewireTweakFluxAssets')->init();
     }

@@ -3,6 +3,7 @@
 namespace Emkcloud\LivewireTweak\Base;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
 
 class BaseCommon
 {
@@ -29,6 +30,8 @@ class BaseCommon
         $this->resultedAssets = $this->getConfigPrefixAssets();
         $this->resultedRoutes = $this->getConfigPrefixRoutes();
         $this->resultedDomain = $this->getConfigPrefixDomain();
+
+        $this->setDefaultValueURL();
     }
 
     public function init() {}
@@ -84,7 +87,7 @@ class BaseCommon
     {
         if (class_exists($this->constantPrefix))
         {
-            if (is_string(config($this->constantPrefix::ASSETS)))
+            if (is_string(config($this->constantPrefix::GROUPS)))
             {
                 return array_map(function ($item)
                 {
@@ -178,6 +181,21 @@ class BaseCommon
         return Str::trim(Str::trim($path), '/');
     }
 
+    protected function getURLDefaultParameters(): array
+    {
+        return app('url')->getDefaultParameters();
+    }
+
+    protected function getURLDefaultValue(): string
+    {
+        if (isset($this->getURLDefaultParameters()[$this->getVariablePrefixName()]))
+        {
+            return $this->getURLDefaultParameters()[$this->getVariablePrefixName()];
+        }
+
+        return $this->getPrefixGroupsMain();
+    }
+
     protected function getVariablePrefix(): ?string
     {
         return $this->variablePrefix;
@@ -186,5 +204,13 @@ class BaseCommon
     protected function getVariablePrefixName(): ?string
     {
         return Str::trim($this->getVariablePrefix(), '{}');
+    }
+
+    protected function setDefaultValueURL(): void
+    {
+        if (!isset($this->getURLDefaultParameters()[$this->getVariablePrefixName()]))
+        {
+            URL::defaults([$this->getVariablePrefixName() => $this->getPrefixGroupsMain()]);
+        }
     }
 }

@@ -17,13 +17,29 @@ class BaseRoutes extends BaseCommon
 
     public function start(): void
     {
-        URL::defaults([$this->getVariablePrefixName() => $this->getPrefixGroupsMain()]);
-
         if (! App::routesAreCached())
         {
-            $this->setRoutesDatasets();
-            $this->setRoutesPrefix();
+            $this->startRoutesPrefix();
+            $this->startRoutesPrefixAddon();
         }
+    }
+
+    protected function startRoutesPrefix(): void
+    {
+        $this->setRoutesDatasets();
+
+        if ($this->isAllowedToChangeRoute())
+        {
+            $this->applyRoutesPackage();
+            $this->applyRoutesPackageAdd();
+
+            $this->applyRoutesRemove();
+            $this->applyRoutesRemoveAdd();
+        }
+    }
+
+    protected function startRoutesPrefixAddon(): void
+    {
     }
 
     protected function checkOriginalRoute($route): bool
@@ -53,18 +69,6 @@ class BaseRoutes extends BaseCommon
             return $this->checkOriginalRoute($route);
 
         })->all();
-    }
-
-    protected function setRoutesPrefix(): void
-    {
-        if ($this->isAllowedToChangeRoute())
-        {
-            $this->applyRoutesPackage();
-            $this->applyRoutesPackageAdd();
-
-            $this->applyRoutesRemove();
-            $this->applyRoutesRemoveAdd();
-        }
     }
 
     protected function applyRoutesPackage(): void
