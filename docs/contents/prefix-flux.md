@@ -1,6 +1,6 @@
-# Prefix for Flux
+# Flux Prefixing
 
-At the time of writing this code, the Flux package sets assets/routes using absolute paths. This is limiting for my development environment. Here's my solution:
+At the time of writing, the Livewire Flux sets asset and route paths using absolute URLs. This behavior is limiting in my development environment. Here's my solution:
 
 ## Blade directives
 
@@ -21,56 +21,170 @@ To avoid using an intrusive technique and to always be able to use the original 
 
 ## Assets Prefix
 
-Through this feature, you can add a prefix to the standard path of Livewire Flux assets. Use environment variables.
+This feature allows you to add a prefix to the default Flux asset paths.
 
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
-LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS="admin/flux"
+LIVEWIRE_TWEAK_FLUX_PREFIX_GROUPS="admin"
+LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=true
+```
+
+Here's an example of the output using the environment variables setting above.
+
+```html
+<script src="https://mydomain.com/admin/flux/editor.css"></script>
+<script src="https://mydomain.com/admin/flux/editor.js"></script>
+<script src="https://mydomain.com/admin/flux/editor.min.js"></script>
+<script src="https://mydomain.com/admin/flux/flux.js"></script>
+<script src="https://mydomain.com/admin/flux/flux.min.js"></script>
+```
+
+If you want to change not only the prefix but also the default path `flux`, set the following environment options.
+
+```ini
+LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_FLUX_PREFIX_GROUPS="admin"
+LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS="custom/path"
+```
+
+Here's an example of the output using the environment variables setting above.
+
+```html
+<script src="https://mydomain.com/admin/custom/path/editor.css"></script>
+<script src="https://mydomain.com/admin/custom/path/editor.js"></script>
+<script src="https://mydomain.com/admin/custom/path/editor.min.js"></script>
+<script src="https://mydomain.com/admin/custom/path/flux.js"></script>
+<script src="https://mydomain.com/admin/custom/path/flux.min.js"></script>
+```
+
+## Assets Domain
+
+If you prefer to remove the domain name from the resource path, set the following environment variable to false.
+
+```ini
+LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_FLUX_PREFIX_GROUPS="admin"
+LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=false
+```
+
+Here's an example of the output when the domain option is disabled.
+
+```html
+<script src="/admin/flux/editor.css"></script>
+<script src="/admin/flux/editor.js"></script>
+<script src="/admin/flux/editor.min.js"></script>
+<script src="/admin/flux/flux.js"></script>
+<script src="/admin/flux/flux.min.js"></script>
+```
+
+## Assets Dynamic
+
+If you need to make the prefix dynamic if you want to use different values as asset prefixes, simply define the list of allowed values in the groups option.
+
+```ini
+LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_FLUX_PREFIX_GROUPS="admin,backend,customers"
 LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=true
 ```
 
 This is an example of the result when setting the prefixes mentioned above.
 
-```
-https://mydomain.com/admin/flux/flux.js
-https://mydomain.com/admin/flux/flux.min.js
-https://mydomain.com/admin/flux/editor.js
-https://mydomain.com/admin/flux/editor.min.js
-https://mydomain.com/admin/flux/editor.css
+```html
+<script src="https://mydomain.com/{routewire}/custom/path/editor.css"></script>
+<script src="https://mydomain.com/{routewire}/custom/path/editor.js"></script>
+<script src="https://mydomain.com/{routewire}/custom/path/editor.min.js"></script>
+<script src="https://mydomain.com/{routewire}/custom/path/flux.js"></script>
+<script src="https://mydomain.com/{routewire}/custom/path/flux.min.js"></script>
 ```
 
-If you prefer to remove the domain name from the resource path, set the following environment variable to false.
+The first value in the list will be used as the default prefix, in this case `admin`. If you want to change it to a different value, use this command in your service provider.
 
-```ini
-LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN=false
+```php
+URL::defaults(['routewire' => 'backend']);
+```
+
+Here's an example of the output when manually setting the prefix to `backend`.
+
+```html
+<script src="https://mydomain.com/backend/custom/path/editor.css"></script>
+<script src="https://mydomain.com/backend/custom/path/editor.js"></script>
+<script src="https://mydomain.com/backend/custom/path/editor.min.js"></script>
+<script src="https://mydomain.com/backend/custom/path/flux.js"></script>
+<script src="https://mydomain.com/backend/custom/path/flux.min.js"></script>
 ```
 
 ## Routes Prefix
 
-Through this feature, you can add a prefix to the standard URL of Livewire Flux routes.
+Through this feature, you can add a prefix to the standard URL of Flux routes.
 
 ```
-GET|HEAD flux/editor.css ............... Flux\AssetManager@editorCss › AssetManager@editorCss
-GET|HEAD flux/editor.js .................. Flux\AssetManager@editorJs › AssetManager@editorJs
-GET|HEAD flux/editor.min.js ........ Flux\AssetManager@editorMinJs › AssetManager@editorMinJs
-GET|HEAD flux/flux.js ........................ Flux\AssetManager@fluxJs › AssetManager@fluxJs
-GET|HEAD flux/flux.min.js .............. Flux\AssetManager@fluxMinJs › AssetManager@fluxMinJs
+GET|HEAD flux/editor.css ........................................................
+GET|HEAD flux/editor.js .........................................................
+GET|HEAD flux/editor.min.js .....................................................
+GET|HEAD flux/flux.js ...........................................................
+GET|HEAD flux/flux.min.js .......................................................
 ```
 
-Use environment variables for change default path and add custom prefix.
+Use environment variables to change the default path and add a custom prefix.
 
 ```ini
 LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
-LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES="admin/flux"
+LIVEWIRE_TWEAK_FLUX_PREFIX_GROUPS="admin"
 ```
+
 After setting the custom prefix variables, these new routes will be added.
 
 ```
-GET|HEAD admin/flux/editor.css ......... Flux\AssetManager@editorCss › AssetManager@editorCss
-GET|HEAD admin/flux/editor.js ............ Flux\AssetManager@editorJs › AssetManager@editorJs
-GET|HEAD admin/flux/editor.min.js .. Flux\AssetManager@editorMinJs › AssetManager@editorMinJs
-GET|HEAD admin/flux/flux.js .................. Flux\AssetManager@fluxJs › AssetManager@fluxJs
-GET|HEAD admin/flux/flux.min.js ........ Flux\AssetManager@fluxMinJs › AssetManager@fluxMinJs
+GET|HEAD admin/flux/editor.css ..................................................
+GET|HEAD admin/flux/editor.js ...................................................
+GET|HEAD admin/flux/editor.min.js ...............................................
+GET|HEAD admin/flux/flux.js .....................................................
+GET|HEAD admin/flux/flux.min.js .................................................
+```
+
+## Routes Path
+
+If you want to change not only the prefix but also the default standard path `flux`, set the following options.
+
+```ini
+LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_FLUX_PREFIX_GROUPS="admin"
+LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES="custom/path"
+```
+
+After setting the custom prefix variables, these new routes will be added.
+
+```
+GET|HEAD admin/custom/path/editor.css ...........................................
+GET|HEAD admin/custom/path/editor.js ............................................
+GET|HEAD admin/custom/path/editor.min.js ........................................
+GET|HEAD admin/custom/path/flux.js ..............................................
+GET|HEAD admin/custom/path/flux.min.js ..........................................
+```
+
+## Routes Dynamic
+
+If you need to make the prefix dynamic because you want to use different values as the routes prefix, simply define the list of allowed values in the groups option.
+
+```ini
+LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_FLUX_PREFIX_GROUPS="admin,backend,customers"
+```
+
+After setting the custom prefix variables, these new routes will be added.
+
+```
+GET|HEAD {routeflux}/flux/editor.css ............................................
+GET|HEAD {routeflux}/flux/editor.js .............................................
+GET|HEAD {routeflux}/flux/editor.min.js .........................................
+GET|HEAD {routeflux}/flux/flux.js ...............................................
+GET|HEAD {routeflux}/flux/flux.min.js ..,,,,,,,..................................
+```
+
+By default, the value of `{routeflux}` will be set to `admin` value since it is the first element in the groups option. If you want to change it at runtime, use this command:
+
+```php
+URL::defaults(['routeflux' => 'backend']);
 ```
 
 ## Configuration
@@ -89,27 +203,13 @@ php artisan vendor:publish --tag=livewire-tweak:config
     'prefix' =>
     [
         'enable' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ENABLE',false),
-        'assets' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS',''),
-        'routes' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES',''),
+        'groups' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_GROUPS',''),
+        'assets' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS','flux'),
+        'routes' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES','flux'),
         'domain' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN',true)
-    ],
-
-    'custom' =>
-    [
-        'enable' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_ENABLE',false),
-        'prefix' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_PREFIX',''),
-        'assets' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_ASSETS','flux'),
-        'routes' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_ROUTES','flux'),
-        'domain' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_DOMAIN',true)
     ]
-]
+];
 ```
-
-## Dynamic Prefix
-
-The management of the standard prefix appends a suffix to the default path, and this remains valid in the Laravel project. For a dynamic approach, consider using the custom options described in this file:
-
-> [How use the dynamic prefix](prefix-dynamic.md)
 
 ## Variables
 
@@ -119,8 +219,7 @@ To view all available variables and their meanings, refer to the following file:
 
 ## Example Output
 
-- [Screenshot of page test](../images/flux-result.jpg)  
-- [Screenshot of route:list](../images/flux-routes.jpg)  
+- CAMBIARE!!!!! [Screenshot of route:list](../images/flux-routes.jpg)  
 
 ## License
 
