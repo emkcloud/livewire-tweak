@@ -95,6 +95,24 @@ POST     admin/livewire/update ... livewire.update .............................
 POST     admin/livewire/upload-file ... livewire.upload-file ....................
 ```
 
+If you want to change not only the prefix but also the default path for vendor/livewire, set the following options.
+
+```ini
+LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
+LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
+LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS="custom/path"
+```
+
+After setting the custom prefix variables, these new routes will be added.
+
+```
+GET|HEAD admin/custom/path/livewire.js ..........................................
+GET|HEAD admin/custom/path/livewire.min.js.map ..................................
+GET|HEAD admin/custom/path/preview-file/{filename} ... livewire.preview-file ....
+POST     admin/custom/path/update ... livewire.update ...........................
+POST     admin/custom/path/upload-file ... livewire.upload-file .................
+```
+
 ## Routes Dynamic
 
 If you need to make the prefix dynamic because you want to use different values as the routes prefix, simply define the list of allowed values in the groups option.
