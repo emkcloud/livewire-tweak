@@ -34,7 +34,7 @@ This is an example of the result when setting domain disabled.
 
 ## Assets Dynamic
 
-If you need to make the prefix dynamic because you want to use different values as the "route" prefix, simply define the list of allowed values in the "groups" option.
+If you need to make the prefix dynamic because you want to use different values as the route prefix, simply define the list of allowed values in the groups option.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
@@ -49,6 +49,7 @@ This is an example of the result when setting the prefixes mentioned above.
 <script src="https://mydomain.com/{assetwire}/vendor/livewire/livewire.min.js"></script>
 ```
 
+The first value in the list will be used as the default prefix, in this case `admin`.
 
 ```php
 URL::defaults(['groupwire' => 'backend']);
