@@ -116,7 +116,7 @@ POST     admin/livewire/upload-file ... livewire.upload-file ...................
 
 ## Routes Path
 
-If you want to change not only the prefix but also the default path `livewire`, set the following options.
+If you want to change not only the prefix but also the default standard path `livewire`, set the following options.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
