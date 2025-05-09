@@ -4,7 +4,7 @@ At the time of writing this code, the Livewire package sets assets/routes using 
 
 ## Assets Prefix
 
-Through this feature, you can add a prefix to the standard path of Livewire assets. Use environment variables.
+Through this feature, you can add a prefix to the standard path of Livewire assets.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
@@ -25,7 +25,7 @@ If you prefer to remove the domain name from the resource path, set the followin
 LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=false
 ```
 
-This is an example of the result when setting domain disabled.
+This is an example of the result when setting option for domain disabled.
 
 ```html
 <script src="/admin/vendor/livewire/livewire.js"></script>
