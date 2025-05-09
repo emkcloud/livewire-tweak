@@ -40,6 +40,14 @@ LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin,backend,customers"
 LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=true
 ```
 
+This is an example of the result when setting the prefixes mentioned above.
+
+```html
+<script src="https://mydomain.com/{assetwire}/vendor/livewire/livewire.js"></script>
+<script src="https://mydomain.com/{assetwire}/vendor/livewire/livewire.min.js"></script>
+```
+
+
 ```php
 URL::defaults(['groupwire' => 'backend']);
 ```
