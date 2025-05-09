@@ -22,13 +22,19 @@ class CoreRoutes extends BaseRoutes
         'livewire/upload-file',
     ];
 
+    protected $variablePrefix = '{customwire}';
+
     protected function applyRoutesPackageAdd(): void
     {
-        $updatepath = parse_url(url('/'), PHP_URL_PATH).$this->getPackagesPrefix();
-
-        Livewire::setUpdateRoute(function ($handle) use ($updatepath)
+//dd('aaa');
+        Livewire::setUpdateRoute(function ($handle)
         {
-            return Route::post($updatepath.'update', $handle);
+            if ($subfolder = parse_url(url('/'), PHP_URL_PATH))
+            {
+                return Route::post($subfolder.$this->getPackagesPrefix().'update', $handle);
+            }
+
+            return Route::getRoutes()->getByName('livewire.update');
         });
     }
 }

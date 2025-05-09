@@ -25,11 +25,6 @@ return
             'assets' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_ASSETS','vendor/livewire'),
             'routes' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_ROUTES','livewire'),
             'domain' => env('LIVEWIRE_TWEAK_CORE_CUSTOM_DOMAIN',true)
-        ],
-
-        'routes' =>
-        [
-            'remove' => env('LIVEWIRE_TWEAK_CORE_ROUTES_REMOVE',false)
         ]
     ],
 
@@ -56,11 +51,6 @@ return
             'assets' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_ASSETS','flux'),
             'routes' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_ROUTES','flux'),
             'domain' => env('LIVEWIRE_TWEAK_FLUX_CUSTOM_DOMAIN',true)
-        ],
-
-        'routes' =>
-        [
-            'remove' => env('LIVEWIRE_TWEAK_FLUX_ROUTES_REMOVE',false)
         ]
     ]
 ];

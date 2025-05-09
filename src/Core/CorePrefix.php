@@ -11,6 +11,4 @@ class CorePrefix
     public const ENABLE = 'livewire-tweak.core.prefix.enable';
 
     public const ROUTES = 'livewire-tweak.core.prefix.routes';
-
-    public const REMOVE = 'livewire-tweak.core.routes.remove';
 }

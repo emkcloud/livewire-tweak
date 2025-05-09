@@ -11,6 +11,4 @@ class FluxPrefix
     public const ENABLE = 'livewire-tweak.flux.prefix.enable';
 
     public const ROUTES = 'livewire-tweak.flux.prefix.routes';
-
-    public const REMOVE = 'livewire-tweak.flux.routes.remove';
 }
