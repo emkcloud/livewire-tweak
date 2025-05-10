@@ -48,6 +48,16 @@ class BaseCommon
         return count($this->getPrefixGroups()) > 0;
     }
 
+    protected function checkPrefixGroupsSingle(): bool
+    {
+        return count($this->getPrefixGroups()) == 1;
+    }
+
+    protected function checkPrefixGroupsMultiple(): bool
+    {
+        return count($this->getPrefixGroups()) > 1;
+    }
+
     protected function checkPrefixAssets(): bool
     {
         return ! empty($this->getPrefixAssets());

@@ -67,6 +67,28 @@ class BaseRoutes extends BaseCommon
 
     protected function applyRoutesPackage(): void
     {
+        $this->checkPrefixGroupsSingle()
+            ? $this->applyRoutesPackageSingle()
+            : $this->applyRoutesPackageMultiple();
+    }
+
+    protected function applyRoutesPackageSingle(): void
+    {
+        foreach ($this->getRoutesDatasets() as $route)
+        {
+            $routeUri = $this->getTrimPath(
+                Str::replaceStart($this->getPrefixOriginal(), '', $route->uri()));
+
+            $routeUri =
+                $this->finishSlash($this->getPrefixGroupsMain()).
+                $this->finishEmpty($this->getPrefixRoutes()).$routeUri;
+
+            app('router')->addRoute($route->methods(), $routeUri, $route->getAction());
+        }
+    }
+
+    protected function applyRoutesPackageMultiple(): void
+    {
         foreach ($this->getRoutesDatasets() as $route)
         {
             $routeUri = $this->getTrimPath(
