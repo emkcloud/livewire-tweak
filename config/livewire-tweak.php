@@ -14,7 +14,7 @@ return
         [
             'enable' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE',false),
             'groups' => env('LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS',''),
-            'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS','vendor/livewire'),
+            'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS','livewire'),
             'routes' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES','livewire'),
             'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true)
         ]
