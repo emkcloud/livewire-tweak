@@ -221,7 +221,8 @@ To view all available variables and their meanings, refer to the following file:
 
 ## Example Output
 
-- CAMBIARE!!!!! [Screenshot of route:list](../images/flux-routes.jpg)  
+- [Screenshot of route:list static](../images/flux-routes-static.jpg)  
+- [Screenshot of route:list dynamic](../images/flux-routes-dynamic.jpg)  
 
 ## License
 
