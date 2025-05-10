@@ -226,4 +226,4 @@ To view all available variables and their meanings, refer to the following file:
 
 ## License
 
-The MIT License (MIT). Please see the package [License file](../../LICENSE) for more information.
+The MIT License (MIT). Please see the package [License file](../../LICENSE.md) for more information.
