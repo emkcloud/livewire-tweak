@@ -25,7 +25,7 @@ class CoreRoutes extends BaseRoutes
     protected function applyRoutesPackageAdd(): void
     {
         return;
-        // dd('aaa');
+
         Livewire::setUpdateRoute(function ($handle)
         {
             if ($subfolder = parse_url(url('/'), PHP_URL_PATH))

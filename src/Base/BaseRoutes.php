@@ -6,7 +6,6 @@ use Illuminate\Routing\RouteCollection;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
 class BaseRoutes extends BaseCommon
@@ -38,9 +37,7 @@ class BaseRoutes extends BaseCommon
         }
     }
 
-    protected function startRoutesPrefixAddon(): void
-    {
-    }
+    protected function startRoutesPrefixAddon(): void {}
 
     protected function checkOriginalRoute($route): bool
     {

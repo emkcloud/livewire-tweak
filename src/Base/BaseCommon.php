@@ -2,8 +2,8 @@
 
 namespace Emkcloud\LivewireTweak\Base;
 
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Str;
 
 class BaseCommon
 {
@@ -208,7 +208,7 @@ class BaseCommon
 
     protected function setDefaultValueURL(): void
     {
-        if (!isset($this->getURLDefaultParameters()[$this->getVariablePrefixName()]))
+        if (! isset($this->getURLDefaultParameters()[$this->getVariablePrefixName()]))
         {
             URL::defaults([$this->getVariablePrefixName() => $this->getPrefixGroupsMain()]);
         }

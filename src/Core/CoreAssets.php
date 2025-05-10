@@ -13,7 +13,7 @@ class CoreAssets extends BaseAssets
 
     protected function startAssetsPrefixAddon(): void
     {
-return;
+        return;
         if (is_null(config('livewire.asset_url')))
         {
             if ($this->isAllowedToChangeAssets())
