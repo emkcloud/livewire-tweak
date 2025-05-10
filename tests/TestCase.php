@@ -25,8 +25,8 @@ class TestCase extends OrchestraTestCase
         ];
     }
 
-    protected function setUp(): void
+    protected function getRoutes(): \Illuminate\Support\Collection
     {
-        parent::setUp();
+        return collect(app('router')->getRoutes())->pluck('uri');
     }
 }

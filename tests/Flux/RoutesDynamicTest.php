@@ -1,6 +1,6 @@
 <?php
 
-describe('Flux routes dynamic', function ()
+describe('Flux dynamic routes', function ()
 {
     it('should generate the route flux.js', function ()
     {
