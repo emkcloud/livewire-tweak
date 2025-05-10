@@ -1,10 +1,10 @@
 <?php
 
-describe('Flux standard routes', function ()
+describe('Livewire standard routes', function ()
 {
     it('should contain uri', function (string $uri)
     {
         expect($this->getRoutes())->toContain($uri);
 
-    })->with('fluxStandardRoutes')->done();
+    })->with('coreStandardRoutes')->done();
 });

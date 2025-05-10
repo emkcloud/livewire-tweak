@@ -14,6 +14,7 @@ class CoreRoutes extends BaseRoutes
 
     protected $originalRoutes = [
         'livewire/livewire.js',
+//        'livewire/livewire.min.js',
         'livewire/livewire.min.js.map',
         'livewire/preview-file/{filename}',
         'livewire/update',

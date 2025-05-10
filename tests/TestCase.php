@@ -9,10 +9,14 @@ use Flux\FluxServiceProvider;
 
 class TestCase extends OrchestraTestCase
 {
-    protected bool $fluxServiceAvailable = false;
+    protected $loadEnvironmentVariables = false;
 
-    protected function getEnvironmentSetUp($app)
+    protected function defineEnvironment($app)
     {
+        if (method_exists($this, 'customConfigValues'))
+        {
+            $this->customConfigValues($app);
+        }
     }
 
     protected function getPackageProviders($app)

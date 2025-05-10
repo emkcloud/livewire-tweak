@@ -2,4 +2,4 @@
 
 use Tests\TestCase;
 
-uses(TestCase::class)->in('./*');
+pest()->extends(TestCase::class)->in('./*');
