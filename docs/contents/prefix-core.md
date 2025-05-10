@@ -193,8 +193,8 @@ To view all available variables and their meanings, refer to the following file:
 
 ## Example Output
 
-- [Screenshot of route:list static](../images/livewire-routes-static.jpg)  
-- [Screenshot of route:list dynamic](../images/livewire-routes-dynamic.jpg)  
+- [Screenshot of route:list static](../images/core-routes-static.jpg)  
+- [Screenshot of route:list dynamic](../images/core-routes-dynamic.jpg)  
 
 ## License
 
