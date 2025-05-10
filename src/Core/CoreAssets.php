@@ -4,6 +4,7 @@ namespace Emkcloud\LivewireTweak\Core;
 
 use Emkcloud\LivewireTweak\Base\BaseAssets;
 use Livewire\Mechanisms\FrontendAssets\FrontendAssets;
+use Illuminate\Support\Facades\URL;
 
 class CoreAssets extends BaseAssets
 {
@@ -13,7 +14,6 @@ class CoreAssets extends BaseAssets
 
     protected function startAssetsPrefixAddon(): void
     {
-        return;
         if (is_null(config('livewire.asset_url')))
         {
             if ($this->isAllowedToChangeAssets())

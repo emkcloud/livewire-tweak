@@ -16,11 +16,8 @@ class BaseRoutes extends BaseCommon
 
     public function start(): void
     {
-        if (! App::routesAreCached())
-        {
-            $this->startRoutesPrefix();
-            $this->startRoutesPrefixAddon();
-        }
+        $this->startRoutesPrefix();
+        $this->startRoutesPrefixAddon();
     }
 
     protected function startRoutesPrefix(): void
@@ -29,11 +26,11 @@ class BaseRoutes extends BaseCommon
 
         if ($this->isAllowedToChangeRoutes())
         {
-            $this->applyRoutesPackage();
-            $this->applyRoutesPackageAdd();
-
             $this->applyRoutesRemove();
             $this->applyRoutesRemoveAdd();
+
+            $this->applyRoutesPackage();
+            $this->applyRoutesPackageAdd();
         }
     }
 
@@ -79,7 +76,7 @@ class BaseRoutes extends BaseCommon
                 $this->finishSlash($this->getVariablePrefix()).
                 $this->finishEmpty($this->getPrefixRoutes()).$routeUri;
 
-            $newRoute = app(Router::class)->addRoute($route->methods(), $routeUri, $route->getAction());
+            $newRoute = app('router')->addRoute($route->methods(), $routeUri, $route->getAction());
 
             $newRoute->where($this->getVariablePrefixName(), implode('|', $this->getPrefixGroups()));
         }
@@ -91,7 +88,7 @@ class BaseRoutes extends BaseCommon
     {
         $collection = new RouteCollection;
 
-        foreach (Route::getRoutes() as $route)
+        foreach (app('router')->getRoutes() as $route)
         {
             if (! $this->checkOriginalRoute($route))
             {
@@ -99,7 +96,7 @@ class BaseRoutes extends BaseCommon
             }
         }
 
-        Route::setRoutes($collection);
+        app('router')->setRoutes($collection);
     }
 
     protected function applyRoutesRemoveAdd(): void {}
