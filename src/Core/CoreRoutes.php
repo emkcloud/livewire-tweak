@@ -30,7 +30,7 @@ class CoreRoutes extends BaseRoutes
         {
             if ($subfolder = parse_url(url('/'), PHP_URL_PATH))
             {
-                //return Route::post($subfolder.$this->getPackagesPrefix().'update', $handle);
+                // return Route::post($subfolder.$this->getPackagesPrefix().'update', $handle);
             }
 
             return Route::getRoutes()->getByName('livewire.update');

@@ -4,7 +4,6 @@ namespace Emkcloud\LivewireTweak\Core;
 
 use Emkcloud\LivewireTweak\Base\BaseAssets;
 use Livewire\Mechanisms\FrontendAssets\FrontendAssets;
-use Illuminate\Support\Facades\URL;
 
 class CoreAssets extends BaseAssets
 {

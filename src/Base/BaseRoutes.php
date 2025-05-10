@@ -3,8 +3,6 @@
 namespace Emkcloud\LivewireTweak\Base;
 
 use Illuminate\Routing\RouteCollection;
-use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
