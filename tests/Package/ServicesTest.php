@@ -1,22 +1,21 @@
 <?php
 
-describe('Package services', function ()
+use Emkcloud\LivewireTweak\Providers\LivewireTweakServiceProvider;
+use Livewire\LivewireServiceProvider;
+
+describe('Package', function ()
 {
-    it('should return the service provider flux', function ()
+    it('should load the service provider livewire', function ()
     {
-        expect(true)->toBe(true);
+        expect(app()->getLoadedProviders())
+            ->toHaveKey(LivewireServiceProvider::class);
 
-    })->todo();
+    })->done();
 
-    it('should return the service provider livewire', function ()
+    it('should load the service provider livewire-tweak', function ()
     {
-        expect(true)->toBe(true);
+        expect(app()->getLoadedProviders())
+            ->toHaveKey(LivewireTweakServiceProvider::class);
 
-    })->todo();
-
-    it('should return the service provider livewire tweak', function ()
-    {
-        expect(true)->toBe(true);
-
-    })->todo();
+    })->done();
 });

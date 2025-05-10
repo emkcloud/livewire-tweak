@@ -41,6 +41,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
+        "livewire/flux": "^2.1",
         "laravel/pint": "^1.22",
         "pestphp/pest": "^3.8",
         "orchestra/testbench": "^10.2"
