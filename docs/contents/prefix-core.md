@@ -14,13 +14,13 @@ LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin"
 Here's an example of the output using the environment variables setting above.
 
 ```html
-<script src="https://mydomain.com/admin/vendor/livewire/livewire.js"></script>
-<script src="https://mydomain.com/admin/vendor/livewire/livewire.min.js"></script>
+<script src="https://mydomain.com/admin/livewire/livewire.js"></script>
+<script src="https://mydomain.com/admin/livewire/livewire.min.js"></script>
 ```
 
 ## Assets Path
 
-If you want to change not only the prefix but also the default path `vendor/livewire`, set the following environment options.
+If you want to change not only the prefix but also the default path `livewire`, set the following environment options.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE=true
@@ -48,8 +48,8 @@ LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN=false
 Here's an example of the output when the domain option is disabled.
 
 ```html
-<script src="/admin/vendor/livewire/livewire.js"></script>
-<script src="/admin/vendor/livewire/livewire.min.js"></script>
+<script src="/admin/livewire/livewire.js"></script>
+<script src="/admin/livewire/livewire.min.js"></script>
 ```
 
 ## Assets Dynamic
@@ -64,8 +64,8 @@ LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS="admin,backend,customers"
 This is an example of the result when setting the prefixes mentioned above.
 
 ```html
-<script src="https://mydomain.com/{assetwire}/vendor/livewire/livewire.js"></script>
-<script src="https://mydomain.com/{assetwire}/vendor/livewire/livewire.min.js"></script>
+<script src="https://mydomain.com/{assetwire}/livewire/livewire.js"></script>
+<script src="https://mydomain.com/{assetwire}/livewire/livewire.min.js"></script>
 ```
 
 The first value in the list will be used as the default prefix, in this case `admin`. If you want to change it to a different value, use this command in your service provider.
@@ -77,8 +77,8 @@ URL::defaults(['assetwire' => 'backend']);
 Here's an example of the output when manually setting the prefix to `backend`.
 
 ```html
-<script src="https://mydomain.com/backend/vendor/livewire/livewire.js"></script>
-<script src="https://mydomain.com/backend/vendor/livewire/livewire.min.js"></script>
+<script src="https://mydomain.com/backend/livewire/livewire.js"></script>
+<script src="https://mydomain.com/backend/livewire/livewire.min.js"></script>
 ```
 
 ## Assets Advice
@@ -178,7 +178,7 @@ This is the preview of the prefix section for the Livewire configuration.
     [
         'enable' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ENABLE',false),
         'groups' => env('LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS',''),
-        'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS','vendor/livewire'),
+        'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS','livewire'),
         'routes' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES','livewire'),
         'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true)
     ]
