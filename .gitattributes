@@ -18,3 +18,4 @@ composer.lock export-ignore
 pint.json export-ignore
 phpunit.xml export-ignore
 phpunit.xml.dist export-ignore
+README.md export-ignore
