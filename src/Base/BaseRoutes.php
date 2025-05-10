@@ -28,7 +28,7 @@ class BaseRoutes extends BaseCommon
     {
         $this->setRoutesDatasets();
 
-        if ($this->isAllowedToChangeRoute())
+        if ($this->isAllowedToChangeRoutes())
         {
             $this->applyRoutesPackage();
             $this->applyRoutesPackageAdd();
@@ -47,7 +47,7 @@ class BaseRoutes extends BaseCommon
         return in_array($route->uri(), $this->getOriginalRoutes());
     }
 
-    protected function isAllowedToChangeRoute(): bool
+    protected function isAllowedToChangeRoutes(): bool
     {
         return $this->checkPrefixEnable() && $this->checkPrefixGroups();
     }

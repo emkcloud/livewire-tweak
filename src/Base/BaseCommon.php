@@ -63,12 +63,12 @@ class BaseCommon
         return $this->getPrefixDomain();
     }
 
-    protected function finishEmpty(string $value): string
+    protected function finishEmpty(?string $value): string
     {
         return $value ? $this->finishSlash($value) : '';
     }
 
-    protected function finishSlash(string $value): string
+    protected function finishSlash(?string $value): string
     {
         return Str::finish($value, '/');
     }

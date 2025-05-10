@@ -14,6 +14,11 @@ class BaseAssets extends BaseCommon
 
     protected function startAssetsPrefixAddon(): void {}
 
+    protected function isAllowedToChangeAssets(): bool
+    {
+        return $this->checkPrefixEnable() && $this->checkPrefixGroups();
+    }
+
     protected function replacePrefixDomain(): string
     {
         $generatePrefix =
