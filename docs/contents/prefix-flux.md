@@ -221,8 +221,8 @@ To view all available variables and their meanings, refer to the following file:
 
 ## Example Output
 
-- [Screenshot of route:list static](../images/flux-routes-static.jpg)  
-- [Screenshot of route:list dynamic](../images/flux-routes-dynamic.jpg)  
+> [Screenshot of route:list static](../images/flux-routes-static.jpg)  
+> [Screenshot of route:list dynamic](../images/flux-routes-dynamic.jpg)  
 
 ## License
 
