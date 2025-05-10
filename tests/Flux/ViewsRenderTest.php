@@ -4,6 +4,7 @@ describe('Flux views', function ()
 {
     it('should generate the view assets.enable', function ()
     {
+
         $output = view('livewire-tweak::flux.assets.appearance')->render();
 dd($output);
         expect(true)->toBe(true);

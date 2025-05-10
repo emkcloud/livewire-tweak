@@ -5,6 +5,7 @@ namespace Tests;
 use Emkcloud\LivewireTweak\Providers\LivewireTweakServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use Livewire\LivewireServiceProvider;
+use Flux\FluxServiceProvider;
 
 class TestCase extends OrchestraTestCase
 {
@@ -16,23 +17,16 @@ class TestCase extends OrchestraTestCase
 
     protected function getPackageProviders($app)
     {
-        dd('provide');
         return
         [
+            FluxServiceProvider::class,
             LivewireServiceProvider::class,
             LivewireTweakServiceProvider::class,
-        ];        
+        ];
     }
 
     protected function setUp(): void
     {
-        if ($this->app->providerIsLoaded(\App\Providers\MyServiceProvider::class);
-
-        dd('setup');
-
         parent::setUp();
-
-        $this->serviceAvailable = class_exists(\App\Services\MyService::class) &&
-        $this->app->providerIsLoaded(\App\Providers\MyServiceProvider::class);
     }
 }
