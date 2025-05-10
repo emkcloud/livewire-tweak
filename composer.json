@@ -31,6 +31,9 @@
         "illuminate/support": "^12.0",
         "livewire/livewire": "^3.5.19"
     },
+    "conflict": {
+        "livewire/flux": ">=3.0"
+    },
     "extra": {
         "laravel": {
             "providers": [
