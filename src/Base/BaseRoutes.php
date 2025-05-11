@@ -81,7 +81,9 @@ class BaseRoutes extends BaseCommon
                 $this->finishSlash($this->getPrefixGroupsMain()).
                 $this->finishEmpty($this->getPrefixRoutes()).$routeUri;
 
-            app('router')->addRoute($route->methods(), $routeUri, $route->getAction());
+            $newRoute = app('router')->addRoute($route->methods(), $routeUri, $route->getAction());
+
+            $this->applyRoutesPackageMiddleware($newRoute);
         }
     }
 
@@ -99,6 +101,16 @@ class BaseRoutes extends BaseCommon
             $newRoute = app('router')->addRoute($route->methods(), $routeUri, $route->getAction());
 
             $newRoute->where($this->getVariablePrefixName(), implode('|', $this->getPrefixGroups()));
+
+            $this->applyRoutesPackageMiddleware($newRoute);
+        }
+    }
+
+    protected function applyRoutesPackageMiddleware($route): void
+    {
+        if ($this->checkPrefixMiddleware())
+        {
+            dd($this->getPrefixMiddleware());
         }
     }
 

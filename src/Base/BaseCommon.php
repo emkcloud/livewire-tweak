@@ -32,7 +32,7 @@ class BaseCommon
         $this->resultedAssets = $this->getConfigPrefixAssets();
         $this->resultedRoutes = $this->getConfigPrefixRoutes();
         $this->resultedDomain = $this->getConfigPrefixDomain();
-        $this->resultedMiddle = $this->getConfigPrefixMiddle();
+        $this->resultedMiddle = $this->getConfigPrefixMiddleware();
 
         $this->setDefaultValueURL();
     }
@@ -76,6 +76,11 @@ class BaseCommon
         return $this->getPrefixDomain();
     }
 
+    protected function checkPrefixMiddleware(): bool
+    {
+        return count($this->getPrefixMiddleware()) > 0;
+    }
+
     protected function finishEmpty(?string $value): string
     {
         return $value ? $this->finishSlash($value) : '';
@@ -102,11 +107,11 @@ class BaseCommon
         {
             if (is_string(config($this->constantPrefix::GROUPS)))
             {
-                return array_map(function ($item)
+                return array_filter(array_map(function ($item)
                 {
-                    return $this->getTrimPath($item);
+                    return Str::trim($item) ? $this->getTrimPath($item) : false;
 
-                }, explode(',', config($this->constantPrefix::GROUPS)));
+                }, explode(',', config($this->constantPrefix::GROUPS))));
             }
         }
 
@@ -149,17 +154,17 @@ class BaseCommon
         return false;
     }
 
-    protected function getConfigPrefixMiddle(): array
+    protected function getConfigPrefixMiddleware(): array
     {
         if (class_exists($this->constantPrefix))
         {
             if (is_string(config($this->constantPrefix::MIDDLE)))
             {
-                return array_map(function ($item)
+                return array_filter(array_map(function ($item)
                 {
-                    return Str::trim($item);
+                    return Str::trim($item) ?: false;
 
-                }, explode(',', config($this->constantPrefix::MIDDLE)));
+                }, explode(',', config($this->constantPrefix::MIDDLE))));
             }
         }
 
@@ -201,7 +206,7 @@ class BaseCommon
         return $this->resultedDomain;
     }
 
-    protected function getPrefixMiddle(): array
+    protected function getPrefixMiddleware(): array
     {
         return $this->resultedMiddle;
     }
