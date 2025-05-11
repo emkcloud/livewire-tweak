@@ -2,7 +2,7 @@
 
 uses(Tests\Traits\FluxStaticPathRoutes::class);
 
-describe('Flux path path routes', function ()
+describe('Flux static path routes', function ()
 {
     it('should contain uri', function (string $uri)
     {

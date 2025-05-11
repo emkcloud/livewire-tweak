@@ -2,7 +2,7 @@
 
 uses(Tests\Traits\FluxDynamicBaseRoutes::class);
 
-describe('Flux dynamic routes', function ()
+describe('Flux dynamic base routes', function ()
 {
     it('should contain uri', function (string $uri)
     {
