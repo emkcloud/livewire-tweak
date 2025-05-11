@@ -2,7 +2,7 @@
 
 uses(Tests\Traits\CoreStaticPathRoutes::class);
 
-describe('Livewire path path routes', function ()
+describe('Livewire static path routes', function ()
 {
     it('should contain uri', function (string $uri)
     {

@@ -2,7 +2,7 @@
 
 uses(Tests\Traits\CoreDynamicBaseRoutes::class);
 
-describe('Livewire dynamic routes', function ()
+describe('Livewire dynamic base routes', function ()
 {
     it('should contain uri', function (string $uri)
     {
