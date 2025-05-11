@@ -184,7 +184,8 @@ This is the preview of the prefix section for the Livewire configuration.
         'groups' => env('LIVEWIRE_TWEAK_CORE_PREFIX_GROUPS',''),
         'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS','livewire'),
         'routes' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES','livewire'),
-        'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true)
+        'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true),
+        'middle' => env('LIVEWIRE_TWEAK_CORE_PREFIX_MIDDLE','')
     ]
 ];
 ```

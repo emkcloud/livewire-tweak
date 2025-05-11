@@ -208,7 +208,8 @@ This is the preview of the prefix section for the Flux configuration.
         'groups' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_GROUPS',''),
         'assets' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS','flux'),
         'routes' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES','flux'),
-        'domain' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN',true)
+        'domain' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN',true),
+        'middle' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_MIDDLE','')
     ]
 ];
 ```
