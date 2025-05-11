@@ -13,4 +13,6 @@ class CorePrefix
     public const ROUTES = 'livewire-tweak.core.prefix.routes';
 
     public const DOMAIN = 'livewire-tweak.core.prefix.domain';
+
+    public const MIDDLE = 'livewire-tweak.core.prefix.middle';
 }

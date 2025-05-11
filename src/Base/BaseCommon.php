@@ -21,6 +21,8 @@ class BaseCommon
 
     protected $resultedDomain = false;
 
+    protected $resultedMiddle = [];
+
     protected $variablePrefix = false;
 
     public function __construct()
@@ -30,6 +32,7 @@ class BaseCommon
         $this->resultedAssets = $this->getConfigPrefixAssets();
         $this->resultedRoutes = $this->getConfigPrefixRoutes();
         $this->resultedDomain = $this->getConfigPrefixDomain();
+        $this->resultedMiddle = $this->getConfigPrefixMiddle();
 
         $this->setDefaultValueURL();
     }
@@ -146,6 +149,23 @@ class BaseCommon
         return false;
     }
 
+    protected function getConfigPrefixMiddle(): array
+    {
+        if (class_exists($this->constantPrefix))
+        {
+            if (is_string(config($this->constantPrefix::MIDDLE)))
+            {
+                return array_map(function ($item)
+                {
+                    return Str::trim($item);
+
+                }, explode(',', config($this->constantPrefix::MIDDLE)));
+            }
+        }
+
+        return [];
+    }
+
     protected function getCurrentPrefixPath(): ?string
     {
         return parse_url(url('/'), PHP_URL_PATH);
@@ -179,6 +199,11 @@ class BaseCommon
     protected function getPrefixDomain(): bool
     {
         return $this->resultedDomain;
+    }
+
+    protected function getPrefixMiddle(): array
+    {
+        return $this->resultedMiddle;
     }
 
     protected function getPrefixOriginal(): ?string

@@ -13,4 +13,6 @@ class FluxPrefix
     public const ROUTES = 'livewire-tweak.flux.prefix.routes';
 
     public const DOMAIN = 'livewire-tweak.flux.prefix.domain';
+
+    public const MIDDLE = 'livewire-tweak.flux.prefix.middle';
 }
