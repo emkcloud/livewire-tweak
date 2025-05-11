@@ -3,10 +3,13 @@
 namespace Tests;
 
 use Emkcloud\LivewireTweak\Providers\LivewireTweakServiceProvider;
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
-use Livewire\LivewireServiceProvider;
 use Flux\FluxServiceProvider;
+use Livewire\LivewireServiceProvider;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
+/**
+ * @method void customConfigValues(\Illuminate\Contracts\Foundation\Application $app)
+ */
 class TestCase extends OrchestraTestCase
 {
     protected $loadEnvironmentVariables = false;

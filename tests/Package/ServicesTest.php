@@ -1,8 +1,8 @@
 <?php
 
 use Emkcloud\LivewireTweak\Providers\LivewireTweakServiceProvider;
-use Livewire\LivewireServiceProvider;
 use Flux\FluxServiceProvider;
+use Livewire\LivewireServiceProvider;
 
 describe('Package', function ()
 {
