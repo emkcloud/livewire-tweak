@@ -16,7 +16,7 @@ describe('Livewire middleware routes', function ()
             }
         }
 
-        expect($middleware)->toContain('auth','web');
+        expect($middleware)->toContain('auth', 'web');
 
     })->done();
 });
