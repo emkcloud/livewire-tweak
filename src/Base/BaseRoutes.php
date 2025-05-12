@@ -2,6 +2,7 @@
 
 namespace Emkcloud\LivewireTweak\Base;
 
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\RouteCollection;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
@@ -44,6 +45,16 @@ class BaseRoutes extends BaseCommon
         return $this->checkPrefixEnable() && $this->checkPrefixGroups();
     }
 
+    protected function isAllowedToChangeMiddleware(): bool
+    {
+        return $this->isAllowedToChangeRoutes() && $this->checkPrefixMiddleware();
+    }
+
+    protected function isAllowedToResetMiddleware(): bool
+    {
+        return $this->isAllowedToChangeMiddleware() && ! $this->checkPrefixMiddlewareWithOnlyReset();
+    }
+
     protected function getOriginalRoutes(): array
     {
         return $this->originalRoutes;
@@ -61,6 +72,46 @@ class BaseRoutes extends BaseCommon
             return $this->checkOriginalRoute($route);
 
         })->all();
+    }
+
+    protected function getRoutesMiddlewareForUpdate(): array
+    {
+        /** @var Illuminate\Contracts\Http\Kernel $kernel */
+        $kernel = app()->make(Kernel::class);
+
+        $middlewareUpdate = [];
+        $middlewareRoutes = $kernel->getRouteMiddleware();
+        $middlewareGroups = $kernel->getMiddlewareGroups();
+
+        foreach ($this->getPrefixMiddleware() as $middleware)
+        {
+            if ($middleware != '*')
+            {
+                $middlewareSelected = false;
+
+                if (isset($middlewareRoutes[$middleware]))
+                {
+                    $middlewareSelected = true;
+                }
+
+                if (isset($middlewareGroups[$middleware]))
+                {
+                    $middlewareSelected = true;
+                }
+
+                if (class_exists($middleware) && method_exists($middleware, 'handle'))
+                {
+                    $middlewareSelected = true;
+                }
+
+                if ($middlewareSelected && ! isset($middlewareUpdate[$middleware]))
+                {
+                    $middlewareUpdate[] = $middleware;
+                }
+            }
+        }
+
+        return $middlewareUpdate;
     }
 
     protected function applyRoutesPackage(): void
@@ -108,9 +159,25 @@ class BaseRoutes extends BaseCommon
 
     protected function applyRoutesPackageMiddleware($route): void
     {
-        if ($this->checkPrefixMiddleware())
+        if ($this->isAllowedToChangeMiddleware())
         {
-            dd($this->getPrefixMiddleware());
+            $middlewareUpdate = $this->getRoutesMiddlewareForUpdate();
+
+            if ($this->isAllowedToResetMiddleware())
+            {
+                if (count($middlewareUpdate) > 0)
+                {
+                    $route->action['middleware'] = [];
+                }
+            }
+
+            foreach ($middlewareUpdate as $middleware)
+            {
+                if (! isset($route->action['middleware'][$middleware]))
+                {
+                    $route->action['middleware'][] = $middleware;
+                }
+            }
         }
     }
 

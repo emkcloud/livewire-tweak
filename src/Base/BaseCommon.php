@@ -81,6 +81,11 @@ class BaseCommon
         return count($this->getPrefixMiddleware()) > 0;
     }
 
+    protected function checkPrefixMiddlewareWithOnlyReset(): bool
+    {
+        return count($this->getPrefixMiddleware()) == 1 && $this->getPrefixMiddleware()[0] == '*';
+    }
+
     protected function finishEmpty(?string $value): string
     {
         return $value ? $this->finishSlash($value) : '';
