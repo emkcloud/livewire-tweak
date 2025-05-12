@@ -185,7 +185,7 @@ This is the preview of the prefix section for the Livewire configuration.
         'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS','livewire'),
         'routes' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES','livewire'),
         'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true),
-        'middle' => env('LIVEWIRE_TWEAK_CORE_PREFIX_MIDDLE','')
+        'middle' => env('LIVEWIRE_TWEAK_CORE_PREFIX_MIDDLE','*')
     ]
 ];
 ```
