@@ -4,15 +4,13 @@ body:
   - type: input
     attributes:
       label: Livewire Version
-      description: If applicable, provide the database driver and version you are using.
-      placeholder: "MySQL 8.0.31 for macOS 13.0 on arm64 (Homebrew)"
+      placeholder: "#.#.#"
     validations:
       required: true
   - type: input
     attributes:
       label: Laravel Version
-      description: Provide the Laravel version that you are using. [Please ensure it is still supported.](https://laravel.com/docs/releases#support-policy)
-      placeholder: 10.4.1
+      placeholder: "#.#.#"
     validations:
       required: true
   - type: input
