@@ -17,7 +17,7 @@ return
             'assets' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ASSETS','livewire'),
             'routes' => env('LIVEWIRE_TWEAK_CORE_PREFIX_ROUTES','livewire'),
             'domain' => env('LIVEWIRE_TWEAK_CORE_PREFIX_DOMAIN',true),
-            'middle' => env('LIVEWIRE_TWEAK_CORE_PREFIX_MIDDLE','')
+            'middle' => env('LIVEWIRE_TWEAK_CORE_PREFIX_MIDDLE','*')
         ]
     ],
 
@@ -36,7 +36,7 @@ return
             'assets' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ASSETS','flux'),
             'routes' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_ROUTES','flux'),
             'domain' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_DOMAIN',true),
-            'middle' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_MIDDLE','')
+            'middle' => env('LIVEWIRE_TWEAK_FLUX_PREFIX_MIDDLE','*')
         ]
     ]
 ];
