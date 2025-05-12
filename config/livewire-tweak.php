@@ -48,11 +48,11 @@ return
 
         'middleware' =>
         [
-            'enable' => env('LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ENABLE',false),
-            'assign' => env('LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ASSIGN',''),
-            'assets' => env('LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ASSETS',false),
-            'routes' => env('LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ROUTES',false),
-            'remove' => env('LIVEWIRE_TWEAK_CORE_MIDDLEWARE_REMOVE',false)
+            'enable' => env('LIVEWIRE_TWEAK_FLUX_MIDDLEWARE_ENABLE',false),
+            'assign' => env('LIVEWIRE_TWEAK_FLUX_MIDDLEWARE_ASSIGN',''),
+            'assets' => env('LIVEWIRE_TWEAK_FLUX_MIDDLEWARE_ASSETS',false),
+            'routes' => env('LIVEWIRE_TWEAK_FLUX_MIDDLEWARE_ROUTES',false),
+            'remove' => env('LIVEWIRE_TWEAK_FLUX_MIDDLEWARE_REMOVE',false)
         ]
     ]
 ];
