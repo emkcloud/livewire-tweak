@@ -4,19 +4,19 @@ uses(Tests\Traits\FluxMiddlewareRoutes::class);
 
 describe('Flux middleware routes', function ()
 {
-    it('should contain middleware auth/web', function ()
+    it('should contain middleware', function (string $uri)
     {
         $middleware = [];
 
-        foreach (app('router')->getRoutes() as $route)
+        foreach ($this->getRoutes() as $route)
         {
-            if ($route->uri == 'admin/flux/flux.min.js')
+            if ($route->uri == $uri)
             {
                 $middleware = $route->middleware();
             }
         }
 
-        expect($middleware)->toContain('auth', 'web');
+        expect($middleware)->toContain('api', 'auth');
 
-    })->done();
+    })->with('fluxMiddlewareRoutes')->done();
 });

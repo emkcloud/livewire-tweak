@@ -16,6 +16,12 @@ dataset('coreDynamicPathRoutes', [
     '{routeswire}/custom/path/upload-file',
 ]);
 
+dataset('coreMiddlewareRoutes', [
+    'admin/livewire/livewire.min.js',
+    'admin/livewire/livewire.min.js.map',
+    'admin/livewire/update',
+]);
+
 dataset('coreStandardRoutes', [
     'livewire/livewire.min.js',
     'livewire/livewire.min.js.map',

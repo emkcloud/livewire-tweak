@@ -6,7 +6,7 @@ describe('Flux dynamic path routes', function ()
 {
     it('should contain uri', function (string $uri)
     {
-        expect($this->getRoutes())->toContain($uri);
+        expect($this->getRoutesUri())->toContain($uri);
 
     })->with('fluxDynamicPathRoutes')->done();
 });

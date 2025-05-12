@@ -16,6 +16,14 @@ dataset('fluxDynamicPathRoutes', [
     '{routesflux}/custom/path/editor.min.js',
 ]);
 
+dataset('fluxMiddlewareRoutes', [
+    'admin/flux/flux.js',
+    'admin/flux/flux.min.js',
+    'admin/flux/editor.css',
+    'admin/flux/editor.js',
+    'admin/flux/editor.min.js',
+]);
+
 dataset('fluxStandardRoutes', [
     'flux/flux.js',
     'flux/flux.min.js',

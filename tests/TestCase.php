@@ -32,8 +32,13 @@ class TestCase extends OrchestraTestCase
         ];
     }
 
-    protected function getRoutes(): \Illuminate\Support\Collection
+    protected function getRoutes(): \Illuminate\Routing\RouteCollection
     {
-        return collect(app('router')->getRoutes())->pluck('uri');
+        return app('router')->getRoutes();
+    }
+
+    protected function getRoutesUri(): \Illuminate\Support\Collection
+    {
+        return collect($this->getRoutes())->pluck('uri');
     }
 }

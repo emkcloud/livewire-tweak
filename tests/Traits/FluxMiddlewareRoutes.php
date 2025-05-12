@@ -8,7 +8,10 @@ trait FluxMiddlewareRoutes
     {
         $app['config']->set('livewire-tweak.flux.prefix.enable', true);
         $app['config']->set('livewire-tweak.flux.prefix.groups', 'admin');
-        $app['config']->set('livewire-tweak.flux.prefix.domain', false);
-        $app['config']->set('livewire-tweak.flux.prefix.middle', '*,auth,web');
+
+        $app['config']->set('livewire-tweak.flux.middleware.enable', true);
+        $app['config']->set('livewire-tweak.flux.middleware.assign', 'api,auth');
+        $app['config']->set('livewire-tweak.flux.middleware.assets', true);
+        $app['config']->set('livewire-tweak.flux.middleware.routes', true);
     }
 }
