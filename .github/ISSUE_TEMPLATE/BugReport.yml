@@ -20,7 +20,14 @@ body:
       required: true
   - type: input
     attributes:
-      label: Database Driver & Version
+      label: Livewire Version
+      description: If applicable, provide the database driver and version you are using.
+      placeholder: "MySQL 8.0.31 for macOS 13.0 on arm64 (Homebrew)"
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: Livewire Flux Version
       description: If applicable, provide the database driver and version you are using.
       placeholder: "MySQL 8.0.31 for macOS 13.0 on arm64 (Homebrew)"
     validations:
@@ -29,11 +36,5 @@ body:
     attributes:
       label: Description
       description: Provide a detailed description of the issue you are facing.
-    validations:
-      required: true
-  - type: textarea
-    attributes:
-      label: Steps To Reproduce
-      description: Provide detailed steps to reproduce your issue. If necessary, please provide a GitHub repository to demonstrate your issue using `laravel new bug-report --github="--public"`.
     validations:
       required: true
