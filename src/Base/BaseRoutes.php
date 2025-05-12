@@ -2,78 +2,89 @@
 
 namespace Emkcloud\LivewireTweak\Base;
 
-use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Routing\RouteCollection;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 class BaseRoutes extends BaseCommon
 {
-    protected $datasetsRoutes = [];
+    protected $datasets = [];
 
-    protected $originalRoutes = [];
+    protected $packageRoutes = [];
 
     public function start(): void
     {
-        $this->startRoutesPrefix();
-        $this->startRoutesPrefixAddon();
+        $this->startDatasets();
+        $this->startPrefix();
+        $this->startMiddleware();
     }
 
-    protected function startRoutesPrefix(): void
+    protected function startDatasets(): void
     {
-        $this->setRoutesDatasets();
-
-        if ($this->isAllowedToChangeRoutes())
+        $this->datasets = collect(Route::getRoutes())->filter(function ($route)
         {
-            $this->applyRoutesRemove();
-            $this->applyRoutesRemoveAdd();
-
-            $this->applyRoutesPackage();
-            $this->applyRoutesPackageAdd();
-        }
-    }
-
-    protected function startRoutesPrefixAddon(): void {}
-
-    protected function checkOriginalRoute($route): bool
-    {
-        return in_array($route->uri(), $this->getOriginalRoutes());
-    }
-
-    protected function isAllowedToChangeRoutes(): bool
-    {
-        return $this->checkPrefixEnable() && $this->checkPrefixGroups();
-    }
-
-    protected function getOriginalRoutes(): array
-    {
-        return $this->originalRoutes;
-    }
-
-    protected function getRoutesDatasets(): array
-    {
-        return $this->datasetsRoutes;
-    }
-
-    protected function setRoutesDatasets(): void
-    {
-        $this->datasetsRoutes = collect(Route::getRoutes())->filter(function ($route)
-        {
-            return $this->checkOriginalRoute($route);
+            return $this->checkPackageRoute($route);
 
         })->all();
     }
 
-    protected function applyRoutesPackage(): void
+    protected function startPrefix(): void
     {
-        $this->checkPrefixGroupsSingle()
-            ? $this->applyRoutesPackageSingle()
-            : $this->applyRoutesPackageMultiple();
+        if ($this->isAllowedToChangePrefix())
+        {
+            $this->applyRemove();
+            $this->applyPrefix();
+        }
     }
 
-    protected function applyRoutesPackageSingle(): void
+    protected function startMiddleware(): void
     {
-        foreach ($this->getRoutesDatasets() as $route)
+        if ($this->isAllowedToChangeMiddleware())
+        {
+            $this->applyMiddleware();
+        }
+    }
+
+    protected function checkPackageRoute($route): bool
+    {
+        return in_array($route->uri(), $this->getPackageRoutesUri());
+    }
+
+    protected function getDatasets(): array
+    {
+        return $this->datasets;
+    }
+
+    protected function getPackageRoutes(): array
+    {
+        return $this->packageRoutes;
+    }
+
+    protected function getPackageRoutesUri(): array
+    {
+        return array_keys($this->packageRoutes);
+    }
+
+    protected function isAllowedToChangePrefix(): bool
+    {
+        return $this->checkPrefixEnable() && $this->checkPrefixGroups();
+    }
+
+    protected function isAllowedToChangeMiddleware(): bool
+    {
+        return $this->checkMiddlewareEnable() && $this->checkMiddlewareAssign();
+    }
+
+    protected function applyPrefix(): void
+    {
+        $this->checkPrefixGroupsSingle()
+            ? $this->applyPrefixSingle()
+            : $this->applyPrefixMultiple();
+    }
+
+    protected function applyPrefixSingle(): void
+    {
+        foreach ($this->getDatasets() as $route)
         {
             $routeUri = $this->getTrimPath(
                 Str::replaceStart($this->getPrefixOriginal(), '', $route->uri()));
@@ -82,13 +93,13 @@ class BaseRoutes extends BaseCommon
                 $this->finishSlash($this->getPrefixGroupsMain()).
                 $this->finishEmpty($this->getPrefixRoutes()).$routeUri;
 
-            $newRoute = app('router')->addRoute($route->methods(), $routeUri, $route->getAction());
+            app('router')->addRoute($route->methods(), $routeUri, $route->getAction());
         }
     }
 
-    protected function applyRoutesPackageMultiple(): void
+    protected function applyPrefixMultiple(): void
     {
-        foreach ($this->getRoutesDatasets() as $route)
+        foreach ($this->getDatasets() as $route)
         {
             $routeUri = $this->getTrimPath(
                 Str::replaceStart($this->getPrefixOriginal(), '', $route->uri()));
@@ -103,15 +114,13 @@ class BaseRoutes extends BaseCommon
         }
     }
 
-    protected function applyRoutesPackageAdd(): void {}
-
-    protected function applyRoutesRemove(): void
+    protected function applyRemove(): void
     {
         $collection = new RouteCollection;
 
         foreach (app('router')->getRoutes() as $route)
         {
-            if (! $this->checkOriginalRoute($route))
+            if (! $this->checkPackageRoute($route))
             {
                 $collection->add($route);
             }
@@ -120,5 +129,8 @@ class BaseRoutes extends BaseCommon
         app('router')->setRoutes($collection);
     }
 
-    protected function applyRoutesRemoveAdd(): void {}
+    protected function applyMiddleware(): void
+    {
+        dd('aaaaaaaaa');
+    }
 }

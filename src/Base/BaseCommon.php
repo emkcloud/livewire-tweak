@@ -81,6 +81,31 @@ class BaseCommon
         return $this->getPrefixDomain();
     }
 
+    protected function checkMiddlewareEnable(): bool
+    {
+        return $this->getMiddlewareEnable();
+    }
+
+    protected function checkMiddlewareAssign(): bool
+    {
+        return count($this->getMiddlewareAssign()) > 0;
+    }
+
+    protected function checkMiddlewareAssets(): bool
+    {
+        return $this->getMiddlewareAssets();
+    }
+
+    protected function checkMiddlewareRoutes(): bool
+    {
+        return $this->getMiddlewareRoutes();
+    }
+
+    protected function checkMiddlewareRemove(): bool
+    {
+        return $this->getMiddlewareRemove();
+    }
+
     protected function finishEmpty(?string $value): string
     {
         return $value ? $this->finishSlash($value) : '';

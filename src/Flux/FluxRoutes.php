@@ -6,12 +6,12 @@ use Emkcloud\LivewireTweak\Base\BaseRoutes;
 
 class FluxRoutes extends BaseRoutes
 {
-    protected $originalRoutes = [
-        'flux/flux.js',
-        'flux/flux.min.js',
-        'flux/editor.css',
-        'flux/editor.js',
-        'flux/editor.min.js',
+    protected $packageRoutes = [
+        'flux/flux.js' => 'asset',
+        'flux/flux.min.js' => 'asset',
+        'flux/editor.css' => 'asset',
+        'flux/editor.js' => 'asset',
+        'flux/editor.min.js' => 'asset',
     ];
 
     protected $prefixConstant = FluxPrefix::class;
