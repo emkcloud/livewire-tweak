@@ -34,6 +34,17 @@ LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ROUTES=true
 
 # Remove Middleware
 
+The specified middleware will be added to the default ones, but this behavior can be changed.
+
+```ini
+LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ENABLE=true
+LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ASSIGN="auth,nocache"
+LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ROUTES=true
+LIVEWIRE_TWEAK_CORE_MIDDLEWARE_REMOVE=true
+```
+
+> With remove enabled, the default middleware will be removed and only the new ones will be added.
+
 ## License
 
 The MIT License (MIT). Please see the package [License file](../../LICENSE.md) for more information.
