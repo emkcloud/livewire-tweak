@@ -1,4 +1,4 @@
-# Livewire Prefixing
+# Livewire Prefix
 
 At the time of writing, the Livewire sets asset and route paths using absolute URLs. This behavior is limiting in my development environment. Here's my solution:
 
