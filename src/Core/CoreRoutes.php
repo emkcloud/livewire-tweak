@@ -17,7 +17,7 @@ class CoreRoutes extends BaseRoutes
         'livewire/preview-file/{filename}',
         'livewire/update',
         'livewire/upload-file',
-    ]; 
+    ];
 
     protected $variablePrefix = '{routeswire}';
 }
