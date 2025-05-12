@@ -52,7 +52,7 @@ class BaseRoutes extends BaseCommon
 
     protected function isAllowedToResetMiddleware(): bool
     {
-        return $this->isAllowedToChangeMiddleware() && ! $this->checkPrefixMiddlewareWithOnlyReset();
+        return $this->isAllowedToChangeMiddleware() && ! $this->checkPrefixMiddlewareWithPreserve();
     }
 
     protected function getOriginalRoutes(): array
