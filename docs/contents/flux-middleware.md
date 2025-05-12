@@ -1,6 +1,6 @@
 # Flux Middleware
 
-A
+Sometimes it can be useful not only to change the route prefix, but also to assign different middleware than the defaults.
 
 ## License
 
