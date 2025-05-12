@@ -19,4 +19,6 @@ class FluxRoutes extends BaseRoutes
     protected $prefixOriginal = 'flux';
 
     protected $prefixVariable = '{routesflux}';
+
+    protected $middlewareConstant = FluxMiddleware::class;
 }

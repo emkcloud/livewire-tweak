@@ -13,6 +13,8 @@ class FluxAssets extends BaseAssets
 
     protected $prefixVariable = '{assetsflux}';
 
+    protected $middlewareConstant = FluxMiddleware::class;
+
     public function init()
     {
         Blade::anonymousComponentPath(__DIR__.'/../../resources/views/flux/overrides', 'flux');

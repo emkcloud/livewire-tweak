@@ -11,6 +11,8 @@ class CoreAssets extends BaseAssets
 
     protected $prefixVariable = '{assetswire}';
 
+    protected $middlewareConstant = CoreMiddleware::class;
+
     protected function startAssetsPrefixAddon(): void
     {
         if (is_null(config('livewire.asset_url')))

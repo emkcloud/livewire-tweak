@@ -1,6 +1,6 @@
 <?php
 
-namespace Emkcloud\LivewireTweak\Core;
+namespace Emkcloud\LivewireTweak\Flux;
 
 class FluxMiddleware
 {

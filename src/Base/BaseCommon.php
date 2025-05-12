@@ -33,15 +33,13 @@ class BaseCommon
 
     protected $middlewareRemove = false;
 
+    protected $middlewareConstant = null;
+
     public function __construct()
     {
-        $this->prefixEnable = $this->getConfigPrefixEnable();
-        $this->prefixGroups = $this->getConfigPrefixGroups();
-        $this->prefixAssets = $this->getConfigPrefixAssets();
-        $this->prefixRoutes = $this->getConfigPrefixRoutes();
-        $this->prefixDomain = $this->getConfigPrefixDomain();
-
-        $this->setDefaultValueURL();
+        $this->setConfigPrefixValue();
+        $this->setConfigMiddlewareValue();
+        $this->setConfigURLDefaultValue();
     }
 
     public function init() {}
@@ -156,6 +154,63 @@ class BaseCommon
         return false;
     }
 
+    protected function getConfigMiddlewareEnable(): bool
+    {
+        if (class_exists($this->middlewareConstant))
+        {
+            return filter_var(config($this->middlewareConstant::ENABLE), FILTER_VALIDATE_BOOLEAN);
+        }
+
+        return false;
+    }
+
+    protected function getConfigMiddlewareAssign(): array
+    {
+        if (class_exists($this->middlewareConstant))
+        {
+            if (is_string(config($this->middlewareConstant::ASSIGN)))
+            {
+                return array_filter(array_map(function ($item)
+                {
+                    return Str::trim($item) ?: false;
+
+                }, explode(',', config($this->middlewareConstant::ASSIGN))));
+            }
+        }
+
+        return [];
+    }
+
+    protected function getConfigMiddlewareAssets(): bool
+    {
+        if (class_exists($this->middlewareConstant))
+        {
+            return filter_var(config($this->middlewareConstant::ASSETS), FILTER_VALIDATE_BOOLEAN);
+        }
+
+        return false;
+    }
+
+    protected function getConfigMiddlewareRoutes(): bool
+    {
+        if (class_exists($this->middlewareConstant))
+        {
+            return filter_var(config($this->middlewareConstant::ROUTES), FILTER_VALIDATE_BOOLEAN);
+        }
+
+        return false;
+    }
+
+    protected function getConfigMiddlewareRemove(): bool
+    {
+        if (class_exists($this->middlewareConstant))
+        {
+            return filter_var(config($this->middlewareConstant::REMOVE), FILTER_VALIDATE_BOOLEAN);
+        }
+
+        return false;
+    }
+
     protected function getCurrentPrefixPath(): ?string
     {
         return parse_url(url('/'), PHP_URL_PATH);
@@ -206,6 +261,31 @@ class BaseCommon
         return Str::trim($this->getPrefixVariable(), '{}');
     }
 
+    protected function getMiddlewareEnable(): bool
+    {
+        return $this->middlewareEnable;
+    }
+
+    protected function getMiddlewareAssign(): array
+    {
+        return $this->middlewareAssign;
+    }
+
+    protected function getMiddlewareAssets(): bool
+    {
+        return $this->middlewareAssets;
+    }
+
+    protected function getMiddlewareRoutes(): bool
+    {
+        return $this->middlewareRoutes;
+    }
+
+    protected function getMiddlewareRemove(): bool
+    {
+        return $this->middlewareRemove;
+    }
+
     protected function getTrimPath(string $path): string
     {
         return Str::trim(Str::trim($path), '/');
@@ -226,7 +306,25 @@ class BaseCommon
         return $this->getPrefixGroupsMain();
     }
 
-    protected function setDefaultValueURL(): void
+    public function setConfigPrefixValue()
+    {
+        $this->prefixEnable = $this->getConfigPrefixEnable();
+        $this->prefixGroups = $this->getConfigPrefixGroups();
+        $this->prefixAssets = $this->getConfigPrefixAssets();
+        $this->prefixRoutes = $this->getConfigPrefixRoutes();
+        $this->prefixDomain = $this->getConfigPrefixDomain();
+    }
+
+    public function setConfigMiddlewareValue()
+    {
+        $this->middlewareEnable = $this->getConfigMiddlewareEnable();
+        $this->middlewareAssign = $this->getConfigMiddlewareAssign();
+        $this->middlewareAssets = $this->getConfigMiddlewareAssets();
+        $this->middlewareRoutes = $this->getConfigMiddlewareRoutes();
+        $this->middlewareRemove = $this->getConfigMiddlewareRemove();
+    }
+
+    protected function setConfigURLDefaultValue(): void
     {
         if (! isset($this->getURLDefaultParameters()[$this->getPrefixVariableName()]))
         {

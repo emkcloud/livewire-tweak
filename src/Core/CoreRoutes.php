@@ -20,4 +20,6 @@ class CoreRoutes extends BaseRoutes
     protected $prefixOriginal = 'livewire';
 
     protected $prefixVariable = '{routeswire}';
+
+    protected $middlewareConstant = CoreMiddleware::class;
 }
