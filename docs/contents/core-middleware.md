@@ -1,6 +1,6 @@
 # Livewire Middleware
 
-Sometimes it can be useful not only to change the route prefix, but also to assign different middleware compared to those defined in the original package.
+Sometimes it can be useful not only to change the route prefix, but also to assign different middleware.
 
 ## License
 
