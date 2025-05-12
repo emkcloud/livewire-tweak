@@ -34,7 +34,7 @@ LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ROUTES=true
 
 # Remove Middleware
 
-The specified middleware will be added to the default ones, but this behavior can be changed.
+The specified middleware will be added to the defaults, but this behavior can be changed.
 
 ```ini
 LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ENABLE=true
