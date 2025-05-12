@@ -2,7 +2,7 @@
 
 Sometimes it can be useful not only to change the route prefix, but also to assign different middleware than the defaults.
 
-# Assign Middleware
+# Routes Middleware
 
 This feature allows you to add a middleware to the default Livewire middleware.
 
@@ -44,6 +44,16 @@ LIVEWIRE_TWEAK_CORE_MIDDLEWARE_REMOVE=true
 ```
 
 > With remove enabled, the default middleware will be removed and only the new ones will be added.
+
+# Assets Middleware
+
+Normally, middleware are not assigned to assets, but we can do it if needed.
+
+```ini
+LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ENABLE=true
+LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ASSIGN="auth,nocache"
+LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ASSETS=true
+```
 
 ## License
 
