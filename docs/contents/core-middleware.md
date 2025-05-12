@@ -30,6 +30,10 @@ LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ASSIGN="auth,nocache,api,App\\Http\\Middleware\\T
 LIVEWIRE_TWEAK_CORE_MIDDLEWARE_ROUTES=true
 ```
 
+> Invalid middleware will be ignored.
+
+# Remove Middleware
+
 ## License
 
 The MIT License (MIT). Please see the package [License file](../../LICENSE.md) for more information.
