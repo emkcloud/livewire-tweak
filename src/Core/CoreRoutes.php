@@ -6,10 +6,6 @@ use Emkcloud\LivewireTweak\Base\BaseRoutes;
 
 class CoreRoutes extends BaseRoutes
 {
-    protected $constantPrefix = CorePrefix::class;
-
-    protected $originalPrefix = 'livewire';
-
     protected $originalRoutes = [
         'livewire/livewire.js',
         'livewire/livewire.min.js',
@@ -19,5 +15,9 @@ class CoreRoutes extends BaseRoutes
         'livewire/upload-file',
     ];
 
-    protected $variablePrefix = '{routeswire}';
+    protected $prefixConstant = CorePrefix::class;
+
+    protected $prefixOriginal = 'livewire';
+
+    protected $prefixVariable = '{routeswire}';
 }

@@ -7,32 +7,39 @@ use Illuminate\Support\Str;
 
 class BaseCommon
 {
-    protected $constantPrefix = null;
+    protected $prefixEnable = false;
 
-    protected $originalPrefix = null;
+    protected $prefixGroups = [];
 
-    protected $resultedEnable = false;
+    protected $prefixAssets = null;
 
-    protected $resultedGroups = [];
+    protected $prefixRoutes = null;
 
-    protected $resultedAssets = null;
+    protected $prefixDomain = false;
 
-    protected $resultedRoutes = null;
+    protected $prefixConstant = null;
 
-    protected $resultedDomain = false;
+    protected $prefixOriginal = null;
 
-    protected $resultedMiddle = [];
+    protected $prefixVariable = false;
 
-    protected $variablePrefix = false;
+    protected $middlewareEnable = false;
+
+    protected $middlewareAssign = [];
+
+    protected $middlewareAssets = false;
+
+    protected $middlewareRoutes = false;
+
+    protected $middlewareRemove = false;
 
     public function __construct()
     {
-        $this->resultedEnable = $this->getConfigPrefixEnable();
-        $this->resultedGroups = $this->getConfigPrefixGroups();
-        $this->resultedAssets = $this->getConfigPrefixAssets();
-        $this->resultedRoutes = $this->getConfigPrefixRoutes();
-        $this->resultedDomain = $this->getConfigPrefixDomain();
-        $this->resultedMiddle = $this->getConfigPrefixMiddleware();
+        $this->prefixEnable = $this->getConfigPrefixEnable();
+        $this->prefixGroups = $this->getConfigPrefixGroups();
+        $this->prefixAssets = $this->getConfigPrefixAssets();
+        $this->prefixRoutes = $this->getConfigPrefixRoutes();
+        $this->prefixDomain = $this->getConfigPrefixDomain();
 
         $this->setDefaultValueURL();
     }
@@ -76,16 +83,6 @@ class BaseCommon
         return $this->getPrefixDomain();
     }
 
-    protected function checkPrefixMiddleware(): bool
-    {
-        return count($this->getPrefixMiddleware()) > 0;
-    }
-
-    protected function checkPrefixMiddlewareWithPreserve(): bool
-    {
-        return isset($this->getPrefixMiddleware()[0]) && $this->getPrefixMiddleware()[0] == '*';
-    }
-
     protected function finishEmpty(?string $value): string
     {
         return $value ? $this->finishSlash($value) : '';
@@ -98,9 +95,9 @@ class BaseCommon
 
     protected function getConfigPrefixEnable(): bool
     {
-        if (class_exists($this->constantPrefix))
+        if (class_exists($this->prefixConstant))
         {
-            return filter_var(config($this->constantPrefix::ENABLE), FILTER_VALIDATE_BOOLEAN);
+            return filter_var(config($this->prefixConstant::ENABLE), FILTER_VALIDATE_BOOLEAN);
         }
 
         return false;
@@ -108,15 +105,15 @@ class BaseCommon
 
     protected function getConfigPrefixGroups(): array
     {
-        if (class_exists($this->constantPrefix))
+        if (class_exists($this->prefixConstant))
         {
-            if (is_string(config($this->constantPrefix::GROUPS)))
+            if (is_string(config($this->prefixConstant::GROUPS)))
             {
                 return array_filter(array_map(function ($item)
                 {
                     return Str::trim($item) ? $this->getTrimPath($item) : false;
 
-                }, explode(',', config($this->constantPrefix::GROUPS))));
+                }, explode(',', config($this->prefixConstant::GROUPS))));
             }
         }
 
@@ -125,11 +122,11 @@ class BaseCommon
 
     protected function getConfigPrefixAssets(): ?string
     {
-        if (class_exists($this->constantPrefix))
+        if (class_exists($this->prefixConstant))
         {
-            if (is_string(config($this->constantPrefix::ASSETS)))
+            if (is_string(config($this->prefixConstant::ASSETS)))
             {
-                return $this->getTrimPath(config($this->constantPrefix::ASSETS)) ?: null;
+                return $this->getTrimPath(config($this->prefixConstant::ASSETS)) ?: null;
             }
         }
 
@@ -138,11 +135,11 @@ class BaseCommon
 
     protected function getConfigPrefixRoutes(): ?string
     {
-        if (class_exists($this->constantPrefix))
+        if (class_exists($this->prefixConstant))
         {
-            if (is_string(config($this->constantPrefix::ROUTES)))
+            if (is_string(config($this->prefixConstant::ROUTES)))
             {
-                return $this->getTrimPath(config($this->constantPrefix::ROUTES)) ?: null;
+                return $this->getTrimPath(config($this->prefixConstant::ROUTES)) ?: null;
             }
         }
 
@@ -151,29 +148,12 @@ class BaseCommon
 
     protected function getConfigPrefixDomain(): bool
     {
-        if (class_exists($this->constantPrefix))
+        if (class_exists($this->prefixConstant))
         {
-            return filter_var(config($this->constantPrefix::DOMAIN), FILTER_VALIDATE_BOOLEAN);
+            return filter_var(config($this->prefixConstant::DOMAIN), FILTER_VALIDATE_BOOLEAN);
         }
 
         return false;
-    }
-
-    protected function getConfigPrefixMiddleware(): array
-    {
-        if (class_exists($this->constantPrefix))
-        {
-            if (is_string(config($this->constantPrefix::MIDDLE)))
-            {
-                return array_filter(array_map(function ($item)
-                {
-                    return Str::trim($item) ?: false;
-
-                }, explode(',', config($this->constantPrefix::MIDDLE))));
-            }
-        }
-
-        return [];
     }
 
     protected function getCurrentPrefixPath(): ?string
@@ -183,12 +163,12 @@ class BaseCommon
 
     protected function getPrefixEnable(): bool
     {
-        return $this->resultedEnable;
+        return $this->prefixEnable;
     }
 
     protected function getPrefixGroups(): array
     {
-        return $this->resultedGroups;
+        return $this->prefixGroups;
     }
 
     protected function getPrefixGroupsMain(): ?string
@@ -198,27 +178,32 @@ class BaseCommon
 
     protected function getPrefixAssets(): ?string
     {
-        return $this->resultedAssets;
+        return $this->prefixAssets;
     }
 
     protected function getPrefixRoutes(): ?string
     {
-        return $this->resultedRoutes;
+        return $this->prefixRoutes;
     }
 
     protected function getPrefixDomain(): bool
     {
-        return $this->resultedDomain;
-    }
-
-    protected function getPrefixMiddleware(): array
-    {
-        return $this->resultedMiddle;
+        return $this->prefixDomain;
     }
 
     protected function getPrefixOriginal(): ?string
     {
-        return $this->originalPrefix;
+        return $this->prefixOriginal;
+    }
+
+    protected function getPrefixVariable(): ?string
+    {
+        return $this->prefixVariable;
+    }
+
+    protected function getPrefixVariableName(): ?string
+    {
+        return Str::trim($this->getPrefixVariable(), '{}');
     }
 
     protected function getTrimPath(string $path): string
@@ -233,29 +218,19 @@ class BaseCommon
 
     protected function getURLDefaultValue(): string
     {
-        if (isset($this->getURLDefaultParameters()[$this->getVariablePrefixName()]))
+        if (isset($this->getURLDefaultParameters()[$this->getPrefixVariableName()]))
         {
-            return $this->getURLDefaultParameters()[$this->getVariablePrefixName()];
+            return $this->getURLDefaultParameters()[$this->getPrefixVariableName()];
         }
 
         return $this->getPrefixGroupsMain();
     }
 
-    protected function getVariablePrefix(): ?string
-    {
-        return $this->variablePrefix;
-    }
-
-    protected function getVariablePrefixName(): ?string
-    {
-        return Str::trim($this->getVariablePrefix(), '{}');
-    }
-
     protected function setDefaultValueURL(): void
     {
-        if (! isset($this->getURLDefaultParameters()[$this->getVariablePrefixName()]))
+        if (! isset($this->getURLDefaultParameters()[$this->getPrefixVariableName()]))
         {
-            URL::defaults([$this->getVariablePrefixName() => $this->getPrefixGroupsMain()]);
+            URL::defaults([$this->getPrefixVariableName() => $this->getPrefixGroupsMain()]);
         }
     }
 }

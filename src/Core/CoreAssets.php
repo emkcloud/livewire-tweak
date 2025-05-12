@@ -7,9 +7,9 @@ use Livewire\Mechanisms\FrontendAssets\FrontendAssets;
 
 class CoreAssets extends BaseAssets
 {
-    protected $constantPrefix = CorePrefix::class;
+    protected $prefixConstant = CorePrefix::class;
 
-    protected $variablePrefix = '{assetswire}';
+    protected $prefixVariable = '{assetswire}';
 
     protected function startAssetsPrefixAddon(): void
     {

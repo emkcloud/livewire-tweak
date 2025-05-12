@@ -45,16 +45,6 @@ class BaseRoutes extends BaseCommon
         return $this->checkPrefixEnable() && $this->checkPrefixGroups();
     }
 
-    protected function isAllowedToChangeMiddleware(): bool
-    {
-        return $this->isAllowedToChangeRoutes() && $this->checkPrefixMiddleware();
-    }
-
-    protected function isAllowedToResetMiddleware(): bool
-    {
-        return $this->isAllowedToChangeMiddleware() && ! $this->checkPrefixMiddlewareWithPreserve();
-    }
-
     protected function getOriginalRoutes(): array
     {
         return $this->originalRoutes;
@@ -72,46 +62,6 @@ class BaseRoutes extends BaseCommon
             return $this->checkOriginalRoute($route);
 
         })->all();
-    }
-
-    protected function getRoutesMiddlewareForUpdate(): array
-    {
-        /** @var Illuminate\Contracts\Http\Kernel $kernel */
-        $kernel = app()->make(Kernel::class);
-
-        $middlewareUpdate = [];
-        $middlewareRoutes = $kernel->getRouteMiddleware();
-        $middlewareGroups = $kernel->getMiddlewareGroups();
-
-        foreach ($this->getPrefixMiddleware() as $middleware)
-        {
-            if ($middleware != '*')
-            {
-                $middlewareSelected = false;
-
-                if (isset($middlewareRoutes[$middleware]))
-                {
-                    $middlewareSelected = true;
-                }
-
-                if (isset($middlewareGroups[$middleware]))
-                {
-                    $middlewareSelected = true;
-                }
-
-                if (class_exists($middleware) && method_exists($middleware, 'handle'))
-                {
-                    $middlewareSelected = true;
-                }
-
-                if ($middlewareSelected && ! isset($middlewareUpdate[$middleware]))
-                {
-                    $middlewareUpdate[] = $middleware;
-                }
-            }
-        }
-
-        return $middlewareUpdate;
     }
 
     protected function applyRoutesPackage(): void
@@ -133,8 +83,6 @@ class BaseRoutes extends BaseCommon
                 $this->finishEmpty($this->getPrefixRoutes()).$routeUri;
 
             $newRoute = app('router')->addRoute($route->methods(), $routeUri, $route->getAction());
-
-            $this->applyRoutesPackageMiddleware($newRoute);
         }
     }
 
@@ -146,38 +94,12 @@ class BaseRoutes extends BaseCommon
                 Str::replaceStart($this->getPrefixOriginal(), '', $route->uri()));
 
             $routeUri =
-                $this->finishSlash($this->getVariablePrefix()).
+                $this->finishSlash($this->getPrefixVariable()).
                 $this->finishEmpty($this->getPrefixRoutes()).$routeUri;
 
             $newRoute = app('router')->addRoute($route->methods(), $routeUri, $route->getAction());
 
-            $newRoute->where($this->getVariablePrefixName(), implode('|', $this->getPrefixGroups()));
-
-            $this->applyRoutesPackageMiddleware($newRoute);
-        }
-    }
-
-    protected function applyRoutesPackageMiddleware($route): void
-    {
-        if ($this->isAllowedToChangeMiddleware())
-        {
-            $middlewareUpdate = $this->getRoutesMiddlewareForUpdate();
-
-            if ($this->isAllowedToResetMiddleware())
-            {
-                if (count($middlewareUpdate) > 0)
-                {
-                    $route->action['middleware'] = [];
-                }
-            }
-
-            foreach ($middlewareUpdate as $middleware)
-            {
-                if (! isset($route->action['middleware'][$middleware]))
-                {
-                    $route->action['middleware'][] = $middleware;
-                }
-            }
+            $newRoute->where($this->getPrefixVariableName(), implode('|', $this->getPrefixGroups()));
         }
     }
 
