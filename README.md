@@ -12,10 +12,10 @@ In these environments, using popular Laravel packages like Nova, Livewire, or ot
 
 ## Features
 
-- [Prefix for Livewire](docs/contents/core-prefix.md)
-- [Prefix for Livewire Flux](docs/contents/flux-prefix.md)
-- [Middleware for Livewire](docs/contents/middleware-prefix.md)
-- [Middleware for Livewire Flux](docs/contents/middleware-prefix.md)
+- [Livewire Core Prefix](docs/contents/core-prefix.md)
+- [Livewire Core Middleware](docs/contents/middleware-prefix.md)
+- [Livewire Flux Prefix](docs/contents/flux-prefix.md)
+- [Livewire Flux Middleware](docs/contents/middleware-prefix.md)
 
 ## Requirements
 
