@@ -1,8 +1,8 @@
 <?php
 
-uses(Tests\Traits\FluxMiddlewareRoutes::class);
+uses(Tests\Traits\CoreMiddlewareRoutes::class);
 
-describe('Flux middleware routes', function ()
+describe('Livewire middleware routes', function ()
 {
     it('should contain middleware auth/web', function ()
     {
@@ -10,7 +10,7 @@ describe('Flux middleware routes', function ()
 
         foreach (app('router')->getRoutes() as $route)
         {
-            if ($route->uri == 'admin/flux/flux.min.js')
+            if ($route->uri == 'admin/livewire/livewire.min.js')
             {
                 $middleware = $route->middleware();
             }
