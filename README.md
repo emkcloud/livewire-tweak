@@ -1,4 +1,4 @@
-# livewire-tweak
+# Livewire Tweak
 
 **Custom tweaks for Livewire and Flux**
 
