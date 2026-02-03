@@ -40,7 +40,7 @@ class BaseAssets extends BaseCommon
             $source = $this->replaceTagSource($tag);
             $target = $this->replaceTagTarget($tag);
 
-            return preg_replace($source, $target, $output);
+            $output = preg_replace($source, $target, $output);
         }
 
         return $output;

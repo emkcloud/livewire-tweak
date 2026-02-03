@@ -130,13 +130,15 @@ class BaseCommon
     {
         if (class_exists($this->prefixConstant))
         {
-            if (is_string(config($this->prefixConstant::GROUPS)))
+            $groups = config($this->prefixConstant::GROUPS);
+
+            if (is_string($groups))
             {
                 return array_filter(array_map(function ($item)
                 {
                     return Str::trim($item) ? $this->getTrimPath($item) : false;
 
-                }, explode(',', config($this->prefixConstant::GROUPS))));
+                }, explode(',', $groups)));
             }
         }
 
@@ -147,9 +149,11 @@ class BaseCommon
     {
         if (class_exists($this->prefixConstant))
         {
-            if (is_string(config($this->prefixConstant::ASSETS)))
+            $assets = config($this->prefixConstant::ASSETS);
+
+            if (is_string($assets))
             {
-                return $this->getTrimPath(config($this->prefixConstant::ASSETS)) ?: null;
+                return $this->getTrimPath($assets) ?: null;
             }
         }
 
@@ -160,9 +164,11 @@ class BaseCommon
     {
         if (class_exists($this->prefixConstant))
         {
-            if (is_string(config($this->prefixConstant::ROUTES)))
+            $routes = config($this->prefixConstant::ROUTES);
+
+            if (is_string($routes))
             {
-                return $this->getTrimPath(config($this->prefixConstant::ROUTES)) ?: null;
+                return $this->getTrimPath($routes) ?: null;
             }
         }
 
@@ -193,13 +199,15 @@ class BaseCommon
     {
         if (class_exists($this->middlewareConstant))
         {
-            if (is_string(config($this->middlewareConstant::ASSIGN)))
+            $middleware = config($this->middlewareConstant::ASSIGN);
+
+            if (is_string($middleware))
             {
                 return array_filter(array_map(function ($item)
                 {
                     return Str::trim($item) ?: false;
 
-                }, explode(',', config($this->middlewareConstant::ASSIGN))));
+                }, explode(',', $middleware)));
             }
         }
 

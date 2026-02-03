@@ -4,6 +4,7 @@ namespace Emkcloud\LivewireTweak\Flux;
 
 use Emkcloud\LivewireTweak\Base\BaseAssets;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Str;
 
 class FluxAssets extends BaseAssets
 {
@@ -27,22 +28,25 @@ class FluxAssets extends BaseAssets
 
     public function bladeEditorStyles()
     {
-        return $this->replaceTagHref(app('flux')->editorStyles());
+        return $this->replaceTagHref(
+            $this->bladeReplaceDomain(app('flux')->editorStyles()));
     }
 
     public function bladeEditorScripts()
     {
-        return $this->replaceTagSrc(app('flux')->editorScripts());
+        return $this->replaceTagSrc(
+            $this->bladeReplaceDomain(app('flux')->editorScripts()));
     }
 
     public function bladeScripts(): string
     {
-        return $this->replaceTagSrc($this->bladeScriptsView());
+        return $this->replaceTagSrc($this->bladeReplaceDomain(
+            view('livewire-tweak::flux.assets.scripts')->render()));
     }
 
-    public function bladeScriptsView(): string
+    public function bladeReplaceDomain($output): string
     {
-        return view('livewire-tweak::flux.assets.scripts')->render();
+        return Str::replace(Str::trim(url('/'),'/'),'',$output);
     }
 
     protected function startAssetsPrefixAddon(): void

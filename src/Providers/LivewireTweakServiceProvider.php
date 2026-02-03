@@ -8,8 +8,11 @@ use Emkcloud\LivewireTweak\Flux\FluxAssets;
 use Emkcloud\LivewireTweak\Flux\FluxRoutes;
 use Flux\FluxServiceProvider;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Livewire\LivewireServiceProvider;
+use Livewire\Mechanisms\HandleRequests\HandleRequests;
+use Composer\InstalledVersions;
 
 class LivewireTweakServiceProvider extends ServiceProvider
 {
@@ -80,8 +83,28 @@ class LivewireTweakServiceProvider extends ServiceProvider
         {
             if (isset($directives['livewireStyles']) && isset($directives['livewireScripts']))
             {
+                $this->startSettingCoreFixed();
+
                 app('livewireTweakCoreRoutes')->start();
                 app('livewireTweakCoreAssets')->start();
+            }
+        }
+    }
+
+    public function startSettingCoreFixed(): void
+    {
+        if (class_exists(InstalledVersions::class))
+        {
+            $version = InstalledVersions::getPrettyVersion('livewire/livewire');
+            $version = ltrim($version, 'v');
+
+            if (version_compare($version, '3.7.3', '>='))
+            {
+                if (!Route::has('default.livewire.update'))
+                {
+                    Route::post('/livewire/update', [HandleRequests::class, 'handleUpdate'])
+                        ->middleware('web')->name('default.livewire.update');
+                }
             }
         }
     }
