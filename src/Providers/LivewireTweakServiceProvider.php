@@ -83,28 +83,8 @@ class LivewireTweakServiceProvider extends ServiceProvider
         {
             if (isset($directives['livewireStyles']) && isset($directives['livewireScripts']))
             {
-                $this->startSettingCoreFixed();
-
                 app('livewireTweakCoreRoutes')->start();
                 app('livewireTweakCoreAssets')->start();
-            }
-        }
-    }
-
-    public function startSettingCoreFixed(): void
-    {
-        if (class_exists(InstalledVersions::class))
-        {
-            $version = InstalledVersions::getPrettyVersion('livewire/livewire');
-            $version = ltrim($version, 'v');
-
-            if (version_compare($version, '3.7.3', '>='))
-            {
-                if (!Route::has('default.livewire.update'))
-                {
-                    Route::post('/livewire/update', [HandleRequests::class, 'handleUpdate'])
-                        ->middleware('web')->name('default.livewire.update');
-                }
             }
         }
     }
