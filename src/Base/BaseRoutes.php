@@ -16,9 +16,14 @@ class BaseRoutes extends BaseCommon
 
     public function start(): void
     {
+        $this->startVariables();
         $this->startDatasets();
         $this->startPrefix();
         $this->startMiddleware();
+    }
+
+    protected function startVariables(): void
+    {
     }
 
     protected function startDatasets(): void

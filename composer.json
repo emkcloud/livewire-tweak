@@ -28,8 +28,8 @@
         }
     },
     "require": {
-        "illuminate/support": "^13.0",
-        "livewire/livewire": "^4.2"
+        "illuminate/support": "^12.0|^13.0",
+        "livewire/livewire": "^3.7|^4.2"
     },
     "conflict": {
         "livewire/flux": ">=3.0"
