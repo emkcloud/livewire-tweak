@@ -20,9 +20,9 @@ In these environments, using popular Laravel packages like Nova, Livewire, or ot
 ## Requirements
 
 - Laravel ^12|^13
-- Livewire ^4.0
-- Livewire Flux ^2.0 (optional)
-- Livewire Flux PRO ^2.0 (optional)
+- Livewire ^3.7|^4.2
+- Livewire Flux ^2.1 (optional)
+- Livewire Flux PRO ^2.1 (optional)
 
 ## Installation
 
