@@ -99,6 +99,7 @@ class LivewireTweakServiceProvider extends ServiceProvider
             {
                 app('livewireTweakFluxRoutes')->start();
                 app('livewireTweakFluxAssets')->start();
+                app('livewireTweakCoreRoutes')->setUpdateRoute();
             }
         }
     }

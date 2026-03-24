@@ -4,7 +4,9 @@ namespace Emkcloud\LivewireTweak\Core;
 
 use Composer\InstalledVersions;
 use Emkcloud\LivewireTweak\Base\BaseRoutes;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Livewire\Livewire;
 use Livewire\Mechanisms\HandleRequests\EndpointResolver;
 
 class CoreRoutes extends BaseRoutes
@@ -54,6 +56,17 @@ class CoreRoutes extends BaseRoutes
                 Str::trim(EndpointResolver::componentCssPath(),'/') => 'asset',
                 Str::trim(EndpointResolver::componentGlobalCssPath(),'/') => 'asset',
             ];
+        }
+    }
+
+    public function setUpdateRoute(): void
+    {
+        if (version_compare($this->getVersionLivewire(), '4.2.0', '>='))
+        {
+            Livewire::setUpdateRoute(function ($handle, $path)
+            {
+                return Route::post('{routeswire}'.$path, $handle);
+            });
         }
     }
 }
