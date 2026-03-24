@@ -4,6 +4,7 @@ namespace Emkcloud\LivewireTweak\Core;
 
 use Composer\InstalledVersions;
 use Emkcloud\LivewireTweak\Base\BaseAssets;
+use Illuminate\Support\Str;
 use Livewire\Mechanisms\FrontendAssets\FrontendAssets;
 use Livewire\Mechanisms\HandleRequests\EndpointResolver;
 
@@ -19,7 +20,7 @@ class CoreAssets extends BaseAssets
     {
         if (version_compare($this->getVersionLivewire(), '4.2.0', '>='))
         {
-            return EndpointResolver::prefix();
+            return Str::trim(EndpointResolver::prefix(),'/');
         }
 
         return parent::getConfigPrefixAssets();
