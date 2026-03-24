@@ -28,14 +28,12 @@ class FluxAssets extends BaseAssets
 
     public function bladeEditorStyles()
     {
-        return $this->replaceTagHref(
-            $this->bladeReplaceDomain(app('flux')->editorStyles()));
+        return $this->replaceTagHref($this->bladeReplaceDomain(app('flux')->editorStyles()));
     }
 
     public function bladeEditorScripts()
     {
-        return $this->replaceTagSrc(
-            $this->bladeReplaceDomain(app('flux')->editorScripts()));
+        return $this->replaceTagSrc($this->bladeReplaceDomain(app('flux')->editorScripts()));
     }
 
     public function bladeScripts(): string
@@ -46,7 +44,7 @@ class FluxAssets extends BaseAssets
 
     public function bladeReplaceDomain($output): string
     {
-        return Str::replace(Str::trim(url('/'),'/'),'',$output);
+        return (string) Str::replace(Str::trim(url('/'),'/'),'',$output);
     }
 
     protected function startAssetsPrefixAddon(): void
