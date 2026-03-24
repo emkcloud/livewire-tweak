@@ -26,11 +26,19 @@ class CoreRoutes extends BaseRoutes
 
     protected $middlewareConstant = CoreMiddleware::class;
 
+    protected function getConfigPrefixRoutes(): ?string
+    {
+        if (version_compare($this->getVersionLivewire(), '4.2.0', '>='))
+        {
+            return null;
+        }
+
+        return parent::getConfigPrefixRoutes();
+    }
+
     protected function startVariables(): void
     {
-        $version = InstalledVersions::getVersion('livewire/livewire');
-
-        if (version_compare($version, '4.2.0', '>='))
+        if (version_compare($this->getVersionLivewire(), '4.2.0', '>='))
         {
             $this->prefixOriginal = EndpointResolver::prefix();
 

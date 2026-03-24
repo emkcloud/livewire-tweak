@@ -2,6 +2,7 @@
 
 namespace Emkcloud\LivewireTweak\Base;
 
+use Composer\InstalledVersions;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
@@ -337,6 +338,11 @@ class BaseCommon
         }
 
         return $this->getPrefixGroupsMain();
+    }
+
+    protected function getVersionLivewire(): string
+    {
+        return InstalledVersions::getVersion('livewire/livewire');
     }
 
     public function setConfigPrefixValue()

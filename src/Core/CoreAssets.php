@@ -17,16 +17,12 @@ class CoreAssets extends BaseAssets
 
     protected function getConfigPrefixAssets(): ?string
     {
-        $assets = parent::getConfigPrefixAssets();
-
-        $version = InstalledVersions::getVersion('livewire/livewire');
-
-        if (version_compare($version, '4.2.0', '>='))
+        if (version_compare($this->getVersionLivewire(), '4.2.0', '>='))
         {
-            $assets .= EndpointResolver::prefix();
+            return EndpointResolver::prefix();
         }
 
-        return $assets;
+        return parent::getConfigPrefixAssets();
     }
 
     protected function startAssetsPrefixAddon(): void
